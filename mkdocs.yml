@@ -1,0 +1,23 @@
+site_name: Horizon_Arm 文档
+site_description: Horizon_Arm 机械臂控制上位机 用户指南
+site_author: Horizon_Arm Team
+
+theme:
+  name: readthedocs
+
+nav:
+  - 首页: index.md
+  - 快速开始: quick-start.md
+  - 用户指南: user_guide.md
+  - 故障排除: troubleshooting.md
+
+plugins:
+  - search
+
+markdown_extensions:
+  - admonition
+  - toc:
+      permalink: true
+  - tables
+  - attr_list
+  - md_in_html  

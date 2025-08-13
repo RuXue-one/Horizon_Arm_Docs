@@ -7,7 +7,6 @@ theme:
 
 nav:
   - 首页: index.md
-  - 快速开始: quick-start.md
   - 用户指南: user_guide.md
   - 故障排除: troubleshooting.md
 

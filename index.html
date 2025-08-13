@@ -42,23 +42,15 @@
               <ul class="current">
                 <li class="toctree-l1 current"><a class="reference internal current" href="#">首页</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#_1">系统简介</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#_2">使用流程</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#_3">文档导航</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#_4">开发者信息</a>
-    </li>
     </ul>
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="quick-start/">快速开始</a>
+                <li class="toctree-l1"><a class="reference internal" href="user_guide/">用户指南</a>
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="user_guide/">用户指南</a>
+                <li class="toctree-l1"><a class="reference internal" href="operator_guide/">装配与调试手册</a>
                 </li>
               </ul>
               <ul>
@@ -88,51 +80,40 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="horizon_arm">Horizon_Arm 文档<a class="headerlink" href="#horizon_arm" title="Permanent link">&para;</a></h1>
-<p>欢迎访问 Horizon_Arm 机械臂控制上位机的文档站点。</p>
+                <h2 id="horizon_arm">欢迎使用 Horizon_Arm<a class="headerlink" href="#horizon_arm" title="Permanent link">&para;</a></h2>
+<p>本指南面向最终用户。我们将提供已打包的安装程序，无需安装 Python 或命令行操作。你只需要安装软件、连接设备、按照界面提示完成配置即可开始使用。</p>
 <div align="center">
   <img src="images/3.png" alt="Horizon_Arm系统界面" width="800">
   <p><em>Horizon_Arm 控制系统界面</em></p>
-</div>
+ </div>
 
 <hr />
-<h2 id="_1">系统简介<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<p>Horizon_Arm 是一个机械臂控制上位机系统，主要特点：</p>
+<h2 id="_1">你可以做什么<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <ul>
-<li><strong>多种控制方式</strong>：支持单电机控制、多电机同步、机械臂控制</li>
-<li><strong>AI集成</strong>：集成具身智能功能，支持自然语言指令</li>
-<li><strong>仿真支持</strong>：内置MuJoCo仿真环境</li>
-<li><strong>相机标定</strong>：支持手眼标定和相机标定功能</li>
+<li><strong>控制机械臂</strong>：单电机、多电机同步、整臂控制</li>
+<li><strong>智能助理</strong>：用自然语言让机械臂完成任务（文字或语音）</li>
+<li><strong>视觉标定</strong>：相机标定与手眼标定，提升视觉/定位精度</li>
 </ul>
 <hr />
-<h2 id="_2">使用流程<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h2 id="_2">使用概览<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <ol>
-<li><strong>环境准备</strong> → 安装Python依赖，连接硬件设备</li>
-<li><strong>启动系统</strong> → 运行GUI界面，连接电机</li>
-<li><strong>选择功能</strong> → 根据需要选择对应的控制模式</li>
-<li><strong>开始使用</strong> → 执行控制指令或配置参数</li>
+<li>安装并启动程序：桌面图标双击打开</li>
+<li>连接硬件：插入 SLCAN/上电，在软件中选择串口并连接</li>
+<li>选择功能：机械臂控制 / 示教器 / 具身智能 / 工具（相机标定、手眼标定等）</li>
+<li>安全使用：任何界面按空格触发“全局急停”</li>
 </ol>
+<p>详细步骤请阅读“用户指南”。</p>
 <hr />
-<h2 id="_3">文档导航<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<h2 id="_3">导航<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <ul>
-<li><strong><a href="quick-start/">快速开始</a></strong> - 快速上手指南</li>
-<li><strong><a href="user_guide/">用户指南</a></strong> - 详细使用说明</li>
-<li><strong><a href="troubleshooting/">故障排除</a></strong> - 常见问题解决</li>
+<li><strong><a href="user_guide/">用户指南</a></strong>：一步步完成连接、控制与标定</li>
+<li><strong><a href="troubleshooting/">故障排除</a></strong>：连接失败/同步异常等常见问题</li>
 </ul>
-<hr />
-<h2 id="_4">开发者信息<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
-<p>本文档使用 MkDocs 构建：</p>
-<pre><code class="language-bash"># 本地预览
-mkdocs serve
-
-# 构建静态网站
-mkdocs build
-</code></pre>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="quick-start/" class="btn btn-neutral float-right" title="快速开始">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="user_guide/" class="btn btn-neutral float-right" title="用户指南">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -156,7 +137,7 @@ mkdocs build
     
     
     
-      <span><a href="quick-start/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="user_guide/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>
@@ -176,5 +157,5 @@ mkdocs build
 
 <!--
 MkDocs version : 1.6.1
-Build Date UTC : 2025-08-10 13:18:43.141280+00:00
+Build Date UTC : 2025-08-13 05:59:12.947373+00:00
 -->

@@ -44,11 +44,13 @@
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#_1">快速上手</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#_2">页面导航</a>
+    <li class="toctree-l2"><a class="reference internal" href="#_2">功能概览</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#_3">你可以做什么</a>
+    <li class="toctree-l2"><a class="reference internal" href="#_3">页面导航</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#_4">常见问题速览</a>
+    <li class="toctree-l2"><a class="reference internal" href="#_4">你可以做什么</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_5">常见问题速览</a>
     </li>
     </ul>
                 </li>
@@ -93,7 +95,7 @@
             <div class="section" itemprop="articleBody">
               
                 <h2 id="horizon_arm">欢迎使用 Horizon_Arm<a class="headerlink" href="#horizon_arm" title="Permanent link">&para;</a></h2>
-<p>本指南面向广大用户。我们提供简洁的使用步骤与常见问题指引，帮助你快速上手并安全运行。</p>
+<p>本指南面向最终用户。我们提供简洁的使用步骤与常见问题指引，帮助你快速上手并安全运行。</p>
 <div align="center">
   <img src="images/3.png" alt="Horizon_Arm系统界面" width="800">
   <p><em>Horizon_Arm 控制系统界面</em></p>
@@ -108,22 +110,45 @@
 <li>安全提示：任何界面按空格触发“全局急停”</li>
 </ol>
 <hr />
-<h3 id="_2">页面导航<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<h3 id="_2">功能概览<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<ul>
+<li>机械臂控制：</li>
+<li>MuJoCo 仿真联动（启动/停止）</li>
+<li>关节微调（±1°）与末端位姿实时显示</li>
+<li>状态监控页（支持自动刷新频率）</li>
+<li>单电机循环运动：</li>
+<li>5 步动作序列，独立的速度/加减速/方向/绝对位置参数</li>
+<li>动作间隔时间，开始/停止/紧急停止</li>
+<li>电机参数设置：</li>
+<li>统一管理 6 个电机的“减速比/方向”，一处设置全局生效</li>
+<li>连接对话框：</li>
+<li>支持选择驱动板版本 X/Y，界面自动匹配回零与同步方式</li>
+</ul>
+<p>快速跳转：
+- 机械臂控制 → 用户指南「机械臂控制」
+- 循环运动 → 用户指南「单电机循环运动」
+- 参数设置 → 用户指南「电机参数设置」
+- 连接与调试 → 装配与调试手册</p>
+<hr />
+<h3 id="_3">页面导航<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>用户指南</strong>：一步步完成连接、控制与标定（推荐）</li>
 <li><strong>装配与调试手册</strong>：面向装配/调试人员的操作流程</li>
 <li><strong>故障排除</strong>：连接/控制/相机/软件等常见问题与解决</li>
 <li><strong>序列号与激活</strong>：如何在界面中完成激活与离线使用说明</li>
 </ul>
+<blockquote>
+<p>提示：文档以用户为中心，不涉及内部实现与开发细节。</p>
+</blockquote>
 <hr />
-<h3 id="_3">你可以做什么<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<h3 id="_4">你可以做什么<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>控制机械臂</strong>：单电机、多电机同步、整臂控制</li>
 <li><strong>智能助理</strong>：用自然语言让机械臂完成任务（文字或语音）</li>
 <li><strong>视觉标定</strong>：相机标定与手眼标定</li>
 </ul>
 <hr />
-<h3 id="_4">常见问题速览<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<h3 id="_5">常见问题速览<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
 <ul>
 <li>无法连接电机：检查串口号、波特率（500K）、供电与接线</li>
 <li>运动方向不对：检查“电机参数设置”中的方向与减速比</li>
@@ -178,5 +203,5 @@
 
 <!--
 MkDocs version : 1.6.1
-Build Date UTC : 2025-08-21 02:48:22.660452+00:00
+Build Date UTC : 2025-08-21 03:13:23.812717+00:00
 -->

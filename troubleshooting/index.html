@@ -58,19 +58,29 @@
               <ul class="current">
                 <li class="toctree-l1 current"><a class="reference internal current" href="#">故障排除</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#_2">激活相关问题（用户侧）</a>
+    <li class="toctree-l2"><a class="reference internal" href="#_2">功能相关问题</a>
         <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#_3">首次激活失败/提示需要网络</a>
+    <li class="toctree-l3"><a class="reference internal" href="#_3">机械臂控制：点击“移动到位置”无响应</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#_4">重复激活仍提示失败</a>
+    <li class="toctree-l3"><a class="reference internal" href="#_4">关节微调后末端位姿不更新</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#_5">已激活仍弹出窗口</a>
+    <li class="toctree-l3"><a class="reference internal" href="#_5">单电机循环运动中断</a>
     </li>
         </ul>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#_6">🔍 问题快速定位</a>
+    <li class="toctree-l2"><a class="reference internal" href="#_6">激活相关问题（用户侧）</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_7">首次激活失败/提示需要网络</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#_7">🔌 连接故障</a>
+    <li class="toctree-l3"><a class="reference internal" href="#_8">重复激活仍提示失败</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_9">已激活仍弹出窗口</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_10">🔍 问题快速定位</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_11">🔌 连接故障</a>
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#1">❌ 问题1：提示"无法打开串口"</a>
     </li>
@@ -88,7 +98,7 @@
     </li>
         </ul>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#_8">⚙️ 电机控制故障</a>
+    <li class="toctree-l2"><a class="reference internal" href="#_12">⚙️ 电机控制故障</a>
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#6">❌ 问题6：机械臂动作方向错误</a>
     </li>
@@ -96,7 +106,7 @@
     </li>
         </ul>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#_9">📷 相机标定故障</a>
+    <li class="toctree-l2"><a class="reference internal" href="#_13">📷 相机标定故障</a>
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#8">❌ 问题8：相机无法打开</a>
     </li>
@@ -104,7 +114,7 @@
     </li>
         </ul>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#_10">🖥️ 软件故障</a>
+    <li class="toctree-l2"><a class="reference internal" href="#_14">🖥️ 软件故障</a>
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#10">❌ 问题10：界面卡死或崩溃</a>
     </li>
@@ -112,17 +122,17 @@
     </li>
         </ul>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#_11">🆘 仍然无法解决？</a>
+    <li class="toctree-l2"><a class="reference internal" href="#_15">🆘 仍然无法解决？</a>
         <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#_12">📞 获得更多帮助</a>
+    <li class="toctree-l3"><a class="reference internal" href="#_16">📞 获得更多帮助</a>
     </li>
         </ul>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#_13">💡 预防性维护建议</a>
+    <li class="toctree-l2"><a class="reference internal" href="#_17">💡 预防性维护建议</a>
         <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#_14">定期检查项目</a>
+    <li class="toctree-l3"><a class="reference internal" href="#_18">定期检查项目</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#_15">最佳实践</a>
+    <li class="toctree-l3"><a class="reference internal" href="#_19">最佳实践</a>
     </li>
         </ul>
     </li>
@@ -162,28 +172,47 @@
 </p>
 
 <hr />
-<h2 id="_2">激活相关问题（用户侧）<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<h3 id="_3">首次激活失败/提示需要网络<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<h2 id="_2">功能相关问题<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h3 id="_3">机械臂控制：点击“移动到位置”无响应<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<ul>
+<li>确认已连接电机且已使能</li>
+<li>检查“绝对/相对位置”是否符合当前零位设置</li>
+<li>若使用仿真联动，先关闭联动后重试硬件动作</li>
+</ul>
+<h3 id="_4">关节微调后末端位姿不更新<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<ul>
+<li>等待 1~2 秒或切换至“机械臂控制”标签后返回</li>
+<li>仍不更新：重启软件再试（可能是系统渲染延迟）</li>
+</ul>
+<h3 id="_5">单电机循环运动中断<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<ul>
+<li>检查“动作间隔时间”是否过短导致未到位即切步</li>
+<li>降低角度/速度/加速度后重试</li>
+<li>异常时可使用“紧急停止”</li>
+</ul>
+<hr />
+<h2 id="_6">激活相关问题（用户侧）<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<h3 id="_7">首次激活失败/提示需要网络<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
 <ul>
 <li>确保电脑网络可用，稍后重试</li>
 <li>关闭可能拦截网络的代理/杀毒/防火墙后再试</li>
 <li>仍失败：请记录时间点与弹窗提示文字，联系技术支持</li>
 </ul>
-<h3 id="_4">重复激活仍提示失败<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<h3 id="_8">重复激活仍提示失败<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
 <ul>
 <li>确认序列号无误（区分 0/O、1/I）</li>
 <li>如果更换电脑或频繁更换设备，可能达到使用上限；请联系管理员处理</li>
 </ul>
-<h3 id="_5">已激活仍弹出窗口<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<h3 id="_9">已激活仍弹出窗口<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
 <ul>
 <li>先正常关闭程序后重新打开</li>
 <li>若仍出现，请联系技术支持并提供“软件版本 + 提示文字”</li>
 </ul>
 <blockquote>
-<p>提示：激活成功后，软件会自动在本机保存凭据，后续可在无网络时使用。用户无需手动修改或查看任何文件。</p>
+<p>提示：激活成功后，软件会自动在本机保存凭据，用户无需手动修改或查看任何文件。</p>
 </blockquote>
 <hr />
-<h2 id="_6">🔍 问题快速定位<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<h2 id="_10">🔍 问题快速定位<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
@@ -221,7 +250,7 @@
 </tbody>
 </table>
 <hr />
-<h2 id="_7">🔌 连接故障<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<h2 id="_11">🔌 连接故障<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
 <h3 id="1">❌ 问题1：提示"无法打开串口"<a class="headerlink" href="#1" title="Permanent link">&para;</a></h3>
 <p><strong>现象</strong>：</p>
 <pre><code>❌ 无法打开串口 COM18
@@ -338,7 +367,7 @@
 <li>确认减速比和方向设置正确</li>
 </ol>
 <hr />
-<h2 id="_8">⚙️ 电机控制故障<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<h2 id="_12">⚙️ 电机控制故障<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h2>
 <h3 id="6">❌ 问题6：机械臂动作方向错误<a class="headerlink" href="#6" title="Permanent link">&para;</a></h3>
 <p><strong>现象</strong>：
 - 指令"向右"但机械臂向左
@@ -373,7 +402,7 @@
 <li>重新设定机械臂初始姿态</li>
 </ol>
 <hr />
-<h2 id="_9">📷 相机标定故障<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
+<h2 id="_13">📷 相机标定故障<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h2>
 <h3 id="8">❌ 问题8：相机无法打开<a class="headerlink" href="#8" title="Permanent link">&para;</a></h3>
 <p><strong>现象</strong>：</p>
 <pre><code>❌ 无法打开摄像头 0
@@ -416,7 +445,7 @@
 </div>
 
 <hr />
-<h2 id="_10">🖥️ 软件故障<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
+<h2 id="_14">🖥️ 软件故障<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h2>
 <h3 id="10">❌ 问题10：界面卡死或崩溃<a class="headerlink" href="#10" title="Permanent link">&para;</a></h3>
 <p><strong>现象</strong>：
 - 点击按钮后界面无响应
@@ -459,8 +488,8 @@
 <li>降低渲染质量</li>
 </ol>
 <hr />
-<h2 id="_11">🆘 仍然无法解决？<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
-<h3 id="_12">📞 获得更多帮助<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h3>
+<h2 id="_15">🆘 仍然无法解决？<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h2>
+<h3 id="_16">📞 获得更多帮助<a class="headerlink" href="#_16" title="Permanent link">&para;</a></h3>
 <ol>
 <li><strong>收集错误信息</strong>：</li>
 <li>截图错误界面</li>
@@ -484,14 +513,14 @@
 <li>附上错误截图和日志</li>
 </ol>
 <hr />
-<h2 id="_13">💡 预防性维护建议<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h2>
-<h3 id="_14">定期检查项目<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h3>
+<h2 id="_17">💡 预防性维护建议<a class="headerlink" href="#_17" title="Permanent link">&para;</a></h2>
+<h3 id="_18">定期检查项目<a class="headerlink" href="#_18" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>每周</strong>：检查CAN线连接，清洁设备</li>
 <li><strong>每月</strong>：更新软件版本，备份配置文件</li>
 <li><strong>每季度</strong>：重新标定相机，检查电机磨损</li>
 </ul>
-<h3 id="_15">最佳实践<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h3>
+<h3 id="_19">最佳实践<a class="headerlink" href="#_19" title="Permanent link">&para;</a></h3>
 <ul>
 <li>使用前先进行仿真测试</li>
 <li>定期保存重要的配置参数</li>

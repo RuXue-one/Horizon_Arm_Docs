@@ -50,6 +50,16 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#_2">许可证与激活</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_3">机械臂控制</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_4">单电机控制 → 循环运动</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_5">电机参数设置</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_6">连接对话框</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_7">其他说明</a>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#1">1. 开始之前</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#2">2. 安装与启动</a>
@@ -58,7 +68,7 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#xy">🔁 X/Y 板操作对照</a>
         <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#_3">差异速览表</a>
+    <li class="toctree-l3"><a class="reference internal" href="#_8">差异速览表</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#31">3.1 连接步骤</a>
     </li>
@@ -68,7 +78,7 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#4">4. 界面与功能导航</a>
         <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#_4">主界面布局</a>
+    <li class="toctree-l3"><a class="reference internal" href="#_9">主界面布局</a>
     </li>
         </ul>
     </li>
@@ -152,7 +162,7 @@
               
                 <h1 id="horizon_arm">Horizon_Arm 用户指南<a class="headerlink" href="#horizon_arm" title="Permanent link">&para;</a></h1>
 <blockquote>
-<p>打开安装好的程序（exe）进行操作。</p>
+<p>带你用已安装的程序（exe）完成连接、控制与标定，无需命令行。</p>
 </blockquote>
 <p style="color: red; font-weight: bold;">注：图片可右键放大查看；任何界面按空格键触发“全局急停”。</p>
 
@@ -167,14 +177,55 @@
 <h2 id="_2">许可证与激活<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <ul>
 <li>菜单：帮助 → 许可证</li>
-<li>首次激活需联网验证，使用序列号激活后离线不影响使用</li>
-<li>详见<a href="../activation/">序列号与激活</a></li>
+<li>在弹出的窗口中按提示完成即可</li>
 </ul>
-<div align="center">
-  <img src="../images/首次序列号激活.png" alt="首次激首次序列号激活" width="800">
-  <p><em>首次激活</em></p>
-</div>
-
+<hr />
+<h2 id="_3">机械臂控制<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>机械臂控制页包含三个标签：
+- <strong>机械臂设置</strong>：
+  - 运动参数：最大速度、加速度、减速度
+  - 关节微调：每个关节 ±1° 即时执行，便于精细调整
+  - 设置当前为零位：在合适姿态点击，可将当前作为参考零位
+  - 末端位姿显示：实时显示位置与姿态（Z/Y/X 与 Yaw/Pitch/Roll）
+- <strong>机械臂控制</strong>：
+  - 关节角输入（6 个关节），支持“绝对/相对位置”两种模式
+  - 按钮：移动到位置、回零位、停止
+- <strong>状态监控</strong>：
+  - 自动刷新/手动刷新
+  - 表格显示：使能、到位、输出端角度、速度、电压、电流、温度</p>
+<blockquote>
+<p>MuJoCo 仿真联动：在页面顶部可“启动/停止”联动，便于在仿真中预演动作。</p>
+</blockquote>
+<hr />
+<h2 id="_4">单电机控制 → 循环运动<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<ul>
+<li>在“循环运动”标签可配置 5 步动作，每步含：位置角度、最大速度、加速度、减速度、方向（CW/CCW）、是否绝对位置</li>
+<li>可设置“动作间隔时间”，点击“开始循环运动”后按顺序执行</li>
+<li>随时可“停止循环”或“紧急停止”</li>
+</ul>
+<blockquote>
+<p>建议先小角度、低速度进行验证；异常请立即停止。</p>
+</blockquote>
+<hr />
+<h2 id="_5">电机参数设置<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<ul>
+<li>菜单：工具 → 电机参数设置</li>
+<li>一次性为 6 个电机设置“减速比/方向”（正向/反向）</li>
+<li>保存后自动应用到相关页面（单电机、机械臂控制、示教器等）</li>
+</ul>
+<hr />
+<h2 id="_6">连接对话框<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<ul>
+<li>入口：连接 → 连接电机</li>
+<li>设置串口与波特率后，选择“驱动板版本 X/Y”，系统会匹配合适的回零与同步方式</li>
+<li>选择“单电机/双电机/机械臂”或自定义 ID，点击“确定”开始连接</li>
+</ul>
+<hr />
+<h2 id="_7">其他说明<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<ul>
+<li>示教器/具身智能的使用方式与旧版一致</li>
+<li>相机/手眼标定：建议采集足量图片并确保光照稳定</li>
+</ul>
 <hr />
 <h2 id="1">1. 开始之前<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
 <ul>
@@ -198,7 +249,7 @@
 <hr />
 <h2 id="3">3. 第一次连接电机（最重要）<a class="headerlink" href="#3" title="Permanent link">&para;</a></h2>
 <h2 id="xy">🔁 X/Y 板操作对照<a class="headerlink" href="#xy" title="Permanent link">&para;</a></h2>
-<h3 id="_3">差异速览表<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<h3 id="_8">差异速览表<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
@@ -272,7 +323,7 @@
 - 装配与调试手册 → 7.1 X 版 / Y 版 差异与操作指引</p>
 <hr />
 <h2 id="4">4. 界面与功能导航<a class="headerlink" href="#4" title="Permanent link">&para;</a></h2>
-<h3 id="_4">主界面布局<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<h3 id="_9">主界面布局<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
 <p><strong>标签页功能：</strong>
 - 🦾 <strong>机械臂控制</strong>
 - 🎮 <strong>示教器</strong>

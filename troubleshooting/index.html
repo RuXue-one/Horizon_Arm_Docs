@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Horizon_Arm Team" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>故障排除 - Horizon_Arm 文档</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "\u6545\u969c\u6392\u9664";
+        var mkdocs_page_input_path = "troubleshooting.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Horizon_Arm 文档
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">首页</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../user_guide/">用户指南</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../operator_guide/">装配与调试手册</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../activation/">序列号与激活</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">故障排除</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#_2">激活相关问题（用户侧）</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_3">首次激活失败/提示需要网络</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_4">重复激活仍提示失败</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_5">已激活仍弹出窗口</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_6">🔍 问题快速定位</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_7">🔌 连接故障</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#1">❌ 问题1：提示"无法打开串口"</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#2id-x">❌ 问题2：连接后提示"电机ID X 连接失败"</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#3">❌ 问题3：连接成功但无法控制</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#ai">🤖 AI控制故障</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#4">❌ 问题4：输入指令后没有反应</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#5ai">❌ 问题5：AI理解指令错误</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_8">⚙️ 电机控制故障</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#6">❌ 问题6：机械臂动作方向错误</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#7">❌ 问题7：动作幅度不正确</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_9">📷 相机标定故障</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#8">❌ 问题8：相机无法打开</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#9">❌ 问题9：手眼标定精度差</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_10">🖥️ 软件故障</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#10">❌ 问题10：界面卡死或崩溃</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#11mujoco">❌ 问题11：MuJoCo仿真无法显示</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_11">🆘 仍然无法解决？</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_12">📞 获得更多帮助</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_13">💡 预防性维护建议</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_14">定期检查项目</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_15">最佳实践</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Horizon_Arm 文档</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">故障排除</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="_1">🔧 故障排除指南<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p><strong>快速解决使用过程中遇到的常见问题</strong></p>
+</blockquote>
+<p>本页面收集了用户在使用 Horizon_Arm 过程中最常遇到的问题和解决方案。建议您先在这里查找，大部分问题都能快速解决。</p>
+<p style="color: red; font-weight: bold;">
+🚨 紧急情况：任何时候按空格键可立即停止所有电机运动！
+</p>
+
+<hr />
+<h2 id="_2">激活相关问题（用户侧）<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h3 id="_3">首次激活失败/提示需要网络<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<ul>
+<li>确保电脑网络可用，稍后重试</li>
+<li>关闭可能拦截网络的代理/杀毒/防火墙后再试</li>
+<li>仍失败：请记录时间点与弹窗提示文字，联系技术支持</li>
+</ul>
+<h3 id="_4">重复激活仍提示失败<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<ul>
+<li>确认序列号无误（区分 0/O、1/I）</li>
+<li>如果更换电脑或频繁更换设备，可能达到使用上限；请联系管理员处理</li>
+</ul>
+<h3 id="_5">已激活仍弹出窗口<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<ul>
+<li>先正常关闭程序后重新打开</li>
+<li>若仍出现，请联系技术支持并提供“软件版本 + 提示文字”</li>
+</ul>
+<blockquote>
+<p>提示：激活成功后，软件会自动在本机保存凭据，后续可在无网络时使用。用户无需手动修改或查看任何文件。</p>
+</blockquote>
+<hr />
+<h2 id="_6">🔍 问题快速定位<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>问题类型</th>
+<th>典型现象</th>
+<th>跳转链接</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>🔌 <strong>连接问题</strong></td>
+<td>无法连接电机、串口错误</td>
+<td><a href="#连接故障">连接故障</a></td>
+</tr>
+<tr>
+<td>🤖 <strong>AI控制问题</strong></td>
+<td>指令不执行、理解错误</td>
+<td><a href="#ai控制故障">AI故障</a></td>
+</tr>
+<tr>
+<td>⚙️ <strong>电机控制问题</strong></td>
+<td>动作不准确、方向错误</td>
+<td><a href="#电机控制故障">电机故障</a></td>
+</tr>
+<tr>
+<td>📷 <strong>相机标定问题</strong></td>
+<td>标定失败、图像异常</td>
+<td><a href="#相机标定故障">标定故障</a></td>
+</tr>
+<tr>
+<td>🖥️ <strong>软件问题</strong></td>
+<td>界面卡死、崩溃退出</td>
+<td><a href="#软件故障">软件故障</a></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="_7">🔌 连接故障<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<h3 id="1">❌ 问题1：提示"无法打开串口"<a class="headerlink" href="#1" title="Permanent link">&para;</a></h3>
+<p><strong>现象</strong>：</p>
+<pre><code>❌ 无法打开串口 COM18
+❌ 串口被占用或不存在
+</code></pre>
+<p><strong>原因分析</strong>：
+- 串口号错误或串口被其他程序占用
+- CANable设备未正确安装驱动</p>
+<p><strong>解决步骤</strong>：
+1. <strong>检查设备管理器</strong>：
+   - 打开设备管理器
+   - 查看"端口(COM和LPT)"
+   - 确认CANable对应的COM口号</p>
+<ol>
+<li><strong>关闭占用程序</strong>：</li>
+<li>关闭CANgaroo、putty等串口工具</li>
+<li>
+<p>重启电脑释放串口占用</p>
+</li>
+<li>
+<p><strong>重新安装驱动</strong>：</p>
+</li>
+<li>下载CANable官方驱动</li>
+<li>重新安装USB转串口驱动</li>
+</ol>
+<div align="center">
+  <img src="../images/6.png" alt="串口错误示例" width="600">
+  <p><em>典型的串口连接错误</em></p>
+</div>
+
+<hr />
+<h3 id="2id-x">❌ 问题2：连接后提示"电机ID X 连接失败"<a class="headerlink" href="#2id-x" title="Permanent link">&para;</a></h3>
+<p><strong>现象</strong>：</p>
+<pre><code>❌ 电机ID 3 连接失败：通信超时
+✅ 已连接 5 个电机（缺少ID: 3）
+</code></pre>
+<p><strong>原因分析</strong>：
+- 电机ID设置错误或重复
+- 电机未上电或CAN线接触不良
+- 电机故障</p>
+<p><strong>解决步骤</strong>：
+1. <strong>检查电机ID</strong>：
+   - 使用ZDT上位机检查每个电机的ID设置
+   - 确保ID为1-6且无重复</p>
+<ol>
+<li><strong>检查电源和连线</strong>：</li>
+<li>确认故障电机已上电（LED亮起）</li>
+<li>
+<p>检查CAN_H、CAN_L连线是否松动</p>
+</li>
+<li>
+<p><strong>单独测试</strong>：</p>
+</li>
+<li>只连接故障电机进行测试</li>
+<li>使用原厂工具验证电机功能</li>
+</ol>
+<hr />
+<h3 id="3">❌ 问题3：连接成功但无法控制<a class="headerlink" href="#3" title="Permanent link">&para;</a></h3>
+<p><strong>现象</strong>：
+- 显示"已连接6个电机"
+- 发送指令后电机不动作
+- 无错误提示</p>
+<p><strong>解决步骤</strong>：
+1. <strong>检查使能状态</strong>：
+   - 进入"单电机控制"页面
+   - 点击"使能"按钮
+   - 确认电机状态为"已使能"</p>
+<ol>
+<li><strong>测试基础功能</strong>：</li>
+<li>先尝试单个关节的小角度运动</li>
+<li>确认电机方向和减速比设置正确</li>
+</ol>
+<hr />
+<h2 id="ai">🤖 AI控制故障<a class="headerlink" href="#ai" title="Permanent link">&para;</a></h2>
+<h3 id="4">❌ 问题4：输入指令后没有反应<a class="headerlink" href="#4" title="Permanent link">&para;</a></h3>
+<p><strong>现象</strong>：
+- 在具身智能页面输入指令
+- 点击执行后没有任何动作
+- 对话框显示空白或错误</p>
+<p><strong>原因分析</strong>：
+- AI服务配置错误
+- 网络连接问题
+- API密钥无效</p>
+<p><strong>解决步骤</strong>：
+1. <strong>检查AI配置</strong>：
+   - 打开 <code>config/aisdk_config.yaml</code>
+   - 确认API密钥正确且有效
+   - 检查网络连接</p>
+<ol>
+<li>
+<p><strong>测试AI服务</strong>：
+   <code>bash
+   # 运行AI测试脚本
+   python example/LLM_usage.py</code></p>
+</li>
+<li>
+<p><strong>查看错误日志</strong>：</p>
+</li>
+<li>检查控制台输出的错误信息</li>
+<li>根据错误码查找具体原因</li>
+</ol>
+<hr />
+<h3 id="5ai">❌ 问题5：AI理解指令错误<a class="headerlink" href="#5ai" title="Permanent link">&para;</a></h3>
+<p><strong>现象</strong>：
+- 输入"向上抬起"，但机械臂向下运动
+- 指令执行与预期完全不符</p>
+<p><strong>解决步骤</strong>：
+1. <strong>使用更清晰的指令</strong>：
+   - 避免模糊表达："抬起" → "第2关节向上转动30度"
+   - 使用具体的动作描述</p>
+<ol>
+<li><strong>检查电机配置</strong>：</li>
+<li>进入"电机参数设置"</li>
+<li>确认减速比和方向设置正确</li>
+</ol>
+<hr />
+<h2 id="_8">⚙️ 电机控制故障<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<h3 id="6">❌ 问题6：机械臂动作方向错误<a class="headerlink" href="#6" title="Permanent link">&para;</a></h3>
+<p><strong>现象</strong>：
+- 指令"向右"但机械臂向左
+- 关节转动方向与预期相反</p>
+<p><strong>解决步骤</strong>：
+1. <strong>修改电机方向</strong>：
+   - 菜单："工具 → 电机参数设置"
+   - 找到对应电机，修改方向参数（1 或 -1）
+   - 保存后重新加载配置</p>
+<ol>
+<li><strong>重新标定</strong>：</li>
+<li>如果是末端位置控制问题</li>
+<li>重新进行手眼标定</li>
+</ol>
+<div align="center">
+  <img src="../images/14.png" alt="电机参数设置" width="600">
+  <p><em>电机参数设置界面</em></p>
+</div>
+
+<hr />
+<h3 id="7">❌ 问题7：动作幅度不正确<a class="headerlink" href="#7" title="Permanent link">&para;</a></h3>
+<p><strong>现象</strong>：
+- 指令"小幅度移动"但动作很大
+- 角度控制不精确</p>
+<p><strong>解决步骤</strong>：
+1. <strong>检查减速比设置</strong>：
+   - 确认每个电机的减速比参数正确
+   - 常见减速比：1:50, 1:100等</p>
+<ol>
+<li><strong>校准零点</strong>：</li>
+<li>使用"清零当前位置"功能</li>
+<li>重新设定机械臂初始姿态</li>
+</ol>
+<hr />
+<h2 id="_9">📷 相机标定故障<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
+<h3 id="8">❌ 问题8：相机无法打开<a class="headerlink" href="#8" title="Permanent link">&para;</a></h3>
+<p><strong>现象</strong>：</p>
+<pre><code>❌ 无法打开摄像头 0
+❌ 相机设备不存在
+</code></pre>
+<p><strong>解决步骤</strong>：
+1. <strong>检查相机连接</strong>：
+   - 确认USB相机已连接
+   - 在设备管理器中查看"图像设备"</p>
+<ol>
+<li><strong>测试相机功能</strong>：</li>
+<li>使用Windows相机应用测试</li>
+<li>
+<p>确认相机驱动正常</p>
+</li>
+<li>
+<p><strong>修改相机索引</strong>：</p>
+</li>
+<li>尝试不同的相机ID（0, 1, 2...）</li>
+<li>在代码中修改camera_index参数</li>
+</ol>
+<hr />
+<h3 id="9">❌ 问题9：手眼标定精度差<a class="headerlink" href="#9" title="Permanent link">&para;</a></h3>
+<p><strong>现象</strong>：
+- 标定完成但机械臂定位不准确
+- 视觉坐标与实际位置偏差大</p>
+<p><strong>解决步骤</strong>：
+1. <strong>增加标定点数量</strong>：
+   - 至少采集15个不同姿态的标定点
+   - 确保覆盖整个工作空间</p>
+<ol>
+<li><strong>改善标定条件</strong>：</li>
+<li>确保光照充足均匀</li>
+<li>棋盘格图案清晰无变形</li>
+<li>避免相机或机械臂抖动</li>
+</ol>
+<div align="center">
+  <img src="../images/12.png" alt="手眼标定界面" width="600">
+  <p><em>手眼标定操作界面</em></p>
+</div>
+
+<hr />
+<h2 id="_10">🖥️ 软件故障<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
+<h3 id="10">❌ 问题10：界面卡死或崩溃<a class="headerlink" href="#10" title="Permanent link">&para;</a></h3>
+<p><strong>现象</strong>：
+- 点击按钮后界面无响应
+- 程序突然关闭退出</p>
+<p><strong>解决步骤</strong>：
+1. <strong>重启程序</strong>：
+   - 关闭所有相关进程
+   - 重新运行 <code>python run_gui.py</code></p>
+<ol>
+<li><strong>检查系统资源</strong>：</li>
+<li>确保内存充足（建议8GB+）</li>
+<li>
+<p>关闭其他占用资源的程序</p>
+</li>
+<li>
+<p><strong>查看错误日志</strong>：</p>
+</li>
+<li>检查控制台输出</li>
+<li>查看系统事件日志</li>
+</ol>
+<hr />
+<h3 id="11mujoco">❌ 问题11：MuJoCo仿真无法显示<a class="headerlink" href="#11mujoco" title="Permanent link">&para;</a></h3>
+<p><strong>现象</strong>：
+- 3D仿真窗口不出现
+- 提示MuJoCo相关错误</p>
+<p><strong>解决步骤</strong>：
+1. <strong>检查MuJoCo安装</strong>：
+   <code>bash
+   python -c "import mujoco; print('MuJoCo安装正常')"</code></p>
+<ol>
+<li><strong>更新显卡驱动</strong>：</li>
+<li>下载最新的显卡驱动</li>
+<li>
+<p>重启电脑</p>
+</li>
+<li>
+<p><strong>使用兼容模式</strong>：</p>
+</li>
+<li>修改MuJoCo渲染设置</li>
+<li>降低渲染质量</li>
+</ol>
+<hr />
+<h2 id="_11">🆘 仍然无法解决？<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
+<h3 id="_12">📞 获得更多帮助<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>收集错误信息</strong>：</li>
+<li>截图错误界面</li>
+<li>复制控制台错误信息</li>
+<li>
+<p>记录操作步骤</p>
+</li>
+<li>
+<p><strong>联系技术支持</strong>：</p>
+</li>
+<li>邮箱：support@horizon-arm.com</li>
+<li>QQ群：123456789</li>
+<li>
+<p>微信群：扫描二维码加入</p>
+</li>
+<li>
+<p><strong>提交问题报告</strong>：</p>
+</li>
+<li>详细描述问题现象</li>
+<li>提供系统环境信息</li>
+<li>附上错误截图和日志</li>
+</ol>
+<hr />
+<h2 id="_13">💡 预防性维护建议<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h2>
+<h3 id="_14">定期检查项目<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>每周</strong>：检查CAN线连接，清洁设备</li>
+<li><strong>每月</strong>：更新软件版本，备份配置文件</li>
+<li><strong>每季度</strong>：重新标定相机，检查电机磨损</li>
+</ul>
+<h3 id="_15">最佳实践<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h3>
+<ul>
+<li>使用前先进行仿真测试</li>
+<li>定期保存重要的配置参数</li>
+<li>建立操作日志记录</li>
+</ul>
+<hr />
+<div align="center">
+  <p style="color: #2196F3; font-weight: bold;">
+    💪 大部分问题都有解决方案，不要放弃！
+  </p>
+  <p style="color: #666;">
+    如果本页面没有找到答案，请联系我们的技术支持团队
+  </p>
+</div>
+
+<hr />
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../activation/" class="btn btn-neutral float-left" title="序列号与激活"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../activation/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Horizon_Arm Team" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>装配与调试手册 - Horizon_Arm 文档</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "\u88c5\u914d\u4e0e\u8c03\u8bd5\u624b\u518c";
+        var mkdocs_page_input_path = "operator_guide.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Horizon_Arm 文档
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">首页</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../user_guide/">用户指南</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">装配与调试手册</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#_2">版本区分</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#1">1. 使用前准备</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#2">2. 第一次上电与连线</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#3">3. 软件连接电机</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#4">4. 单电机基础测试</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#5">5. 多电机同步测试</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#6">6. 常见问题与处理</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#61-x-y">6.1 X 版 / Y 版 差异与操作指引</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#7">7. 术语简明解释</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#8">8. 安全与记录</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../activation/">序列号与激活</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../troubleshooting/">故障排除</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Horizon_Arm 文档</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">装配与调试手册</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="_1">装配与调试手册<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<p>本手册面向装配人员，帮助完成机械臂的连接、基础测试与常见问题处理。无需编程知识，按步骤执行即可。
+范围说明：本手册仅覆盖当前软件提供的三项功能——连接电机、单电机控制、多电机控制。</p>
+<hr />
+<h2 id="_2">版本区分<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<ul>
+<li>外观识别：</li>
+<li>有屏幕的是 X 版</li>
+<li>没有屏幕的是 Y 版</li>
+<li>操作差异：Y版新增两种回零方式，可以记录断电位置回零，Y版可将指令一次性发送多个电机，详见本页“7.1 X 版 / Y 版 差异与操作指引”。</li>
+</ul>
+<div align="center" style="display:flex;justify-content:center;gap:16px;flex-wrap:nowrap;">
+<img src="../images/X版.png" alt="X版" style="max-width:45%;height:auto;">
+<img src="../images/Y版.png" alt="Y版" style="max-width:45%;height:auto;">
+</div>
+<hr />
+<h2 id="1">1. 使用前准备<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
+<ul>
+<li>电脑：Windows 10/11（64 位）</li>
+<li>硬件：</li>
+<li>机械臂本体与闭环驱动板</li>
+<li>USB 转 CAN 设备（如 CANable）</li>
+<li>电源与线缆（确认正负极、CAN_H、CAN_L 接线正确）</li>
+<li>软件：已安装的 Horizon_Arm 程序（桌面图标）</li>
+</ul>
+<div align="center">
+  <img src="../images/软件图标.png" alt="软件图标" width="800">
+  <p><em>软件图标</em></p>
+</div>
+
+<p>安全提示：工作区域保持清空，通电后避免手靠近关节与连杆；需要停止时点击界面中的“停止/紧急停止”按钮。</p>
+<hr />
+<h2 id="2">2. 第一次上电与连线<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
+<ol>
+<li>断电状态完成接线：</li>
+<li>电源 → 驱动板</li>
+<li>驱动板 CAN_H/CAN_L → USB 转 CAN 设备</li>
+<li>USB 转 CAN → 电脑 USB 口</li>
+<li>上电：</li>
+<li>确认驱动板指示灯正常</li>
+<li>确认机械臂各关节无明显阻滞与异常声响</li>
+<li>电脑设备检查：</li>
+<li>打开“设备管理器”→“端口 (COM 和 LPT)”</li>
+<li>记住新出现的串口号（如 COM8、COM18）</li>
+</ol>
+<div align="center">
+  <img src="../images/2.png" alt="设备管理器端口" width="800">
+  <p><em>在“设备管理器”中确认串口号</em></p>
+</div>
+
+<p>小贴士：常见串口号在 5~30 之间，若多个设备同时插入，请逐个拔插确认对应端口。</p>
+<hr />
+<h2 id="3">3. 软件连接电机<a class="headerlink" href="#3" title="Permanent link">&para;</a></h2>
+<ol>
+<li>启动程序：双击桌面图标进入主界面。</li>
+<li>打开连接窗口：菜单“连接 → 连接电机”。</li>
+<li>在对话框中设置：</li>
+<li>串口：选择上一步确认的串口（如 COM8）</li>
+<li>波特率：500000（500K）</li>
+<li>驱动板版本：选择 Y 或 X（影响回零模式与一次性下发选项）</li>
+<li>电机 ID：<ul>
+<li>单电机：选择“单电机 (ID=1)”</li>
+<li>双电机：选择“1,2”</li>
+<li>六关节机械臂：选择“1..6”或在“自定义ID”输入 1,2,3,4,5,6</li>
+</ul>
+</li>
+<li>点击“确定”开始连接：</li>
+<li>成功：状态栏显示“已连接 X 个电机”，功能页面变为可用</li>
+<li>失败：弹窗会列出失败的 ID 与原因</li>
+<li>断开连接：菜单“连接 → 断开连接”（更换线缆或设备前建议先断开）</li>
+</ol>
+<div align="center">
+  <img src="../images/exe电机连接.gif" alt="连接电机操作" width="800">
+  <p><em>连接电机示意</em></p>
+</div>
+
+<hr />
+<h2 id="4">4. 单电机基础测试<a class="headerlink" href="#4" title="Permanent link">&para;</a></h2>
+<p>目标：验证通信正常、方向正确、关节无卡滞。</p>
+<p>步骤：
+1. 打开“电机控制 → 单电机控制”。
+2. 选择电机 ID，点击“使能”。
+3. 设置小角度（如 5° 或 10°）做两三次往复：
+   - 观察运动是否平顺、无异常噪音
+   - 方向是否与预期一致
+4. 点击“停止”，再“失能”。</p>
+<p>提示：首次调试建议仅做 5°~10° 小角度；出现异常请点击页内“停止/紧急停止”按钮。</p>
+<div align="center">
+  <img src="../images/exe单电机控制.gif" alt="单电机控制" width="800">
+  <p><em>单电机控制演示</em></p>
+</div>
+
+<p>若方向相反或角度不对，请先不要继续整臂测试，先查找问题原因。</p>
+<hr />
+<h2 id="5">5. 多电机同步测试<a class="headerlink" href="#5" title="Permanent link">&para;</a></h2>
+<p>目标：验证多关节协同运动与同步触发。</p>
+<p>步骤：
+1. 打开“电机控制 → 多电机控制”。
+2. 在“同步控制”页：为每台电机设置小幅目标角度。
+3. 启用同步选项（界面已内置同步流程）。
+4. 发送后执行同步触发。
+5. 观察各关节是否同时起动、到位后是否无异常。</p>
+<p>提示：首次仅做 5°~10° 小角度；如出现异常请点击“停止/紧急停止”按钮。</p>
+<div align="center">
+  <img src="../images/exe多电机控制.gif" alt="多电机控制" width="800">
+  <p><em>多电机同步演示</em></p>
+</div>
+
+<p>提示：若个别关节未动或不同步，优先检查该关节的使能状态与连接是否稳定。</p>
+<hr />
+<h2 id="6">6. 常见问题与处理<a class="headerlink" href="#6" title="Permanent link">&para;</a></h2>
+<ul>
+<li>连接不上：</li>
+<li>检查串口是否选对（设备管理器确认）</li>
+<li>波特率是否为 500000，CAN 速率是否为 500K</li>
+<li>电机是否上电、ID 是否唯一</li>
+<li>线缆是否牢固，是否被其他软件占用</li>
+<li>单电机能动、多电机不同步：</li>
+<li>确认每台电机都已使能并成功读取过状态</li>
+<li>同步触发是否已执行</li>
+<li>是否已在页面中勾选/选中需要参与同步的电机</li>
+<li>角度异常、方向颠倒：</li>
+<li>在当前页面（单电机/多电机）调整减速比与方向后再次下发小角度指令进行核对</li>
+<li>运动中报错或停滞：</li>
+<li>立即点击界面“停止/紧急停止”按钮</li>
+<li>降低速度、角度，排查机械干涉与松动</li>
+</ul>
+<hr />
+<h2 id="61-x-y">6.1 X 版 / Y 版 差异与操作指引<a class="headerlink" href="#61-x-y" title="Permanent link">&para;</a></h2>
+<ul>
+<li>版型识别：</li>
+<li>
+<p>外观/铭牌、固件字样或界面提示处会标注 X 或 Y（如无法判断，按下述两种流程分别试验较小目标角度，以不损伤为前提确认）。</p>
+</li>
+<li>
+<p>同步控制：</p>
+</li>
+<li>X 版：先“为每台电机下发带同步标志的目标”→ 再“发送广播同步触发”。</li>
+<li>
+<p>Y 版：使用“多电机一次性下发”的同步命令，无需额外广播。</p>
+</li>
+<li>
+<p>批量回零：</p>
+</li>
+<li>X 版：4 种回零模式，常用“限位回零/编码器回零”，回零后查看到位状态与零点偏差。</li>
+<li>
+<p>Y 版：6 种模式，包含“绝对零点/掉电位置”等；按现场需求选择，完成后执行“到位确认”。</p>
+</li>
+<li>
+<p>到位确认与超时：</p>
+</li>
+<li>X 版：按常规定时/返回包确认。</li>
+<li>
+<p>Y 版：运动类默认仅地址 1 确认且不等待，以避免超时；需要严格等待时，开启“等待到位/超时”选项并设置合理超时（建议 3~8 秒，小角度更短）。</p>
+</li>
+<li>
+<p>修改电机 ID：</p>
+</li>
+<li>两版均支持；Y 版支持 AE 4B 指令，可选择“仅临时/写入存储”。批量改 ID 前，先断开其他设备，逐台进行，避免冲突。</li>
+</ul>
+<p>小贴士：两版混用时，优先按 Y 版“多电机一次性下发”方案测试；若个别关节不响应，再切回 X 版“同步标志+广播触发”流程验证。</p>
+<div align="center">
+  <img src="../images/停止按钮1.png" alt="紧急停止" width="800">
+  <p><em>点击界面上的“停止/紧急停止”按钮</em></p>
+</div>
+
+<hr />
+<h2 id="7">7. 术语简明解释<a class="headerlink" href="#7" title="Permanent link">&para;</a></h2>
+<ul>
+<li>串口：电脑上的通信编号（如 COM8），选择对了才能通信</li>
+<li>波特率：通信速度，本系统固定为 500000（500K）</li>
+<li>电机 ID：给每台电机分配的编号，避免冲突才能同时控制</li>
+<li>同步：多台电机同时动作的机制</li>
+</ul>
+<hr />
+<h2 id="8">8. 安全与记录<a class="headerlink" href="#8" title="Permanent link">&para;</a></h2>
+<ul>
+<li>紧急停止：在界面中使用“停止/紧急停止”按钮</li>
+<li>现场记录：</li>
+<li>拍照或录像保存异常现象</li>
+<li>记录串口号、连接的电机 ID、发生时间</li>
+<li>便于技术支持定位问题</li>
+</ul>
+<hr />
+<p>更多界面说明与进阶功能，请参阅“用户指南”。</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../user_guide/" class="btn btn-neutral float-left" title="用户指南"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../activation/" class="btn btn-neutral float-right" title="序列号与激活">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../user_guide/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../activation/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

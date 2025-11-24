@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Horizon_Arm Team" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>ROS2控制平台 - Horizon_Arm 文档</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "ROS2\u63a7\u5236\u5e73\u53f0";
+        var mkdocs_page_input_path = "ros2_guide.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Horizon_Arm 文档
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">首页</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../first_time_setup/">首次使用</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../user_guide/">用户指南</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../calibration_guide/">视觉标定详解</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../joycon_control_guide/">Joy-Con手柄控制</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../IO_Control_System/">IO控制系统</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../api_guide/">AI API配置指南</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">ROS2控制平台</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#_1">项目仓库</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#-githubhttpsgithubcomruxue-onehorizon_arm_ros2">- GitHub地址：https://github.com/RuXue-one/Horizon_ARM_ROS2</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_2">平台概述</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_3">系统特性</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_4">核心优势</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_5">快速开始</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_6">获取源码</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_7">环境要求</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_8">依赖安装</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_9">系统构建</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_10">配置验证</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_11">系统架构</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_12">目录结构</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_13">核心组件</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_14">控制模式</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_15">直接控制模式</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_16">话题通信模式</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_17">规划控制模式</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_18">系统启动</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_19">一键启动</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_20">分模块启动</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_21">参数配置</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_22">映射配置文件</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#_23">核心参数说明</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_24">运动限位</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_25">实时控制</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_26">配置示例</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_27">示例程序</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_28">基础控制示例</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_29">核心示例说明</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#1-basic_joint_controlpy">1. 基础关节控制 (basic_joint_control.py)</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#2-servo_squarepy">2. 实时方形轨迹 (servo_square.py)</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#3-pick_and_place_demopy">3. 抓取放置演示 (pick_and_place_demo.py)</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_30">可视化功能</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#moveit-rviz">MoveIt + RViz集成</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_31">使用方法</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#sdk">SDK安装</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_32">安装步骤</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_33">验证安装</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_34">卸载与重装</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#ros2_1">ROS2接口</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_35">核心话题</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_36">系统验证工具</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_37">基础代码模板</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_38">常见问题</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_39">硬件连接问题</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#ui">UI控制问题</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_40">实时控制问题</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#ros2rviz">ROS2和RViz问题</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_41">性能调优</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_42">高精度应用配置</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_43">高速应用配置</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_44">稳定性优先配置</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_45">安全提醒</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_46">相关资源</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_47">技术文档</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_48">开发参考</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../activation/">序列号与激活</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../troubleshooting/">故障排除</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Horizon_Arm 文档</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">ROS2控制平台</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="ros2">ROS2 控制平台使用指南<a class="headerlink" href="#ros2" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p>集成ROS2、MoveIt2的完整六轴机械臂控制平台</p>
+</blockquote>
+<p>本指南介绍如何使用Horizon ARM的ROS2控制平台，实现机械臂的高级控制功能，包括运动规划、可视化仿真和分布式控制。</p>
+<h3 id="_1">项目仓库<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
+<h2 id="-githubhttpsgithubcomruxue-onehorizon_arm_ros2">- <strong>GitHub地址</strong>：<a href="https://github.com/RuXue-one/Horizon_ARM_ROS2">https://github.com/RuXue-one/Horizon_ARM_ROS2</a><a class="headerlink" href="#-githubhttpsgithubcomruxue-onehorizon_arm_ros2" title="Permanent link">&para;</a></h2>
+<h2 id="_2">平台概述<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h3 id="_3">系统特性<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p><strong>Horizon ARM ROS2</strong> 是一个完整的六轴机械臂控制平台，提供：</p>
+<ul>
+<li>模块化架构：清晰的分层设计，便于理解和扩展</li>
+<li>多控制模式：支持图形界面控制、话题通信和轨迹规划</li>
+<li>完整可视化：集成MoveIt2运动规划和RViz可视化</li>
+<li>实时控制：高频率实时控制和轨迹跟踪</li>
+<li>便捷部署：标准ROS2工作空间部署</li>
+</ul>
+<h3 id="_4">核心优势<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<ul>
+<li>ROS2标准：完全基于ROS2 Humble的现代架构</li>
+<li>实时控制：支持高频率的实时运动控制</li>
+<li>智能规划：集成MoveIt2的路径规划和避障</li>
+<li>安全可靠：完善的安全保护和错误处理机制</li>
+</ul>
+<hr />
+<h2 id="_5">快速开始<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<h3 id="_6">获取源码<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<pre><code class="language-bash"># 克隆仓库
+git clone https://github.com/RuXue-one/Horizon_ARM_ROS2.git
+cd Horizon_ARM_ROS2
+</code></pre>
+<h3 id="_7">环境要求<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>操作系统</strong>：Ubuntu 22.04 LTS</li>
+<li><strong>ROS版本</strong>：ROS2 Humble</li>
+<li><strong>Python版本</strong>：Python 3.10+</li>
+<li><strong>硬件</strong>：机械臂硬件驱动SDK</li>
+</ul>
+<h3 id="_8">依赖安装<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<pre><code class="language-bash"># 系统更新
+sudo apt update
+
+# 安装ROS2依赖
+sudo apt install ros-humble-moveit ros-humble-ros2-control
+
+# 安装Python依赖
+pip3 install PyYAML tkinter numpy
+
+# 配置串口权限
+sudo usermod -a -G dialout $USER
+</code></pre>
+<h3 id="_9">系统构建<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
+<pre><code class="language-bash"># 进入工作空间
+cd ~/Horizon_ARM_ROS2
+
+# 编译ROS2功能包
+colcon build --symlink-install
+
+# 加载环境变量
+source install/setup.bash
+</code></pre>
+<h3 id="_10">配置验证<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
+<pre><code class="language-bash"># 检查功能包
+ros2 pkg list | grep horizon
+
+# 验证launch文件
+ros2 launch --list | grep bringup
+</code></pre>
+<hr />
+<h2 id="_11">系统架构<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
+<h3 id="_12">目录结构<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h3>
+<pre><code>Horizon_ARM_ROS2/
+├── arm-ros2/                        # 核心控制模块
+│   ├── review_ui.py                 # 图形化控制界面
+│   └── mapping.yaml                 # 机械臂配置文件
+├── src/                             # ROS2功能包
+│   ├── horizon_arm_bridge/          # 硬件驱动桥接
+│   │   ├── scripts/trajectory_stream_sdk_driver.py  # 驱动节点
+│   │   └── launch/bringup_sdk_ui.launch.py         # 系统启动文件
+│   ├── horizon_arm_moveit_config/   # MoveIt2运动规划配置
+│   └── new_arm/                     # 机器人模型定义
+├── examples/                        # 示例程序
+│   ├── basic_joint_control.py       # 基础关节控制
+│   ├── pick_and_place_demo.py       # 抓取放置演示
+│   └── servo_square.py              # 轨迹跟踪示例
+├── docs/                            # 技术文档
+└── sdk-wheel/                       # SDK安装包
+</code></pre>
+<h3 id="_13">核心组件<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>图形控制界面</strong>：提供直观的机械臂操作和状态监控</li>
+<li><strong>驱动桥接节点</strong>：处理ROS2话题通信和硬件控制接口</li>
+<li><strong>运动规划系统</strong>：基于MoveIt2的路径规划和碰撞检测</li>
+<li><strong>可视化系统</strong>：基于RViz的3D仿真和轨迹显示</li>
+<li><strong>示例程序</strong>：涵盖基础控制到高级应用的完整案例</li>
+</ul>
+<hr />
+<h2 id="_14">控制模式<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h2>
+<h3 id="_15">直接控制模式<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h3>
+<pre><code class="language-mermaid">flowchart LR
+    UI[控制界面] --&gt; SDK[硬件接口] --&gt; ARM[机械臂]
+    ARM --&gt; SDK --&gt; UI
+</code></pre>
+<ul>
+<li><strong>应用场景</strong>：单步动作执行、参数调试、系统标定</li>
+<li><strong>特点</strong>：响应快速、控制精确、操作简单</li>
+</ul>
+<h3 id="_16">话题通信模式<a class="headerlink" href="#_16" title="Permanent link">&para;</a></h3>
+<pre><code class="language-mermaid">flowchart LR
+    APP[应用程序] --&gt; TOPIC[ROS话题] --&gt; DRIVER[驱动节点] --&gt; ARM[机械臂]
+    ARM --&gt; DRIVER --&gt; STATE[状态话题] --&gt; VIZ[可视化]
+</code></pre>
+<ul>
+<li><strong>应用场景</strong>：连续轨迹执行、多节点协作、实时控制</li>
+<li><strong>特点</strong>：支持多进程、状态同步、扩展性强</li>
+</ul>
+<h3 id="_17">规划控制模式<a class="headerlink" href="#_17" title="Permanent link">&para;</a></h3>
+<pre><code class="language-mermaid">flowchart LR
+    RVIZ[RViz界面] --&gt; MOVEIT[MoveIt2] --&gt; PLAN[轨迹规划]
+    PLAN --&gt; EXEC[执行器] --&gt; ARM[机械臂]
+</code></pre>
+<ul>
+<li><strong>应用场景</strong>：路径规划应用、避障演示、复杂轨迹生成</li>
+<li><strong>特点</strong>：智能规划、碰撞检测、可视化强</li>
+</ul>
+<hr />
+<h2 id="_18">系统启动<a class="headerlink" href="#_18" title="Permanent link">&para;</a></h2>
+<h3 id="_19">一键启动<a class="headerlink" href="#_19" title="Permanent link">&para;</a></h3>
+<pre><code class="language-bash"># 启动完整教学平台
+ros2 launch horizon_arm_bridge bringup_sdk_ui.launch.py
+</code></pre>
+<p>启动后系统将自动加载：
+- <strong>MoveIt2运动规划服务</strong>：提供路径规划和碰撞检测
+- <strong>RViz可视化界面</strong>：3D仿真和轨迹显示<br />
+- <strong>硬件控制界面</strong>：图形化操作和状态监控
+- <strong>驱动桥接节点</strong>：ROS话题和硬件接口转换</p>
+<h3 id="_20">分模块启动<a class="headerlink" href="#_20" title="Permanent link">&para;</a></h3>
+<pre><code class="language-bash"># 仅启动驱动节点
+ros2 launch horizon_arm_bridge driver_only.launch.py
+
+# 仅启动运动规划
+ros2 launch horizon_arm_moveit_config demo.launch.py
+</code></pre>
+<hr />
+<h2 id="_21">参数配置<a class="headerlink" href="#_21" title="Permanent link">&para;</a></h2>
+<h3 id="_22">映射配置文件<a class="headerlink" href="#_22" title="Permanent link">&para;</a></h3>
+<p><strong>文件位置</strong>: <code>~/Horizon_ARM_ROS2/arm-ros2/mapping.yaml</code></p>
+<p>该配置文件定义了关节与电机的映射关系、运动限位和实时控制参数。</p>
+<h4 id="_23">核心参数说明<a class="headerlink" href="#_23" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>推荐值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>send_space</code></td>
+<td>string</td>
+<td><code>"motor"</code></td>
+<td>下发空间：<code>motor</code>（电机角）或<code>output</code>（输出端角）</td>
+</tr>
+<tr>
+<td><code>apply_sign_in_ui</code></td>
+<td>bool</td>
+<td><code>true</code></td>
+<td>是否在UI中应用方向映射</td>
+</tr>
+<tr>
+<td><code>show_output_measured</code></td>
+<td>bool</td>
+<td><code>true</code></td>
+<td>显示输出端角度而非电机角度</td>
+</tr>
+</tbody>
+</table>
+<h4 id="_24">运动限位<a class="headerlink" href="#_24" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>单位</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>pos_limit_deg</code></td>
+<td>array</td>
+<td>度</td>
+<td>各关节角度上下限 <code>[min, max]</code></td>
+</tr>
+<tr>
+<td><code>vel_limit_deg_s</code></td>
+<td>array</td>
+<td>度/秒</td>
+<td>各关节速度上限（用于实时限速）</td>
+</tr>
+<tr>
+<td><code>wrap_deg</code></td>
+<td>array</td>
+<td>度</td>
+<td>各关节角度套圈范围</td>
+</tr>
+</tbody>
+</table>
+<h4 id="_25">实时控制<a class="headerlink" href="#_25" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>推荐值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>stream_min_delta_deg</code></td>
+<td>float</td>
+<td><code>0.02</code></td>
+<td>死区阈值，小于此值的变化忽略</td>
+</tr>
+<tr>
+<td><code>servo_rate_hz</code></td>
+<td>float</td>
+<td><code>50.0</code></td>
+<td>实时循环频率</td>
+</tr>
+<tr>
+<td><code>stream_use_direct</code></td>
+<td>bool</td>
+<td><code>true</code></td>
+<td>直接位置模式或梯形轨迹模式</td>
+</tr>
+</tbody>
+</table>
+<h4 id="_26">配置示例<a class="headerlink" href="#_26" title="Permanent link">&para;</a></h4>
+<pre><code class="language-yaml"># 关节-电机映射
+motor_ids: [1, 2, 3, 4, 5, 6]
+joints: [&quot;1_join&quot;, &quot;2_join&quot;, &quot;3_join&quot;, &quot;4_join&quot;, &quot;5_join&quot;, &quot;6_join&quot;]
+
+# 方向和减速比
+sign: [1, 1, 1, -1, 1, -1]
+gear_ratio: [62.0, 51.0, 51.0, 62.0, 12.0, 10.0]
+
+# 关节限位
+pos_limit_deg:
+  - [-180, 180]  # J1
+  - [-90, 90]    # J2
+  - [-143, 143]  # J3
+  - [-180, 180]  # J4
+  - [-143, 143]  # J5
+  - [-180, 180]  # J6
+
+# 实时控制参数
+servo_rate_hz: 50.0
+stream_min_delta_deg: 0.02
+stream_use_direct: true
+</code></pre>
+<hr />
+<h2 id="_27">示例程序<a class="headerlink" href="#_27" title="Permanent link">&para;</a></h2>
+<h3 id="_28">基础控制示例<a class="headerlink" href="#_28" title="Permanent link">&para;</a></h3>
+<pre><code class="language-bash"># 加载环境
+source install/setup.bash
+
+# 基础关节控制
+python3 examples/basic_joint_control.py
+
+# 轨迹跟踪演示
+python3 examples/servo_square.py
+
+# 抓取放置演示  
+python3 examples/pick_and_place_demo.py
+</code></pre>
+<h3 id="_29">核心示例说明<a class="headerlink" href="#_29" title="Permanent link">&para;</a></h3>
+<h4 id="1-basic_joint_controlpy">1. 基础关节控制 (<code>basic_joint_control.py</code>)<a class="headerlink" href="#1-basic_joint_controlpy" title="Permanent link">&para;</a></h4>
+<p><strong>功能说明</strong>: 关节空间控制基础
+- 单关节控制
+- 多关节协调运动
+- 运动序列编程</p>
+<h4 id="2-servo_squarepy">2. 实时方形轨迹 (<code>servo_square.py</code>)<a class="headerlink" href="#2-servo_squarepy" title="Permanent link">&para;</a></h4>
+<p><strong>功能说明</strong>: 实时控制模式
+- 连续轨迹控制
+- 实时话题发布
+- 平滑运动实现</p>
+<h4 id="3-pick_and_place_demopy">3. 抓取放置演示 (<code>pick_and_place_demo.py</code>)<a class="headerlink" href="#3-pick_and_place_demopy" title="Permanent link">&para;</a></h4>
+<p><strong>功能说明</strong>: 典型工业应用
+- 抓取放置流程
+- 预设位置管理
+- 复杂动作序列</p>
+<h3 id="_30">可视化功能<a class="headerlink" href="#_30" title="Permanent link">&para;</a></h3>
+<h4 id="moveit-rviz">MoveIt + RViz集成<a class="headerlink" href="#moveit-rviz" title="Permanent link">&para;</a></h4>
+<p><strong>运动规划与可视化</strong>: 一键启动后RViz自动配置完整功能
+- 🎨 MoveIt运动规划：拖拽末端执行器进行路径规划
+- 📊 轨迹可视化：显示规划路径和虚拟执行过程<br />
+- 🔧 TF坐标系：显示机械臂各关节的坐标轴
+- 📍 实时状态：显示当前关节位置和目标位置</p>
+<h4 id="_31">使用方法<a class="headerlink" href="#_31" title="Permanent link">&para;</a></h4>
+<ol>
+<li>启动系统：<code>ros2 launch horizon_arm_bridge bringup_sdk_ui.launch.py</code></li>
+<li>在RViz中拖拽橙色球体（末端执行器）到目标位置</li>
+<li>点击"Plan"查看规划路径</li>
+<li>点击"Plan &amp; Execute"观看虚拟执行演示</li>
+</ol>
+<hr />
+<h2 id="sdk">SDK安装<a class="headerlink" href="#sdk" title="Permanent link">&para;</a></h2>
+<h3 id="_32">安装步骤<a class="headerlink" href="#_32" title="Permanent link">&para;</a></h3>
+<p>SDK包位置：<code>~/Horizon_ARM_ROS2/sdk-wheel/dist/horizon_control_sdk-&lt;ver&gt;-py3-none-any.whl</code></p>
+<pre><code class="language-bash"># 安装SDK（仅需一次）
+python3 -m pip install --user ~/Horizon_ARM_ROS2/sdk-wheel/dist/horizon_control_sdk-*.whl
+</code></pre>
+<h3 id="_33">验证安装<a class="headerlink" href="#_33" title="Permanent link">&para;</a></h3>
+<pre><code class="language-bash">python3 - &lt;&lt;'PY'
+import simple_sdk, inspect
+from Control_Core.motor_controller_modular import ZDTMotorControllerModular
+print('simple_sdk path =', inspect.getsourcefile(simple_sdk) or simple_sdk.__file__)
+print('Control_Core path =', inspect.getsourcefile(ZDTMotorControllerModular) or ZDTMotorControllerModular.__module__)
+PY
+</code></pre>
+<p>输出路径包含 <code>site-packages</code> 即说明来自已安装的wheel。</p>
+<h3 id="_34">卸载与重装<a class="headerlink" href="#_34" title="Permanent link">&para;</a></h3>
+<pre><code class="language-bash">python3 -m pip uninstall -y horizon-control-sdk
+python3 -m pip install --user ~/Horizon_ARM_ROS2/sdk-wheel/dist/horizon_control_sdk-*.whl
+</code></pre>
+<hr />
+<h2 id="ros2_1">ROS2接口<a class="headerlink" href="#ros2_1" title="Permanent link">&para;</a></h2>
+<h3 id="_35">核心话题<a class="headerlink" href="#_35" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>话题名称</th>
+<th>类型</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/horizon_arm/servo_target</code></td>
+<td>Float64MultiArray</td>
+<td>关节目标位置</td>
+</tr>
+<tr>
+<td><code>/joint_states</code></td>
+<td>JointState</td>
+<td>关节状态反馈</td>
+</tr>
+<tr>
+<td><code>/display_planned_path</code></td>
+<td>DisplayTrajectory</td>
+<td>规划轨迹显示</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_36">系统验证工具<a class="headerlink" href="#_36" title="Permanent link">&para;</a></h3>
+<pre><code class="language-bash"># 关节状态监控
+python3 examples/map_check.py
+
+# 硬件连接测试
+ros2 topic list | grep horizon
+
+# 话题数据检查
+ros2 topic echo /joint_states
+</code></pre>
+<h3 id="_37">基础代码模板<a class="headerlink" href="#_37" title="Permanent link">&para;</a></h3>
+<pre><code class="language-python">import rclpy
+from rclpy.node import Node
+from std_msgs.msg import Float64MultiArray
+
+class MyController(Node):
+    def __init__(self):
+        super().__init__('my_controller')
+        self.target_pub = self.create_publisher(
+            Float64MultiArray, '/horizon_arm/servo_target', 10)
+
+    def move_joints(self, angles):
+        msg = Float64MultiArray()
+        msg.data = angles  # [j1, j2, j3, j4, j5, j6] 角度值
+        self.target_pub.publish(msg)
+</code></pre>
+<hr />
+<h2 id="_38">常见问题<a class="headerlink" href="#_38" title="Permanent link">&para;</a></h2>
+<h3 id="_39">硬件连接问题<a class="headerlink" href="#_39" title="Permanent link">&para;</a></h3>
+<p><strong>Q: SLCAN连接失败或通信超时？</strong></p>
+<p><strong>A</strong>: 排查步骤：
+1. 检查串口权限：<code>sudo usermod -a -G dialout $USER</code>
+2. 检查设备连接：<code>ls -l /dev/ttyACM*</code>
+3. 检查线缆和接线质量
+4. 确认没有其他程序占用串口
+5. 必要时重插USB设备或重启系统</p>
+<h3 id="ui">UI控制问题<a class="headerlink" href="#ui" title="Permanent link">&para;</a></h3>
+<p><strong>Q: 实时模式下UI电机参数显示为NaN？</strong></p>
+<p><strong>A</strong>: 这是正常的"软避让"机制。当外部脚本占用串口进行实时控制时，UI暂停状态读取以避免冲突。脚本结束后会自动恢复。</p>
+<p><strong>Q: UI连接机械臂后RViz仍显示旧位置？</strong></p>
+<p><strong>A</strong>: UI不发布joint_states，需要等待驱动节点的状态同步。这是设计机制，确保状态发布的一致性。</p>
+<h3 id="_40">实时控制问题<a class="headerlink" href="#_40" title="Permanent link">&para;</a></h3>
+<p><strong>Q: 实时模式下机械臂"来回调"？</strong></p>
+<p><strong>A</strong>: 调优参数解决：</p>
+<pre><code class="language-yaml"># 在 mapping.yaml 中调整
+stream_settle_tol_deg: 1.0        # 增大容差
+stream_settle_hold_iters: 8       # 增加稳定次数  
+stream_finalize_with_abs: true    # 开启精确定位
+servo_rate_hz: 30                 # 降低频率
+</code></pre>
+<h3 id="ros2rviz">ROS2和RViz问题<a class="headerlink" href="#ros2rviz" title="Permanent link">&para;</a></h3>
+<p><strong>Q: RViz中机械臂模型不显示或显示异常？</strong></p>
+<p><strong>A</strong>: 检查以下项目：
+1. 确认ROS2环境正确加载：<code>source install/setup.bash</code>
+2. 检查 <code>/joint_states</code> 话题发布：<code>ros2 topic echo /joint_states</code>
+3. 检查URDF模型加载：<code>ros2 param get /robot_state_publisher robot_description</code>
+4. 重新加载 RViz 配置文件</p>
+<p><strong>Q: RViz执行"Plan &amp; Execute"后机械臂不动？</strong></p>
+<p><strong>A</strong>: 系统支持虚拟执行演示：
+- RViz中的"Plan &amp; Execute"可以在虚拟环境中演示轨迹
+- 实际硬件控制请使用UI界面的控制按钮
+- 或使用实时话题<code>/horizon_arm/servo_target</code>进行编程控制</p>
+<hr />
+<h2 id="_41">性能调优<a class="headerlink" href="#_41" title="Permanent link">&para;</a></h2>
+<h3 id="_42">高精度应用配置<a class="headerlink" href="#_42" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>servo_rate_hz</code>: 100-200</li>
+<li><code>stream_min_delta_deg</code>: 0.01</li>
+<li><code>stream_settle_tol_deg</code>: 0.1</li>
+</ul>
+<h3 id="_43">高速应用配置<a class="headerlink" href="#_43" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>servo_rate_hz</code>: 30-50  </li>
+<li><code>stream_use_direct</code>: true</li>
+<li><code>vel_limit_deg_s</code>: 根据需要增大</li>
+</ul>
+<h3 id="_44">稳定性优先配置<a class="headerlink" href="#_44" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>stream_settle_hold_iters</code>: 8-10</li>
+<li><code>stream_finalize_with_abs</code>: true</li>
+<li><code>servo_rate_hz</code>: 20-30</li>
+</ul>
+<blockquote>
+<p><strong>提示</strong>: 修改配置后需要重启系统才能生效</p>
+</blockquote>
+<hr />
+<h2 id="_45">安全提醒<a class="headerlink" href="#_45" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>硬件安全</strong>: 运行示例前确保机械臂周围无障碍物</li>
+<li><strong>急停准备</strong>: 随时准备使用UI中的急停按钮</li>
+<li><strong>参数检查</strong>: 修改角度值前确认在安全范围内（参考mapping.yaml）</li>
+<li><strong>循序渐进</strong>: 建议从小幅度运动开始测试</li>
+</ol>
+<hr />
+<h2 id="_46">相关资源<a class="headerlink" href="#_46" title="Permanent link">&para;</a></h2>
+<h3 id="_47">技术文档<a class="headerlink" href="#_47" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="https://docs.ros.org/en/humble/">ROS2 Humble官方文档</a></li>
+<li><a href="https://moveit.ros.org/">MoveIt2运动规划</a></li>
+</ul>
+<h3 id="_48">开发参考<a class="headerlink" href="#_48" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>ROS2基础</strong>: 节点、话题、服务、参数系统</li>
+<li><strong>机械臂运动学</strong>: 正逆运动学、雅可比矩阵</li>
+<li><strong>路径规划</strong>: MoveIt2规划算法和碰撞检测</li>
+<li><strong>实时控制</strong>: 轨迹插值和多轴同步控制算法</li>
+</ul>
+<hr />
+<div align="center" style="margin: 30px 0; padding: 20px; background-color: #f8f9fa; border-radius: 10px;">
+<p style="font-size: 14px; color: #6c757d; margin: 0;">
+<strong>ROS2控制平台</strong> | 让高级开发更强大<br>
+© 2025 Horizon Arm • 智能、灵活、易用
+</p>
+</div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../api_guide/" class="btn btn-neutral float-left" title="AI API配置指南"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../activation/" class="btn btn-neutral float-right" title="序列号与激活">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../api_guide/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../activation/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

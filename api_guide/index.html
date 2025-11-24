@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Horizon_Arm Team" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>AI API配置指南 - Horizon_Arm 文档</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "AI API\u914d\u7f6e\u6307\u5357";
+        var mkdocs_page_input_path = "api_guide.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Horizon_Arm 文档
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">首页</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../first_time_setup/">首次使用</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../user_guide/">用户指南</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../calibration_guide/">视觉标定详解</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../joycon_control_guide/">Joy-Con手柄控制</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../IO_Control_System/">IO控制系统</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">AI API配置指南</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#_1">概述</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#api_1">为什么需要自行获取API密钥？</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#api_2">阿里云通义千问 API 获取教程</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#1">1. 注册阿里云账号</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#2">2. 开通通义千问服务</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#3-api-key">3. 创建 API Key</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#4-horizon-arm">4. 配置到 Horizon Arm</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#5">5. 测试连接</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#deepseek-api">DeepSeek 深度求索 API 获取教程</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#1-deepseek">1. 注册 DeepSeek 账号</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#2_1">2. 充值与套餐选择</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#3-api-key_1">3. 创建 API Key</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#4-horizon-arm_1">4. 配置到 Horizon Arm</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#5_1">5. 测试连接</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_2">参数配置详解</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_3">配置文件位置</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_4">完整配置示例</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_5">参数说明</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#temperature">temperature（温度）</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#max_tokens">max_tokens（最大令牌数）</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#top_p">top_p（核采样）</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_6">使用技巧与最佳实践</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#1_1">1. 选择合适的提供商</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#2-api">2. API 密钥安全</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#3">3. 成本优化</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#4">4. 性能优化</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_7">故障排除</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_8">连接问题</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_9">认证问题</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_10">配额问题</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_11">配置问题</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_12">功能问题</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_13">获取帮助</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_14">官方文档</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#horizon-arm">Horizon Arm 支持</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_15">快速参考</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_16">常用链接速查</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_17">推荐模型</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_18">配置文件模板</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_19">检查清单</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../ros2_guide/">ROS2控制平台</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../activation/">序列号与激活</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../troubleshooting/">故障排除</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Horizon_Arm 文档</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">AI API配置指南</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="api">API密钥获取指南<a class="headerlink" href="#api" title="Permanent link">&para;</a></h1>
+<h2 id="_1">概述<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>Horizon Arm软件<strong>不包含</strong>具身智能部分的第三方AI服务API密钥。为了使用具身智能功能，您需要自行注册并获取以下平台的API密钥：</p>
+<ul>
+<li><strong>阿里云通义千问</strong>（Alibaba Qwen）</li>
+<li><strong>DeepSeek深度求索</strong></li>
+</ul>
+<p>本指南将详细说明如何在这两个平台上注册账号并获取API密钥。</p>
+<hr />
+<h2 id="api_1">为什么需要自行获取API密钥？<a class="headerlink" href="#api_1" title="Permanent link">&para;</a></h2>
+<p><strong>隐私与安全</strong>：
+- 保护您的使用数据和隐私
+- 避免共享密钥带来的安全风险
+- 确保服务稳定性和可用性</p>
+<p><strong>成本控制</strong>：
+- 您可以根据自己的需求选择付费方案
+- 透明的用量统计和费用管理
+- 避免额外的服务费用</p>
+<p><strong>服务质量</strong>：
+- 独立的API配额和速率限制
+- 更好的服务响应速度
+- 完全控制服务使用权限</p>
+<hr />
+<h2 id="api_2">阿里云通义千问 API 获取教程<a class="headerlink" href="#api_2" title="Permanent link">&para;</a></h2>
+<h3 id="1">1. 注册阿里云账号<a class="headerlink" href="#1" title="Permanent link">&para;</a></h3>
+<p><strong>访问官网</strong>
+- 打开浏览器，访问：<a href="https://www.aliyun.com">https://www.aliyun.com</a>
+- 点击右上角"免费注册"按钮</p>
+<p><strong>注册流程</strong>
+1. 选择注册方式：
+   - 手机号注册（推荐）
+   - 邮箱注册</p>
+<ol>
+<li>填写注册信息：</li>
+<li>输入手机号/邮箱</li>
+<li>设置登录密码</li>
+<li>输入短信验证码</li>
+<li>
+<p>勾选同意用户协议</p>
+</li>
+<li>
+<p>完成注册：</p>
+</li>
+<li>点击"注册"按钮</li>
+<li>完成实名认证（需要身份证信息）</li>
+</ol>
+<blockquote>
+<p><strong>💡 提示</strong>：阿里云要求实名认证才能使用API服务，请准备好身份证信息。</p>
+</blockquote>
+<h3 id="2">2. 开通通义千问服务<a class="headerlink" href="#2" title="Permanent link">&para;</a></h3>
+<p><strong>进入控制台</strong>
+- 登录后，访问：<a href="https://dashscope.aliyun.com">https://dashscope.aliyun.com</a>
+- 这是阿里云的模型服务平台（灵积平台）</p>
+<p><strong>开通服务</strong>
+1. 首次访问会提示开通服务
+2. 点击"立即开通"按钮
+3. 阅读并同意服务协议
+4. 选择付费方式：
+   - <strong>按量付费</strong>（推荐新手）：根据实际使用量计费
+   - <strong>资源包</strong>：预付费套餐，适合大量使用</p>
+<blockquote>
+<p><strong>💰 费用参考</strong>：
+- 新用户通常有免费额度（具体以官网为准）
+- 通义千问系列模型按Token计费
+- qwen-turbo: ¥0.002元/千tokens（输入）
+- qwen-plus: ¥0.004元/千tokens（输入）
+- qwen-max: ¥0.02元/千tokens（输入）</p>
+</blockquote>
+<h3 id="3-api-key">3. 创建 API Key<a class="headerlink" href="#3-api-key" title="Permanent link">&para;</a></h3>
+<p><strong>访问密钥管理页面</strong>
+1. 在灵积平台首页，点击右上角头像
+2. 选择"API-KEY管理"
+3. 或直接访问：<a href="https://dashscope.console.aliyun.com/apiKey">https://dashscope.console.aliyun.com/apiKey</a></p>
+<p><strong>创建新的API Key</strong>
+1. 点击"创建新的API-KEY"按钮
+2. 系统会自动生成一个API Key
+3. <strong>重要</strong>：立即复制并保存API Key
+   - API Key格式：<code>sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</code>
+   - 只显示一次，关闭后无法再次查看
+   - 建议保存到安全的地方</p>
+<p><strong>API Key 管理</strong>
+- 可以创建多个API Key用于不同项目
+- 可以随时禁用或删除不需要的Key
+- 定期更换API Key提高安全性</p>
+<h3 id="4-horizon-arm">4. 配置到 Horizon Arm<a class="headerlink" href="#4-horizon-arm" title="Permanent link">&para;</a></h3>
+<p><strong>方法一：通过软件界面配置</strong>
+1. 打开 Horizon Arm 软件
+2. 切换到"具身智能"标签页
+3. 在"LLM提供商"下拉框中选择"alibaba"
+4. 在"API密钥"输入框中粘贴您的API Key
+5. 选择模型（推荐：qwen-plus 或 qwen-turbo）
+6. 点击"保存配置"</p>
+<p><strong>方法二：手动编辑配置文件</strong>
+1. 找到软件安装目录下的配置文件：
+   <code>config/aisdk_config.yaml</code></p>
+<ol>
+<li>
+<p>使用文本编辑器打开，找到以下部分：
+   <code>yaml
+   providers:
+     alibaba:
+       api_key: YOUR_API_KEY_HERE  # 替换为您的API Key
+       enabled: true
+       default_params:
+         max_tokens: 2000
+         temperature: 0.7
+         top_p: 0.8</code></p>
+</li>
+<li>
+<p>将 <code>YOUR_API_KEY_HERE</code> 替换为您的API Key</p>
+</li>
+<li>
+<p>保存文件并重启软件</p>
+</li>
+</ol>
+<h3 id="5">5. 测试连接<a class="headerlink" href="#5" title="Permanent link">&para;</a></h3>
+<p><strong>验证配置</strong>
+1. 在"具身智能"标签页
+2. 在指令输入框中输入简单测试指令：
+   <code>机械臂回到零位</code>
+3. 点击"执行指令"
+4. 如果配置正确，系统会正常响应并执行</p>
+<p><strong>常见问题</strong>
+- <strong>"API密钥无效"错误</strong>：
+  - 检查API Key是否完整复制
+  - 确认API Key是否已启用
+  - 检查是否有网络连接</p>
+<ul>
+<li><strong>"配额不足"错误</strong>：</li>
+<li>检查账户余额</li>
+<li>查看免费额度是否用完</li>
+<li>考虑充值或购买资源包</li>
+</ul>
+<hr />
+<h2 id="deepseek-api">DeepSeek 深度求索 API 获取教程<a class="headerlink" href="#deepseek-api" title="Permanent link">&para;</a></h2>
+<h3 id="1-deepseek">1. 注册 DeepSeek 账号<a class="headerlink" href="#1-deepseek" title="Permanent link">&para;</a></h3>
+<p><strong>访问官网</strong>
+- 打开浏览器，访问：<a href="https://platform.deepseek.com">https://platform.deepseek.com</a>
+- 点击右上角"Sign up"（注册）按钮</p>
+<p><strong>注册流程</strong>
+1. 选择注册方式：
+   - 手机号注册
+   - 邮箱注册（推荐国际邮箱如Gmail）
+   - Google账号快捷登录
+   - GitHub账号快捷登录</p>
+<ol>
+<li>填写注册信息：</li>
+<li>输入手机号或邮箱</li>
+<li>设置密码（至少8位）</li>
+<li>完成人机验证</li>
+<li>
+<p>输入验证码</p>
+</li>
+<li>
+<p>完成注册：</p>
+</li>
+<li>点击注册按钮</li>
+<li>验证邮箱/手机（如需要）</li>
+</ol>
+<blockquote>
+<p><strong>💡 提示</strong>：DeepSeek注册相对简单，不需要实名认证即可使用基础功能。</p>
+</blockquote>
+<h3 id="2_1">2. 充值与套餐选择<a class="headerlink" href="#2_1" title="Permanent link">&para;</a></h3>
+<p><strong>进入账户管理</strong>
+1. 登录后，点击右上角头像
+2. 选择"账户管理"或"Billing"
+3. 查看当前余额和用量</p>
+<p><strong>充值方式</strong>
+1. 点击"充值"或"Recharge"按钮
+2. 选择充值金额：
+   - 最低充值金额：通常为$5或更低
+   - 支持支付宝、微信支付、银行卡等</p>
+<ol>
+<li>完成支付流程</li>
+</ol>
+<blockquote>
+<p><strong>💰 费用参考</strong>：
+- 新用户可能有免费额度（具体以官网为准）
+- DeepSeek-Chat: ¥0.001元/千tokens（输入）
+- DeepSeek-Chat: ¥0.002元/千tokens（输出）
+- 相比其他平台，DeepSeek价格较为实惠</p>
+</blockquote>
+<p><strong>免费额度说明</strong>
+- 新用户注册后通常会获得一定的免费额度
+- 免费额度有效期通常为30天
+- 额度用完后需要充值才能继续使用</p>
+<h3 id="3-api-key_1">3. 创建 API Key<a class="headerlink" href="#3-api-key_1" title="Permanent link">&para;</a></h3>
+<p><strong>访问API密钥管理</strong>
+1. 登录DeepSeek平台
+2. 点击左侧菜单"API Keys"
+3. 或直接访问：<a href="https://platform.deepseek.com/api_keys">https://platform.deepseek.com/api_keys</a></p>
+<p><strong>创建新的API Key</strong>
+1. 点击"Create API Key"按钮
+2. 填写API Key信息：
+   - <strong>Name</strong>：为API Key命名（例如：Horizon_Arm）
+   - <strong>Description</strong>（可选）：描述用途</p>
+<ol>
+<li>
+<p>点击"Create"创建</p>
+</li>
+<li>
+<p><strong>重要</strong>：立即复制API Key</p>
+</li>
+<li>API Key格式：<code>sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</code></li>
+<li>只显示一次，关闭后无法查看</li>
+<li>点击复制按钮保存到安全位置</li>
+</ol>
+<p><strong>API Key 安全管理</strong>
+- 不要将API Key分享给他人
+- 不要在公开代码库中暴露API Key
+- 可以创建多个Key用于不同项目
+- 发现泄露立即删除并创建新的Key</p>
+<h3 id="4-horizon-arm_1">4. 配置到 Horizon Arm<a class="headerlink" href="#4-horizon-arm_1" title="Permanent link">&para;</a></h3>
+<p><strong>方法一：通过软件界面配置</strong>
+1. 打开 Horizon Arm 软件
+2. 切换到"具身智能"标签页
+3. 在"LLM提供商"下拉框中选择"deepseek"
+4. 在"API密钥"输入框中粘贴您的API Key
+5. 选择模型：
+   - deepseek-chat（推荐，性能优异）
+   - deepseek-coder（代码专用）
+6. 点击"保存配置"</p>
+<p><strong>方法二：手动编辑配置文件</strong>
+1. 找到软件安装目录下的配置文件：
+   <code>config/aisdk_config.yaml</code></p>
+<ol>
+<li>
+<p>使用文本编辑器打开，找到以下部分：
+   <code>yaml
+   providers:
+     deepseek:
+       api_key: YOUR_API_KEY_HERE  # 替换为您的API Key
+       enabled: true
+       default_params:
+         max_tokens: 2000
+         temperature: 0.7
+         top_p: 1.0</code></p>
+</li>
+<li>
+<p>将 <code>YOUR_API_KEY_HERE</code> 替换为您的API Key</p>
+</li>
+<li>
+<p>保存文件并重启软件</p>
+</li>
+</ol>
+<h3 id="5_1">5. 测试连接<a class="headerlink" href="#5_1" title="Permanent link">&para;</a></h3>
+<p><strong>验证配置</strong>
+1. 在"具身智能"标签页
+2. 确认已选择"deepseek"提供商
+3. 输入测试指令：
+   <code>机械臂移动到初始位置</code>
+4. 点击"执行指令"
+5. 观察系统响应和机械臂动作</p>
+<p><strong>性能优化建议</strong>
+- <strong>temperature</strong>：控制创造性
+  - 0.3-0.5：精确控制，适合机械臂
+  - 0.7-0.9：更有创造性的对话</p>
+<ul>
+<li><strong>max_tokens</strong>：限制回复长度</li>
+<li>简单指令：500-1000</li>
+<li>复杂任务：1500-2000</li>
+</ul>
+<p><strong>常见问题</strong>
+- <strong>"API key is invalid"错误</strong>：
+  - 检查API Key是否正确完整
+  - 确认API Key是否已启用
+  - 尝试重新创建API Key</p>
+<ul>
+<li><strong>"Insufficient balance"错误</strong>：</li>
+<li>检查账户余额</li>
+<li>
+<p>及时充值</p>
+</li>
+<li>
+<p><strong>响应速度慢</strong>：</p>
+</li>
+<li>检查网络连接</li>
+<li>减少max_tokens参数</li>
+<li>尝试切换网络环境</li>
+</ul>
+<hr />
+<h2 id="_2">参数配置详解<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h3 id="_3">配置文件位置<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<pre><code>Horizon_Arm安装目录/
+  └── config/
+      └── aisdk_config.yaml
+</code></pre>
+<h3 id="_4">完整配置示例<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<pre><code class="language-yaml"># AI SDK 配置文件
+providers:
+  # 阿里云通义千问配置
+  alibaba:
+    api_key: sk-xxxxxxxxxxxxxxxxxxxxxxxxxx  # 您的API Key
+    enabled: true                            # 是否启用
+    description: 阿里云通义千问
+    default_params:
+      max_tokens: 2000      # 最大生成token数
+      temperature: 0.7      # 温度参数(0-2)，越低越确定
+      top_p: 0.8           # 核采样参数(0-1)
+
+  # DeepSeek配置
+  deepseek:
+    api_key: sk-xxxxxxxxxxxxxxxxxxxxxxxxxx  # 您的API Key
+    enabled: true                            # 是否启用
+    description: DeepSeek深度求索
+    default_params:
+      max_tokens: 2000      # 最大生成token数
+      temperature: 0.7      # 温度参数(0-2)
+      top_p: 1.0           # 核采样参数(0-1)
+
+# 日志配置
+logging:
+  level: INFO              # 日志级别：DEBUG/INFO/WARNING/ERROR
+  file: AI_SDK.log        # 日志文件名
+  max_size: 10485760      # 最大日志文件大小(10MB)
+  backup_count: 5         # 保留的日志备份数量
+
+# 会话配置
+session:
+  default_max_history: 20  # 默认最大历史记录数
+  max_sessions: 100       # 最大会话数
+  auto_cleanup: true      # 自动清理过期会话
+  cleanup_interval: 3600  # 清理间隔(秒)
+
+# 请求配置
+request:
+  timeout: 60            # 请求超时时间(秒)
+  max_retries: 3         # 最大重试次数
+  retry_delay: 1.0       # 重试延迟(秒)
+
+# 缓存配置
+cache:
+  enabled: false         # 是否启用缓存
+  type: memory          # 缓存类型：memory/redis
+  ttl: 300              # 缓存过期时间(秒)
+  max_size: 1000        # 最大缓存条目数
+
+# 开发模式配置
+development:
+  debug: false           # 是否开启调试模式
+  log_requests: false    # 是否记录所有请求
+  mock_responses: false  # 是否使用模拟响应
+
+# 安全配置
+security:
+  api_key_encryption: false  # API密钥是否加密存储
+  rate_limiting:
+    enabled: false       # 是否启用速率限制
+    requests_per_minute: 60  # 每分钟最大请求数
+</code></pre>
+<h3 id="_5">参数说明<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<h4 id="temperature">temperature（温度）<a class="headerlink" href="#temperature" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>范围</strong>：0.0 - 2.0</li>
+<li><strong>说明</strong>：控制生成内容的随机性</li>
+<li><strong>推荐值</strong>：</li>
+<li>0.3：精确控制，适合机械臂指令</li>
+<li>0.7：平衡创造性和准确性</li>
+<li>1.0+：更有创造性，适合对话</li>
+</ul>
+<h4 id="max_tokens">max_tokens（最大令牌数）<a class="headerlink" href="#max_tokens" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>范围</strong>：1 - 6000（根据模型不同）</li>
+<li><strong>说明</strong>：限制生成内容的长度</li>
+<li><strong>推荐值</strong>：</li>
+<li>500：简单指令</li>
+<li>1500：一般任务</li>
+<li>2000：复杂任务</li>
+</ul>
+<h4 id="top_p">top_p（核采样）<a class="headerlink" href="#top_p" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>范围</strong>：0.0 - 1.0</li>
+<li><strong>说明</strong>：控制采样的多样性</li>
+<li><strong>推荐值</strong>：</li>
+<li>0.8-0.9：平衡多样性和质量</li>
+<li>1.0：最大多样性</li>
+</ul>
+<hr />
+<h2 id="_6">使用技巧与最佳实践<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<h3 id="1_1">1. 选择合适的提供商<a class="headerlink" href="#1_1" title="Permanent link">&para;</a></h3>
+<p><strong>阿里云通义千问</strong>
+- ✅ 优势：
+  - 国内访问速度快
+  - 中文理解能力强
+  - 官方支持完善
+  - 稳定性好</p>
+<ul>
+<li>适用场景：</li>
+<li>需要快速响应</li>
+<li>中文指令为主</li>
+<li>对稳定性要求高</li>
+</ul>
+<p><strong>DeepSeek</strong>
+- ✅ 优势：
+  - 价格实惠
+  - 推理能力强
+  - 代码理解优秀
+  - 性价比高</p>
+<ul>
+<li>适用场景：</li>
+<li>成本敏感用户</li>
+<li>复杂任务推理</li>
+<li>开发测试阶段</li>
+</ul>
+<h3 id="2-api">2. API 密钥安全<a class="headerlink" href="#2-api" title="Permanent link">&para;</a></h3>
+<p><strong>保护您的API Key</strong>
+- ❌ 不要硬编码在代码中
+- ❌ 不要提交到Git仓库
+- ❌ 不要分享给不信任的人
+- ✅ 使用配置文件存储
+- ✅ 定期更换密钥
+- ✅ 监控使用情况</p>
+<p><strong>监控用量和费用</strong>
+- 定期查看API调用统计
+- 设置费用预警
+- 避免意外超额消费</p>
+<h3 id="3">3. 成本优化<a class="headerlink" href="#3" title="Permanent link">&para;</a></h3>
+<p><strong>降低使用成本</strong>
+1. <strong>选择合适的模型</strong>：
+   - 简单任务用轻量模型
+   - 复杂任务用高级模型</p>
+<ol>
+<li><strong>优化参数设置</strong>：</li>
+<li>减少max_tokens</li>
+<li>使用较低的temperature</li>
+<li>
+<p>精简prompt内容</p>
+</li>
+<li>
+<p><strong>合理使用功能</strong>：</p>
+</li>
+<li>避免频繁重复调用</li>
+<li>批量处理任务</li>
+<li>使用缓存功能</li>
+</ol>
+<h3 id="4">4. 性能优化<a class="headerlink" href="#4" title="Permanent link">&para;</a></h3>
+<p><strong>提高响应速度</strong>
+1. 网络优化：
+   - 使用稳定的网络连接
+   - 考虑使用国内节点（阿里云）</p>
+<ol>
+<li>参数优化：</li>
+<li>减少max_tokens</li>
+<li>简化提示词</li>
+<li>
+<p>关闭不必要的功能</p>
+</li>
+<li>
+<p>并发控制：</p>
+</li>
+<li>避免同时多个请求</li>
+<li>合理设置超时时间</li>
+</ol>
+<hr />
+<h2 id="_7">故障排除<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<h3 id="_8">连接问题<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<p><strong>问题：无法连接到API服务</strong>
+- 检查网络连接是否正常
+- 确认API服务是否可访问
+- 检查防火墙设置
+- 尝试使用VPN（如需要）</p>
+<p><strong>问题：请求超时</strong>
+- 增加timeout参数值
+- 检查网络延迟
+- 减少max_tokens
+- 尝试重启软件</p>
+<h3 id="_9">认证问题<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
+<p><strong>问题：API Key无效</strong></p>
+<pre><code>错误信息：Invalid API key
+</code></pre>
+<ul>
+<li>检查API Key是否正确完整</li>
+<li>确认API Key是否已激活</li>
+<li>尝试重新生成API Key</li>
+<li>检查API Key权限设置</li>
+</ul>
+<p><strong>问题：权限不足</strong></p>
+<pre><code>错误信息：Permission denied
+</code></pre>
+<ul>
+<li>检查API Key权限设置</li>
+<li>确认账户状态正常</li>
+<li>联系平台客服处理</li>
+</ul>
+<h3 id="_10">配额问题<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
+<p><strong>问题：配额不足</strong></p>
+<pre><code>错误信息：Quota exceeded / Insufficient balance
+</code></pre>
+<ul>
+<li>检查账户余额</li>
+<li>查看API调用配额</li>
+<li>充值或购买资源包</li>
+<li>等待配额重置（按量计费）</li>
+</ul>
+<p><strong>问题：速率限制</strong></p>
+<pre><code>错误信息：Rate limit exceeded
+</code></pre>
+<ul>
+<li>降低请求频率</li>
+<li>增加请求间隔</li>
+<li>升级付费套餐</li>
+<li>使用批量处理</li>
+</ul>
+<h3 id="_11">配置问题<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h3>
+<p><strong>问题：配置文件格式错误</strong>
+- 检查YAML语法是否正确
+- 确认缩进使用空格（不是Tab）
+- 验证引号匹配
+- 使用在线YAML验证工具</p>
+<p><strong>问题：配置不生效</strong>
+- 确认配置文件路径正确
+- 重启Horizon Arm软件
+- 检查配置文件权限
+- 查看日志文件获取详细信息</p>
+<h3 id="_12">功能问题<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h3>
+<p><strong>问题：指令无法执行</strong>
+- 检查机械臂连接状态
+- 验证指令格式是否正确
+- 查看具身智能日志
+- 尝试简单的测试指令</p>
+<p><strong>问题：响应内容异常</strong>
+- 调整temperature参数
+- 优化提示词内容
+- 检查模型选择是否正确
+- 查看完整的错误日志</p>
+<hr />
+<h2 id="_13">获取帮助<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h2>
+<h3 id="_14">官方文档<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h3>
+<p><strong>阿里云通义千问</strong>
+- 官方网站：<a href="https://dashscope.aliyun.com">https://dashscope.aliyun.com</a>
+- API文档：<a href="https://help.aliyun.com/zh/dashscope">https://help.aliyun.com/zh/dashscope</a>
+- 价格说明：查看官网定价页面
+- 技术支持：阿里云工单系统</p>
+<p><strong>DeepSeek</strong>
+- 官方网站：<a href="https://platform.deepseek.com">https://platform.deepseek.com</a>
+- API文档：<a href="https://platform.deepseek.com/docs">https://platform.deepseek.com/docs</a>
+- 价格说明：查看官网定价页面
+- 社区论坛：官方Discord/论坛</p>
+<h3 id="horizon-arm">Horizon Arm 支持<a class="headerlink" href="#horizon-arm" title="Permanent link">&para;</a></h3>
+<p><strong>文档资源</strong>
+- 📖 <a href="../user_guide/">用户指南</a> - 完整使用说明
+- 🆘 <a href="../troubleshooting/">故障排除</a> - 常见问题解决
+- 🧠 <a href="../user_guide/#ai">具身智能配置</a> - 详细配置说明</p>
+<p><strong>联系支持</strong>
+- 查看软件内置帮助文档
+- 访问官方网站获取最新信息
+- 联系技术支持团队</p>
+<hr />
+<h2 id="_15">快速参考<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h2>
+<h3 id="_16">常用链接速查<a class="headerlink" href="#_16" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>平台</th>
+<th>注册</th>
+<th>控制台</th>
+<th>API密钥管理</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>阿里云</strong></td>
+<td><a href="https://www.aliyun.com">注册</a></td>
+<td><a href="https://dashscope.aliyun.com">控制台</a></td>
+<td><a href="https://dashscope.console.aliyun.com/apiKey">密钥管理</a></td>
+</tr>
+<tr>
+<td><strong>DeepSeek</strong></td>
+<td><a href="https://platform.deepseek.com">注册</a></td>
+<td><a href="https://platform.deepseek.com">控制台</a></td>
+<td><a href="https://platform.deepseek.com/api_keys">密钥管理</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="_17">推荐模型<a class="headerlink" href="#_17" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>提供商</th>
+<th>模型名称</th>
+<th>适用场景</th>
+<th>价格</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>阿里云</strong></td>
+<td>qwen-turbo</td>
+<td>简单指令，快速响应</td>
+<td>💰 低</td>
+</tr>
+<tr>
+<td><strong>阿里云</strong></td>
+<td>qwen-plus</td>
+<td>复杂任务，平衡性能</td>
+<td>💰💰 中</td>
+</tr>
+<tr>
+<td><strong>阿里云</strong></td>
+<td>qwen-max</td>
+<td>高难度任务</td>
+<td>💰💰💰 高</td>
+</tr>
+<tr>
+<td><strong>DeepSeek</strong></td>
+<td>deepseek-chat</td>
+<td>通用对话，性价比高</td>
+<td>💰 极低</td>
+</tr>
+<tr>
+<td><strong>DeepSeek</strong></td>
+<td>deepseek-coder</td>
+<td>代码相关任务</td>
+<td>💰 极低</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_18">配置文件模板<a class="headerlink" href="#_18" title="Permanent link">&para;</a></h3>
+<p><strong>最小配置</strong>（仅保留必要项）：</p>
+<pre><code class="language-yaml">providers:
+  alibaba:
+    api_key: sk-你的阿里云API密钥
+    enabled: true
+
+  deepseek:
+    api_key: sk-你的DeepSeek API密钥
+    enabled: true
+</code></pre>
+<p><strong>生产环境配置</strong>（完整优化）：</p>
+<pre><code class="language-yaml">providers:
+  alibaba:
+    api_key: sk-你的阿里云API密钥
+    enabled: true
+    default_params:
+      max_tokens: 1500
+      temperature: 0.5
+      top_p: 0.85
+
+logging:
+  level: INFO
+  file: AI_SDK.log
+
+request:
+  timeout: 45
+  max_retries: 3
+</code></pre>
+<hr />
+<h2 id="_19">检查清单<a class="headerlink" href="#_19" title="Permanent link">&para;</a></h2>
+<p>在开始使用前，请确认以下步骤都已完成：</p>
+<ul>
+<li>[ ] 已注册阿里云或DeepSeek账号</li>
+<li>[ ] 已完成实名认证（如需要）</li>
+<li>[ ] 已开通对应的AI服务</li>
+<li>[ ] 已充值或有可用额度</li>
+<li>[ ] 已创建并保存API Key</li>
+<li>[ ] 已在Horizon Arm中配置API Key</li>
+<li>[ ] 已测试连接成功</li>
+<li>[ ] 已了解基本使用方法</li>
+<li>[ ] 已了解计费规则</li>
+</ul>
+<hr />
+<div align="center" style="margin: 30px 0; padding: 20px; background-color: #f8f9fa; border-radius: 10px;">
+<p style="font-size: 14px; color: #6c757d; margin: 0;">
+<strong>Horizon Arm API配置指南</strong> | 让具身智能更容易使用<br>
+© 2025 Horizon Arm • 开放 • 灵活 • 强大
+</p>
+</div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../IO_Control_System/" class="btn btn-neutral float-left" title="IO控制系统"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../ros2_guide/" class="btn btn-neutral float-right" title="ROS2控制平台">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../IO_Control_System/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../ros2_guide/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

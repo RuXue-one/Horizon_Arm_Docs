@@ -1,0 +1,1137 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Horizon_Arm Team" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Joy-Con手柄控制 - Horizon_Arm 文档</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Joy-Con\u624b\u67c4\u63a7\u5236";
+        var mkdocs_page_input_path = "joycon_control_guide.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Horizon_Arm 文档
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">首页</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../first_time_setup/">首次使用</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../user_guide/">用户指南</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../calibration_guide/">视觉标定详解</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Joy-Con手柄控制</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#1">1. 系统简介</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_1">核心特性</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#2">2. 硬件准备</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_2">设备要求</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_3">手柄配对</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#3">3. 软件配置</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_4">启动手柄控制</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#4">4. 控制模式详解</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#cartesian-mode">笛卡尔模式（Cartesian Mode）</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#joy-con-">【左 Joy-Con】- 位置控制</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#joy-con-_1">【右 Joy-Con】- 姿态控制</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_5">操作技巧</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#joint-mode">关节模式（Joint Mode）</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#joy-con-1-3">【左 Joy-Con】- 关节1-3</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#joy-con-4-6">【右 Joy-Con】- 关节4-6</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_6">操作技巧</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#5">5. 功能按键说明</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#x">模式切换（X 按键）</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#ab">夹爪控制（A/B 按键）</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#y">归零功能（Y 按键）</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_7">位置记录（+ 按键）</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#home">紧急停止（HOME 按键）</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#6">6. 速度控制</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_8">速度调节</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_9">微调模式</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#7">7. 状态指示</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_10">手柄指示灯</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_11">软件状态显示</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#8">8. 使用流程</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_12">标准操作流程</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_13">典型任务示例</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#9">9. 安全注意事项</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_14">操作安全</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_15">设备保护</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#10">10. 常见问题</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_16">手柄连接问题</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_17">控制问题</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_18">性能问题</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#11">11. 高级技巧</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_19">组合操作</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_20">操作技巧</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#12">12. 参数配置</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_21">默认参数</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_22">参数调整</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#13">13. 与其他功能配合</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_23">仿真联动</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_24">示教编程</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_25">视觉抓取</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#14">14. 维护保养</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_26">手柄维护</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_27">软件维护</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#15">15. 附录</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_28">快捷操作速查表</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_29">技术支持</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../IO_Control_System/">IO控制系统</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../api_guide/">AI API配置指南</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../ros2_guide/">ROS2控制平台</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../activation/">序列号与激活</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../troubleshooting/">故障排除</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Horizon_Arm 文档</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Joy-Con手柄控制</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="joy-con">Joy-Con 手柄控制指南<a class="headerlink" href="#joy-con" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p>使用 Nintendo Switch Joy-Con 手柄直观控制 Horizon Arm 机械臂</p>
+</blockquote>
+<p style="color: red; font-weight: bold;">注：使用手柄控制前请确保已完成机械臂连接和基础校准。</p>
+
+<hr />
+<h2 id="1">1. 系统简介<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
+<h3 id="_1">核心特性<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
+<p><strong>双模式控制</strong>
+- 笛卡尔模式：直观的空间位置控制
+- 关节模式：精确的关节角度控制
+- 一键切换，灵活操作</p>
+<p><strong>实时响应</strong>
+- 50Hz高频控制更新
+- 平滑的运动响应
+- 即时的按键反馈</p>
+<p><strong>安全保护</strong>
+- 紧急停止功能
+- 速度动态调节
+- 微调模式精确定位</p>
+<hr />
+<h2 id="2">2. 硬件准备<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
+<h3 id="_2">设备要求<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<p><strong>必需设备</strong>
+- Nintendo Switch 左 Joy-Con
+- Nintendo Switch 右 Joy-Con
+- 蓝牙适配器（电脑内置或外置）</p>
+<p><strong>系统要求</strong>
+- Windows 10/11 蓝牙支持
+- 已安装 Horizon_Arm 控制软件
+- 机械臂已正确连接</p>
+<h3 id="_3">手柄配对<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p><strong>配对步骤</strong></p>
+<p><strong>1. 进入配对模式</strong></p>
+<ul>
+<li>按住 Joy-Con 侧面的小圆按钮（同步按钮）</li>
+<li>指示灯开始快速闪烁</li>
+</ul>
+<p><strong>2. 添加蓝牙设备</strong></p>
+<ul>
+<li>Windows 设置 → 蓝牙和其他设备</li>
+<li>点击"添加蓝牙或其他设备"</li>
+<li>选择"蓝牙"</li>
+</ul>
+<p><strong>3. 连接手柄</strong></p>
+<ul>
+<li>等待识别到 "Joy-Con (L)" 或 "Joy-Con (R)"</li>
+<li>点击配对</li>
+<li>左右手柄分别配对</li>
+</ul>
+<p><strong>4. 验证连接</strong></p>
+<ul>
+<li>配对成功后指示灯常亮</li>
+<li>在设备列表中显示"已连接"</li>
+</ul>
+<div align="center">
+  <img src="../images/蓝牙连接手柄演示.gif" alt="蓝牙连接手柄演示" width="800">
+  <p><em>蓝牙配对连接手柄演示</em></p>
+</div>
+
+<div align="center">
+  <p><em>提示：两个手柄需要分别配对，确保都显示"已连接"状态</em></p>
+</div>
+
+<hr />
+<h2 id="3">3. 软件配置<a class="headerlink" href="#3" title="Permanent link">&para;</a></h2>
+<h3 id="_4">启动手柄控制<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<p><strong>进入手柄控制界面</strong></p>
+<ol>
+<li>打开 Horizon_Arm 主程序</li>
+<li>确保机械臂已连接（菜单：连接 → 连接电机）</li>
+<li>进入"机械臂控制"标签页</li>
+<li>找到"手柄控制"区域</li>
+</ol>
+<div align="center">
+  <img src="../images/手柄控制位置.png" alt="手柄控制位置" width="800">
+  <p><em>手柄控制位置</em></p>
+</div>
+
+<p><strong>连接手柄</strong></p>
+<ol>
+<li>点击"连接 Joy-Con"按钮</li>
+<li>系统自动搜索并连接左右手柄</li>
+<li>连接成功后显示"已连接"状态</li>
+<li>手柄指示灯亮起表示已就绪</li>
+</ol>
+<div align="center">
+  <img src="../images/手柄连接软件端.png" alt="手柄连接软件端" width="800">
+  <p><em>软件中连接手柄</em></p>
+</div>
+
+<div align="center">
+  <img src="../images/手柄控制界面.png" alt="手柄控制界面" width="800">
+  <p><em>手柄控制界面</em></p>
+</div>
+
+<p><strong>初始化设置</strong></p>
+<ul>
+<li>系统默认启动在<strong>笛卡尔模式</strong></li>
+<li>初始速度为默认速度</li>
+<li>微调模式默认关闭</li>
+</ul>
+<hr />
+<h2 id="4">4. 控制模式详解<a class="headerlink" href="#4" title="Permanent link">&para;</a></h2>
+<h3 id="cartesian-mode">笛卡尔模式（Cartesian Mode）<a class="headerlink" href="#cartesian-mode" title="Permanent link">&para;</a></h3>
+<p>在笛卡尔模式下，手柄直接控制机械臂末端在空间中的位置和姿态，操作更加直观。</p>
+<h4 id="joy-con-">【左 Joy-Con】- 位置控制<a class="headerlink" href="#joy-con-" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>输入</th>
+<th>功能</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>摇杆横向 (←→)</td>
+<td><strong>X轴移动</strong></td>
+<td>控制末端左右移动</td>
+</tr>
+<tr>
+<td>摇杆纵向 (↑↓)</td>
+<td><strong>Y轴移动</strong></td>
+<td>控制末端前后移动</td>
+</tr>
+<tr>
+<td><strong>L 按键</strong></td>
+<td><strong>Z轴向上</strong></td>
+<td>末端向上移动</td>
+</tr>
+<tr>
+<td><strong>ZL 按键</strong></td>
+<td><strong>Z轴向下</strong></td>
+<td>末端向下移动</td>
+</tr>
+<tr>
+<td>方向键↑</td>
+<td>增加速度</td>
+<td>提高移动速度</td>
+</tr>
+<tr>
+<td>方向键↓</td>
+<td>降低速度</td>
+<td>降低移动速度</td>
+</tr>
+<tr>
+<td><strong>- 按键</strong></td>
+<td>降低速度</td>
+<td>快速减速</td>
+</tr>
+<tr>
+<td>摇杆按下</td>
+<td>微调模式切换</td>
+<td>切换精细/普通控制</td>
+</tr>
+</tbody>
+</table>
+<h4 id="joy-con-_1">【右 Joy-Con】- 姿态控制<a class="headerlink" href="#joy-con-_1" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>输入</th>
+<th>功能</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>摇杆横向 (←→)</td>
+<td><strong>Yaw角</strong></td>
+<td>绕Z轴旋转（偏航）</td>
+</tr>
+<tr>
+<td>摇杆纵向 (↑↓)</td>
+<td><strong>Pitch角</strong></td>
+<td>绕Y轴旋转（俯仰）</td>
+</tr>
+<tr>
+<td><strong>R 按键</strong></td>
+<td><strong>Roll 顺时针</strong></td>
+<td>绕X轴顺时针旋转</td>
+</tr>
+<tr>
+<td><strong>ZR 按键</strong></td>
+<td><strong>Roll 逆时针</strong></td>
+<td>绕X轴逆时针旋转</td>
+</tr>
+<tr>
+<td><strong>A 按键</strong></td>
+<td><strong>关闭夹爪 ✊</strong></td>
+<td>夹爪闭合</td>
+</tr>
+<tr>
+<td><strong>B 按键</strong></td>
+<td><strong>打开夹爪 ✋</strong></td>
+<td>夹爪张开</td>
+</tr>
+<tr>
+<td><strong>X 按键</strong></td>
+<td><strong>切换模式 ⭐</strong></td>
+<td>切换笛卡尔/关节模式</td>
+</tr>
+<tr>
+<td><strong>Y 按键</strong></td>
+<td><strong>回到原点 🏠</strong></td>
+<td>机械臂归零</td>
+</tr>
+<tr>
+<td><strong>+ 按键</strong></td>
+<td><strong>记录位置 💾</strong></td>
+<td>记录当前位置</td>
+</tr>
+<tr>
+<td><strong>HOME 按键</strong></td>
+<td><strong>紧急停止 🛑</strong></td>
+<td>立即停止所有运动</td>
+</tr>
+</tbody>
+</table>
+<h4 id="_5">操作技巧<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h4>
+<p><strong>平移控制</strong>
+- 左摇杆控制水平面（XY平面）移动
+- L/ZL按键控制垂直方向（Z轴）
+- 推动摇杆幅度越大，移动速度越快</p>
+<p><strong>旋转控制</strong>
+- 右摇杆控制Yaw（水平旋转）和Pitch（俯仰）
+- R/ZR按键控制Roll（翻滚旋转）
+- 旋转角度与摇杆偏移量成正比</p>
+<p><strong>应用场景</strong>
+- 适合抓取、放置等空间定位任务
+- 直观的空间移动，易于上手
+- 适合视觉引导的操作</p>
+<hr />
+<h3 id="joint-mode">关节模式（Joint Mode）<a class="headerlink" href="#joint-mode" title="Permanent link">&para;</a></h3>
+<p>在关节模式下，直接控制机械臂各个关节的角度，提供更精确的关节级控制。</p>
+<h4 id="joy-con-1-3">【左 Joy-Con】- 关节1-3<a class="headerlink" href="#joy-con-1-3" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>输入</th>
+<th>功能</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>摇杆横向 (←→)</td>
+<td><strong>关节1</strong></td>
+<td>基座旋转</td>
+</tr>
+<tr>
+<td>摇杆纵向 (↑↓)</td>
+<td><strong>关节2</strong></td>
+<td>大臂俯仰</td>
+</tr>
+<tr>
+<td><strong>L 按键</strong></td>
+<td><strong>关节3 负向</strong></td>
+<td>小臂向上</td>
+</tr>
+<tr>
+<td><strong>ZL 按键</strong></td>
+<td><strong>关节3 正向</strong></td>
+<td>小臂向下</td>
+</tr>
+<tr>
+<td>方向键↑</td>
+<td>增加速度</td>
+<td>提高旋转速度</td>
+</tr>
+<tr>
+<td>方向键↓</td>
+<td>降低速度</td>
+<td>降低旋转速度</td>
+</tr>
+<tr>
+<td><strong>- 按键</strong></td>
+<td>降低速度</td>
+<td>快速减速</td>
+</tr>
+<tr>
+<td>摇杆按下</td>
+<td>微调模式切换</td>
+<td>切换精细/普通控制</td>
+</tr>
+</tbody>
+</table>
+<h4 id="joy-con-4-6">【右 Joy-Con】- 关节4-6<a class="headerlink" href="#joy-con-4-6" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>输入</th>
+<th>功能</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>摇杆横向 (←→)</td>
+<td><strong>关节4</strong></td>
+<td>腕部旋转</td>
+</tr>
+<tr>
+<td>摇杆纵向 (↑↓)</td>
+<td><strong>关节5</strong></td>
+<td>腕部俯仰</td>
+</tr>
+<tr>
+<td><strong>R 按键</strong></td>
+<td><strong>关节6 正向</strong></td>
+<td>末端顺时针</td>
+</tr>
+<tr>
+<td><strong>ZR 按键</strong></td>
+<td><strong>关节6 负向</strong></td>
+<td>末端逆时针</td>
+</tr>
+<tr>
+<td><strong>A 按键</strong></td>
+<td><strong>关闭夹爪 ✊</strong></td>
+<td>夹爪闭合</td>
+</tr>
+<tr>
+<td><strong>B 按键</strong></td>
+<td><strong>打开夹爪 ✋</strong></td>
+<td>夹爪张开</td>
+</tr>
+<tr>
+<td><strong>X 按键</strong></td>
+<td><strong>切换模式 ⭐</strong></td>
+<td>切换关节/笛卡尔模式</td>
+</tr>
+<tr>
+<td><strong>Y 按键</strong></td>
+<td><strong>回到原点 🏠</strong></td>
+<td>机械臂归零</td>
+</tr>
+<tr>
+<td><strong>+ 按键</strong></td>
+<td><strong>记录位置 💾</strong></td>
+<td>记录当前位置</td>
+</tr>
+<tr>
+<td><strong>HOME 按键</strong></td>
+<td><strong>紧急停止 🛑</strong></td>
+<td>立即停止所有运动</td>
+</tr>
+</tbody>
+</table>
+<h4 id="_6">操作技巧<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h4>
+<p><strong>关节映射</strong>
+- 摇杆控制：关节1、2、4、5
+- 按键控制：关节3、6
+- 每个关节独立控制，互不干扰</p>
+<p><strong>精确定位</strong>
+- 使用微调模式进行精细调整
+- 适合需要特定关节角度的场景
+- 可避开奇异点和关节限位</p>
+<p><strong>应用场景</strong>
+- 适合示教编程和轨迹录制
+- 需要精确关节角度控制的场景
+- 避开奇异构型的操作</p>
+<hr />
+<h2 id="5">5. 功能按键说明<a class="headerlink" href="#5" title="Permanent link">&para;</a></h2>
+<h3 id="x">模式切换（X 按键）<a class="headerlink" href="#x" title="Permanent link">&para;</a></h3>
+<p><strong>切换方式</strong>
+- 按下右手柄 <strong>X 按键</strong>
+- 系统立即切换控制模式
+- 界面显示当前模式</p>
+<p><strong>切换效果</strong>
+- 笛卡尔模式 ⇄ 关节模式
+- 无缝切换，保持当前位置
+- 控制映射立即生效</p>
+<p><strong>使用建议</strong>
+- 远距离移动使用笛卡尔模式
+- 精确调整使用关节模式
+- 根据任务需求灵活切换</p>
+<hr />
+<h3 id="ab">夹爪控制（A/B 按键）<a class="headerlink" href="#ab" title="Permanent link">&para;</a></h3>
+<p><strong>夹爪操作</strong>
+- <strong>A 按键</strong>：闭合夹爪（抓取）
+- <strong>B 按键</strong>：张开夹爪（释放）</p>
+<p><strong>使用说明</strong>
+- 夹爪控制在两种模式下都可用
+- 动作执行需等待完成（约1秒）
+- 确保物体在夹爪范围内</p>
+<p><strong>注意事项</strong>
+- 夹爪需提前连接（工具 → 夹爪连接）
+- 检查夹爪连接状态
+- 避免空载过度闭合</p>
+<hr />
+<h3 id="y">归零功能（Y 按键）<a class="headerlink" href="#y" title="Permanent link">&para;</a></h3>
+<p><strong>归零操作</strong>
+- 按下右手柄 <strong>Y 按键</strong>
+- 机械臂返回预设零位</p>
+<p><strong>安全提示</strong>
+- 确保运动路径无障碍物
+- 归零过程中可用 HOME 键紧急停止
+- 归零速度为系统默认安全速度</p>
+<p><strong>应用场景</strong>
+- 任务开始前的初始化
+- 完成任务后的复位
+- 标准位置的快速返回</p>
+<hr />
+<h3 id="_7">位置记录（+ 按键）<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<p><strong>记录功能</strong>
+- 按下右手柄 <strong>+ 按键</strong>
+- 记录当前机械臂位置和姿态</p>
+<p><strong>记录内容</strong>
+- 6个关节的当前角度
+- 末端位置（X, Y, Z）
+- 末端姿态（Yaw, Pitch, Roll）</p>
+<p><strong>使用场景</strong>
+- 示教编程点位记录
+- 重要位置标记
+- 轨迹点采集</p>
+<hr />
+<h3 id="home">紧急停止（HOME 按键）<a class="headerlink" href="#home" title="Permanent link">&para;</a></h3>
+<p><strong>停止功能</strong>
+- 按下右手柄 <strong>HOME 按键</strong>
+- 立即停止所有电机运动</p>
+<p><strong>触发效果</strong>
+- 所有关节立即停止
+- 进入紧急停止状态
+- 需要重新使能才能继续</p>
+<p><strong>恢复操作</strong>
+- 检查停止原因
+- 排除安全隐患
+- 重新使能电机</p>
+<p><strong>重要提示</strong>
+- 遇到异常立即按 HOME 键
+- 这是最重要的安全功能
+- 定期测试确保功能正常</p>
+<hr />
+<h2 id="6">6. 速度控制<a class="headerlink" href="#6" title="Permanent link">&para;</a></h2>
+<h3 id="_8">速度调节<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<p><strong>调节方式</strong></p>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>功能</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>方向键↑</td>
+<td>增加速度</td>
+<td>速度 +20%</td>
+</tr>
+<tr>
+<td>方向键↓</td>
+<td>降低速度</td>
+<td>速度 -20%</td>
+</tr>
+<tr>
+<td><strong>- 按键</strong></td>
+<td>快速减速</td>
+<td>速度 -20%</td>
+</tr>
+</tbody>
+</table>
+<p><strong>速度范围</strong>
+- 最低速度：20%（0.2倍速）
+- 默认速度：100%（1.0倍速）
+- 最高速度：200%（2.0倍速）</p>
+<p><strong>调节建议</strong>
+- 初次使用建议降低速度
+- 熟练后可适当提高速度
+- 精细操作时使用低速</p>
+<hr />
+<h3 id="_9">微调模式<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
+<p><strong>激活方式</strong>
+- 按下左或右摇杆（L3/R3）
+- 切换微调模式开关</p>
+<p><strong>微调效果</strong>
+- 笛卡尔模式：移动步长减半
+- 关节模式：角度步长减半
+- 适合精确定位</p>
+<p><strong>使用技巧</strong>
+- 粗调位置后开启微调
+- 最终对准时使用微调
+- 微调模式下可正常调速</p>
+<hr />
+<h2 id="7">7. 状态指示<a class="headerlink" href="#7" title="Permanent link">&para;</a></h2>
+<h3 id="_10">手柄指示灯<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
+<p><strong>连接状态</strong>
+- 快速闪烁：配对模式
+- 常亮：已连接就绪
+- 熄灭：未连接或电量耗尽</p>
+<p><strong>电量提示</strong>
+- 低电量时需要充电
+- 建议使用充电握把
+- 保持良好电量确保稳定性</p>
+<hr />
+<h3 id="_11">软件状态显示<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h3>
+<p><strong>实时信息</strong>
+- 当前控制模式
+- 当前速度倍率
+- 微调模式状态
+- 手柄连接状态</p>
+<p><strong>位置信息</strong>
+- 6个关节角度
+- 末端位置坐标
+- 末端姿态角度</p>
+<hr />
+<h2 id="8">8. 使用流程<a class="headerlink" href="#8" title="Permanent link">&para;</a></h2>
+<h3 id="_12">标准操作流程<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h3>
+<p><strong>准备阶段</strong></p>
+<ol>
+<li>确保机械臂已连接并使能</li>
+<li>配对并连接左右 Joy-Con</li>
+<li>启动手柄控制功能</li>
+<li>检查初始状态</li>
+</ol>
+<p><strong>操作阶段</strong></p>
+<ol>
+<li>选择合适的控制模式</li>
+<li>调整到适当的速度</li>
+<li>使用手柄控制机械臂</li>
+<li>根据需要切换模式</li>
+</ol>
+<p><strong>结束阶段</strong></p>
+<ol>
+<li>将机械臂归零或移到安全位置</li>
+<li>断开手柄连接</li>
+<li>断开机械臂连接</li>
+</ol>
+<hr />
+<h3 id="_13">典型任务示例<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h3>
+<p><strong>抓取任务流程</strong></p>
+<p><strong>1. 接近目标</strong></p>
+<ul>
+<li>切换到笛卡尔模式</li>
+<li>使用左摇杆移动到目标上方</li>
+<li>L/ZL调整高度</li>
+</ul>
+<p><strong>2. 调整姿态</strong></p>
+<ul>
+<li>使用右摇杆调整 Yaw 和 Pitch</li>
+<li>R/ZR 调整 Roll 角度</li>
+<li>确保夹爪对准目标</li>
+</ul>
+<p><strong>3. 精确定位</strong></p>
+<ul>
+<li>开启微调模式</li>
+<li>降低速度到50%</li>
+<li>精确对准抓取点</li>
+</ul>
+<p><strong>4. 执行抓取</strong></p>
+<ul>
+<li>按 B 键打开夹爪</li>
+<li>下降到抓取高度</li>
+<li>按 A 键闭合夹爪</li>
+</ul>
+<p><strong>5. 移动物体</strong></p>
+<ul>
+<li>提升到安全高度</li>
+<li>移动到目标位置</li>
+<li>按 B 键释放物体</li>
+</ul>
+<p><strong>6. 归零复位</strong></p>
+<ul>
+<li>按 Y 键返回原点</li>
+<li>准备下一次操作</li>
+</ul>
+<hr />
+<h2 id="9">9. 安全注意事项<a class="headerlink" href="#9" title="Permanent link">&para;</a></h2>
+<h3 id="_14">操作安全<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h3>
+<p><strong>使用前检查</strong>
+- 确认工作空间无障碍物
+- 检查机械臂运动范围
+- 确保紧急停止功能正常</p>
+<p><strong>操作中注意</strong>
+- 首次使用低速操作
+- 随时准备按 HOME 键停止
+- 注意机械臂运动范围限制</p>
+<p><strong>异常处理</strong>
+- 发现异常立即停止
+- 检查机械臂状态
+- 排除故障后再继续</p>
+<hr />
+<h3 id="_15">设备保护<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h3>
+<p><strong>手柄保护</strong>
+- 避免摔落和碰撞
+- 及时充电保持电量
+- 妥善保管避免丢失</p>
+<p><strong>机械臂保护</strong>
+- 避免超速运动
+- 不要强制推动机械臂
+- 定期检查连接状态</p>
+<hr />
+<h2 id="10">10. 常见问题<a class="headerlink" href="#10" title="Permanent link">&para;</a></h2>
+<h3 id="_16">手柄连接问题<a class="headerlink" href="#_16" title="Permanent link">&para;</a></h3>
+<p><strong>Q: 手柄无法配对？</strong></p>
+<p>A: 检查以下项目：
+- 确保手柄已充电
+- 蓝牙适配器正常工作
+- 删除旧配对重新配对
+- 重启电脑和手柄</p>
+<p><strong>Q: 连接后无响应？</strong></p>
+<p>A: 解决方法：
+- 重新连接手柄
+- 检查手柄电量
+- 重启控制软件
+- 检查蓝牙连接状态</p>
+<hr />
+<h3 id="_17">控制问题<a class="headerlink" href="#_17" title="Permanent link">&para;</a></h3>
+<p><strong>Q: 控制方向相反？</strong></p>
+<p>A: 可能原因：
+- 电机方向参数设置错误
+- 到"电机参数设置"调整方向
+- 参考用户指南中的方向标准</p>
+<p><strong>Q: 运动不流畅？</strong></p>
+<p>A: 改善方法：
+- 降低运动速度
+- 关闭微调模式
+- 检查机械臂机械状态
+- 确保无障碍物干涉</p>
+<p><strong>Q: 夹爪不工作？</strong></p>
+<p>A: 检查项目：
+- 夹爪是否已连接
+- 串口是否选择正确
+- 夹爪角度参数是否合理
+- 重新连接夹爪控制器</p>
+<hr />
+<h3 id="_18">性能问题<a class="headerlink" href="#_18" title="Permanent link">&para;</a></h3>
+<p><strong>Q: 响应延迟？</strong></p>
+<p>A: 优化方法：
+- 确保蓝牙连接稳定
+- 减少电脑后台程序
+- 更换蓝牙适配器
+- 靠近蓝牙接收器</p>
+<p><strong>Q: 手柄频繁断开？</strong></p>
+<p>A: 解决方案：
+- 检查手柄电量
+- 更换蓝牙适配器
+- 减少无线干扰
+- 重新配对手柄</p>
+<hr />
+<h2 id="11">11. 高级技巧<a class="headerlink" href="#11" title="Permanent link">&para;</a></h2>
+<h3 id="_19">组合操作<a class="headerlink" href="#_19" title="Permanent link">&para;</a></h3>
+<p><strong>多轴同时控制</strong>
+- 左摇杆 + L/ZL：三轴同时平移
+- 右摇杆 + R/ZR：三轴同时旋转
+- 灵活运用提高效率</p>
+<p><strong>快速调整</strong>
+- 笛卡尔模式快速接近
+- 切换到关节模式微调
+- 充分利用两种模式优势</p>
+<hr />
+<h3 id="_20">操作技巧<a class="headerlink" href="#_20" title="Permanent link">&para;</a></h3>
+<p><strong>提高效率</strong>
+- 记忆常用位置（+ 键）
+- 使用归零功能快速复位
+- 熟练掌握模式切换时机</p>
+<p><strong>提高精度</strong>
+- 使用微调模式
+- 降低速度倍率
+- 关节模式精确定位</p>
+<hr />
+<h2 id="12">12. 参数配置<a class="headerlink" href="#12" title="Permanent link">&para;</a></h2>
+<h3 id="_21">默认参数<a class="headerlink" href="#_21" title="Permanent link">&para;</a></h3>
+<p><strong>笛卡尔模式参数</strong>
+- 平移步长：1.0 mm
+- 旋转步长：1.0°
+- 摇杆死区：500（避免漂移）</p>
+<p><strong>关节模式参数</strong>
+- 角度步长：1.0°
+- 摇杆死区：500</p>
+<p><strong>速度参数</strong>
+- 最小速度倍率：0.2（20%）
+- 最大速度倍率：2.0（200%）
+- 速度调节步长：0.2（20%）
+- 微调速度倍率：0.5（50%）</p>
+<p><strong>运动参数</strong>
+- 默认速度：100（度/秒或mm/秒）
+- 默认加速度：200</p>
+<hr />
+<h3 id="_22">参数调整<a class="headerlink" href="#_22" title="Permanent link">&para;</a></h3>
+<p><strong>修改配置文件</strong></p>
+<p>配置文件位置：<code>config/all_parameter_config.json</code></p>
+<p>关键参数：</p>
+<pre><code class="language-json">{
+  &quot;joycon_control&quot;: {
+    &quot;cartesian_position_step&quot;: 1.0,
+    &quot;cartesian_rotation_step&quot;: 1.0,
+    &quot;joint_angle_step&quot;: 1.0,
+    &quot;stick_deadzone&quot;: 500,
+    &quot;min_speed_multiplier&quot;: 0.2,
+    &quot;max_speed_multiplier&quot;: 2.0,
+    &quot;speed_change_step&quot;: 0.2,
+    &quot;fine_tune_multiplier&quot;: 0.5
+  }
+}
+</code></pre>
+<p><strong>调整建议</strong>
+- 根据实际需求调整步长
+- 摇杆死区防止漂移
+- 速度范围根据安全需要设置</p>
+<hr />
+<h2 id="13">13. 与其他功能配合<a class="headerlink" href="#13" title="Permanent link">&para;</a></h2>
+<h3 id="_23">仿真联动<a class="headerlink" href="#_23" title="Permanent link">&para;</a></h3>
+<p><strong>MuJoCo 仿真</strong>
+- 手柄控制可同步显示在仿真中
+- 预演复杂动作更安全
+- 验证轨迹可行性</p>
+<p><strong>使用建议</strong>
+- 启动仿真联动功能
+- 先在仿真中测试
+- 确认无误后实际执行</p>
+<hr />
+<h3 id="_24">示教编程<a class="headerlink" href="#_24" title="Permanent link">&para;</a></h3>
+<p><strong>轨迹录制</strong>
+- 使用手柄控制到关键点
+- 按 + 键记录位置
+- 生成示教程序</p>
+<p><strong>应用场景</strong>
+- 复杂轨迹示教
+- 快速编程
+- 现场教学</p>
+<hr />
+<h3 id="_25">视觉抓取<a class="headerlink" href="#_25" title="Permanent link">&para;</a></h3>
+<p><strong>结合使用</strong>
+- 视觉系统识别目标
+- 手柄微调抓取位置
+- 提高抓取成功率</p>
+<p><strong>操作流程</strong>
+- 视觉定位粗略位置
+- 手柄精确调整
+- 完成抓取任务</p>
+<hr />
+<h2 id="14">14. 维护保养<a class="headerlink" href="#14" title="Permanent link">&para;</a></h2>
+<h3 id="_26">手柄维护<a class="headerlink" href="#_26" title="Permanent link">&para;</a></h3>
+<p><strong>日常保养</strong>
+- 定期清洁手柄表面
+- 避免极端温度环境
+- 妥善存放防止损坏</p>
+<p><strong>电池保养</strong>
+- 长期不用时充满电
+- 避免完全放电
+- 定期充放电维持电池性能</p>
+<hr />
+<h3 id="_27">软件维护<a class="headerlink" href="#_27" title="Permanent link">&para;</a></h3>
+<p><strong>定期检查</strong>
+- 更新控制软件
+- 检查配置文件
+- 备份重要设置</p>
+<p><strong>故障预防</strong>
+- 定期测试紧急停止
+- 验证连接稳定性
+- 记录异常情况</p>
+<hr />
+<h2 id="15">15. 附录<a class="headerlink" href="#15" title="Permanent link">&para;</a></h2>
+<h3 id="_28">快捷操作速查表<a class="headerlink" href="#_28" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>左 Joy-Con</th>
+<th>右 Joy-Con</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>主控制</td>
+<td>摇杆</td>
+<td>摇杆</td>
+</tr>
+<tr>
+<td>辅助控制</td>
+<td>L / ZL</td>
+<td>R / ZR</td>
+</tr>
+<tr>
+<td>速度↑</td>
+<td>方向键↑</td>
+<td>-</td>
+</tr>
+<tr>
+<td>速度↓</td>
+<td>方向键↓ / -</td>
+<td>-</td>
+</tr>
+<tr>
+<td>微调</td>
+<td>摇杆按下</td>
+<td>-</td>
+</tr>
+<tr>
+<td>夹爪开</td>
+<td>-</td>
+<td>B</td>
+</tr>
+<tr>
+<td>夹爪关</td>
+<td>-</td>
+<td>A</td>
+</tr>
+<tr>
+<td>切换模式</td>
+<td>-</td>
+<td>X</td>
+</tr>
+<tr>
+<td>归零</td>
+<td>-</td>
+<td>Y</td>
+</tr>
+<tr>
+<td>记录位置</td>
+<td>-</td>
+<td>+</td>
+</tr>
+<tr>
+<td>紧急停止</td>
+<td>-</td>
+<td>HOME</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="_29">技术支持<a class="headerlink" href="#_29" title="Permanent link">&para;</a></h3>
+<p><strong>遇到问题？</strong>
+- 查阅<a href="../troubleshooting/">故障排除</a>文档
+- 查看<a href="../user_guide/">用户指南</a>完整说明
+- 联系技术支持团队</p>
+<p><strong>更多资源</strong>
+- 完整用户手册
+- 视频教程
+- 在线技术支持</p>
+<hr />
+<div align="center" style="margin: 30px 0; padding: 20px; background-color: #f8f9fa; border-radius: 10px;">
+<p style="font-size: 14px; color: #6c757d; margin: 0;">
+<strong>Joy-Con 手柄控制</strong> | 让机械臂控制更直观<br>
+© 2025 Horizon Arm • 智能、灵活、易用
+</p>
+</div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../calibration_guide/" class="btn btn-neutral float-left" title="视觉标定详解"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../IO_Control_System/" class="btn btn-neutral float-right" title="IO控制系统">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../calibration_guide/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../IO_Control_System/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

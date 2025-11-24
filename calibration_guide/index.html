@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Horizon_Arm Team" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>视觉标定详解 - Horizon_Arm 文档</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "\u89c6\u89c9\u6807\u5b9a\u8be6\u89e3";
+        var mkdocs_page_input_path = "calibration_guide.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Horizon_Arm 文档
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">首页</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../first_time_setup/">首次使用</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../user_guide/">用户指南</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">视觉标定详解</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#_2">目录</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#1">1. 基础知识介绍</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#11">1.1 什么是相机标定？</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#_3">为什么需要相机标定？</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_4">相机标定需要获取的参数：</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#12">1.2 什么是手眼标定？</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#_5">为什么需要手眼标定？</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_6">手眼标定的类型：</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#13">1.3 手眼标定的算法计算流程</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#2">2. 准备工作</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#21">2.1 硬件准备</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#22">2.2 标定板准备</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#23">2.3 环境要求</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#3">3. 相机标定操作指南</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#31">3.1 单目相机标定</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#1_1">步骤1：打开相机标定工具</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#2_1">步骤2：选择相机并开始预览</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#3_1">步骤3：配置对应采集参数</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#4">步骤4：拍摄标定照片</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#5">步骤5：执行单目标定</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#6">步骤6：保存标定结果</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#32">3.2 双目相机标定</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#1-3">步骤1-3：同单目标定</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#4_1">步骤4：切换到双目模式</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#5_1">步骤5：拍摄双目标定照片</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#6_1">步骤6：执行双目标定</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#7">步骤7：保存双目标定结果</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#4_2">4. 手眼标定操作指南</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#41">4.1 标定前准备</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#_7">确认相机标定已完成</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_8">连接机械臂</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#42">4.2 采集标定位置</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#43">4.3 执行手眼标定</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#1_2">步骤1：打开手眼标定界面</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#2_2">步骤2：检查系统状态</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#3_2">步骤3：设置标定参数</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#4_3">步骤4：开始数据采集</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#5_2">步骤5：查看标定结果</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#44">4.4 验证标定精度</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#1_3">步骤1：点击验证按钮</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#2_3">步骤2：执行精度验证</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#3_3">步骤3：查看验证结果</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#4_4">步骤4：保存标定结果</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#5_3">5. 精度验证操作指南</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#51">5.1 准备工作</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#_9">确认手眼标定已完成</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_10">🎯 实际操作示例</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#15">第一阶段：相机标定（约15分钟）</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#20">第二阶段：手眼标定（约20分钟）</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#5_4">第三阶段：精度验证（约5分钟）</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#6_2">6. 常见问题解答</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#q1">❓ Q1: 为什么检测不到棋盘格？</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#q2-rms">❓ Q2: 相机标定RMS误差过大怎么办？</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#q3">❓ Q3: 手眼标定精度不够怎么办？</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#q4">❓ Q4: 选择针孔模型还是鱼眼模型？</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#q5">❓ Q5: 标定结果保存在哪里？</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#q6">❓ Q6: 如何判断标定质量？</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_11">注意事项</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../joycon_control_guide/">Joy-Con手柄控制</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../IO_Control_System/">IO控制系统</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../api_guide/">AI API配置指南</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../ros2_guide/">ROS2控制平台</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../activation/">序列号与激活</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../troubleshooting/">故障排除</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Horizon_Arm 文档</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">视觉标定详解</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="_1">机械臂视觉标定系统使用手册<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<h2 id="_2">目录<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="#1-基础知识介绍">1. 基础知识介绍</a></li>
+<li><a href="#11-什么是相机标定">1.1 什么是相机标定</a></li>
+<li><a href="#12-什么是手眼标定">1.2 什么是手眼标定</a></li>
+<li><a href="#2-准备工作">2. 准备工作</a></li>
+<li><a href="#3-相机标定操作指南">3. 相机标定操作指南</a></li>
+<li><a href="#31-单目相机标定">3.1 单目相机标定</a></li>
+<li><a href="#32-双目相机标定">3.2 双目相机标定</a></li>
+<li><a href="#4-手眼标定操作指南">4. 手眼标定操作指南</a></li>
+<li><a href="#41-标定前准备">4.1 标定前准备</a></li>
+<li><a href="#42-执行手眼标定">4.2 执行手眼标定</a></li>
+<li><a href="#43-验证标定精度">4.3 验证标定精度</a></li>
+<li><a href="#5-完整标定流程演示">5. 完整标定流程演示</a></li>
+<li><a href="#6-常见问题解答">6. 常见问题解答</a></li>
+</ul>
+<hr />
+<h2 id="1">1. 基础知识介绍<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
+<h3 id="11">1.1 什么是相机标定？<a class="headerlink" href="#11" title="Permanent link">&para;</a></h3>
+<p><strong>相机标定</strong>是确定相机内部参数和畸变系数的过程，这些参数对于准确的计算机视觉应用至关重要。</p>
+<div align="center">
+  <img src="../images/cb_1.png"  width="600">
+</div>
+
+<h4 id="_3">为什么需要相机标定？<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>消除镜头畸变</strong>：相机镜头会产生径向和切向畸变，影响图像的准确性</li>
+<li><strong>获取相机内参</strong>：包括焦距、主点位置等，用于3D重建和位置计算</li>
+<li><strong>提高测量精度</strong>：标定后的相机可以准确测量物体的实际尺寸和位置</li>
+</ul>
+<h4 id="_4">相机标定需要获取的参数：<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h4>
+<ol>
+<li><strong>内参矩阵</strong>：包含焦距(fx, fy)和主点坐标(cx, cy)</li>
+<li><strong>畸变系数</strong>：径向畸变(k1, k2, k3)和切向畸变(p1, p2)</li>
+<li><strong>图像分辨率</strong>：相机的像素尺寸</li>
+</ol>
+<div align="center">
+  <img src="../images/cb_6.png"  width="600">
+</div>
+
+<h3 id="12">1.2 什么是手眼标定？<a class="headerlink" href="#12" title="Permanent link">&para;</a></h3>
+<p><strong>手眼标定</strong>是确定<code>相机</code>与<code>机械臂末端执行器</code>之间空间变换关系的过程。</p>
+<div align="center">
+  <img src="../images/cb_2.png"  width="600">
+</div>
+
+<h4 id="_5">为什么需要手眼标定？<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>坐标系统一</strong>：将相机坐标系与机械臂坐标系建立联系</li>
+<li><strong>精确抓取</strong>：使机械臂能够准确抓取相机看到的物体</li>
+<li><strong>位置转换</strong>：将图像中的像素坐标转换为机械臂的世界坐标</li>
+</ul>
+<h4 id="_6">手眼标定的类型：<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h4>
+<p>分Eye-in-Hand（眼在手）和Eye-to-Hand（眼在外）两种类型</p>
+<div align="center">
+  <img src="../images/cb_3.png"  width="600">
+</div>
+<p>两种系统的对比</p>
+<div align="center">
+  <img src="../images/cb_4.png"  width="600">
+</div>
+
+<p>本系统采用<strong>Eye-in-Hand</strong>（眼在手上）配置：
+- 相机固定安装在机械臂末端
+- 相机随机械臂一起运动
+- 需要标定相机相对于末端执行器的位置关系</p>
+<blockquote>
+<p>⚠️ <strong>重要说明</strong>：本系统使用<strong>双目相机的右侧相机</strong>进行手眼标定</p>
+</blockquote>
+<h3 id="13">1.3 手眼标定的算法计算流程<a class="headerlink" href="#13" title="Permanent link">&para;</a></h3>
+<p><code>本文档主要介绍如何操作，算法暂不展示</code></p>
+<div align="center">
+  <img src="../images/cb_5.png"  width="250">
+</div>
+
+<hr />
+<h2 id="2">2. 准备工作<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
+<h3 id="21">2.1 硬件准备<a class="headerlink" href="#21" title="Permanent link">&para;</a></h3>
+<p><code>购买本项目机械臂一般都配齐所需设备</code>
+- ✅ 双目相机（分辨率1280×480，左右各640×480）
+- ✅ 标定板（棋盘格标定板）
+- ✅ 机械臂（6轴，已连接并能正常控制）
+- ✅ 上位机软件已安装并运行</p>
+<h3 id="22">2.2 标定板准备<a class="headerlink" href="#22" title="Permanent link">&para;</a></h3>
+<p>标定板规格要求：
+- <strong>默认尺寸</strong>：8×5内角点（即9×6个方格）
+- <strong>方格大小</strong>：30mm（可根据实际测量调整）
+- <strong>打印要求</strong>：
+  - 使用哑光纸打印，避免反光
+  - 贴在平整的硬板上，确保无弯曲
+  - 黑白对比度要清晰
+  - 4A纸大小</p>
+<div align="center">
+  <img src="../images/calibration_plate.png"  width="600">
+</div>
+
+<h3 id="23">2.3 环境要求<a class="headerlink" href="#23" title="Permanent link">&para;</a></h3>
+<ul>
+<li>光照均匀，避免强光直射</li>
+<li>避免背景杂乱，影响棋盘格检测</li>
+<li>确保标定板在相机视野内完整可见</li>
+</ul>
+<hr />
+<h2 id="3">3. 相机标定操作指南<a class="headerlink" href="#3" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p><code>单目标定的结果用于手眼标定跟视觉抓取</code>  </p>
+<p><code>双目标定的结果用于深度估计</code></p>
+</blockquote>
+<h3 id="31">3.1 单目相机标定<a class="headerlink" href="#31" title="Permanent link">&para;</a></h3>
+<h4 id="1_1">步骤1：打开相机标定工具<a class="headerlink" href="#1_1" title="Permanent link">&para;</a></h4>
+<ol>
+<li>在主界面点击菜单栏的 <strong>"工具"</strong> → <strong>"相机标定"</strong></li>
+<li>相机标定窗口将会打开</li>
+</ol>
+<div align="center">
+  <img src="../images/cb_7.png"  width="600">
+</div>
+
+<h4 id="2_1">步骤2：选择相机并开始预览<a class="headerlink" href="#2_1" title="Permanent link">&para;</a></h4>
+<ol>
+<li>在 <strong>"相机选择"</strong> 区域，选择相机编号（通常为相机0）</li>
+<li>点击 <strong>"开始预览"</strong> 按钮</li>
+<li>此时应该能看到相机画面，双目相机会显示左右两个画面</li>
+</ol>
+<div align="center">
+  <img src="../images/cb_8.png"  width="600">
+</div>
+
+<h4 id="3_1">步骤3：配置对应采集参数<a class="headerlink" href="#3_1" title="Permanent link">&para;</a></h4>
+<ol>
+<li>点击 <strong>"照片采集"</strong> 标签页</li>
+<li>在 <strong>"采集模式选择"</strong> 中选择 <strong>"单目标定"</strong></li>
+<li>在 <strong>"单目标定"</strong> 设置标定参数：</li>
+<li><strong>相机模型</strong>：选择"标准针孔模型"或"鱼眼模型"（根据相机类型）</li>
+<li><strong>棋盘格宽度</strong>：8（内角点数）</li>
+<li><strong>棋盘格高度</strong>：5（内角点数）</li>
+<li><strong>方格尺寸</strong>：30mm（根据实际测量值）</li>
+<li>此时界面提示会显示："单目标定参数已应用"</li>
+</ol>
+<div align="center">
+  <img src="../images/cb_9.png"  width="600">
+</div>
+
+<h4 id="4">步骤4：拍摄标定照片<a class="headerlink" href="#4" title="Permanent link">&para;</a></h4>
+<ol>
+<li>将标定板出现在相机视野内不同位置和角度，<code>相机不动，标定板动</code></li>
+<li>当系统检测到完整的棋盘格时，点击 <strong>"拍摄照片"</strong> 按钮</li>
+<li>系统会自动检测棋盘格：</li>
+<li>✅ 绿色提示："单目照片已自动保存 - 检测到棋盘格"</li>
+<li>❌ 红色提示："未检测到棋盘格 - 照片未保存"</li>
+<li>重复拍摄<strong>至少20-30张</strong>不同角度的照片，包括：</li>
+<li>不同距离（近、中、远）</li>
+<li>不同角度（倾斜、旋转）</li>
+<li>覆盖整个视野范围</li>
+</ol>
+<div align="center">
+  <img src="../images/cb_10.png"  width="600">
+</div>
+
+<h4 id="5">步骤5：执行单目标定<a class="headerlink" href="#5" title="Permanent link">&para;</a></h4>
+<ol>
+<li>切换到 <strong>"单目标定"</strong> 标签页</li>
+<li>点击 <strong>"应用参数设置"</strong> 按钮</li>
+<li>点击 <strong>"开始单目标定"</strong> 按钮</li>
+<li>等待标定完成，查看标定结果</li>
+</ol>
+<h4 id="6">步骤6：保存标定结果<a class="headerlink" href="#6" title="Permanent link">&para;</a></h4>
+<ol>
+<li>检查标定精度（RMS误差应小于1.0,越小越好）</li>
+<li>点击 <strong>"保存标定结果"</strong> 按钮</li>
+<li>结果将保存到 <code>config/calibration_parameter.json</code> 文件</li>
+</ol>
+<div align="center">
+  <img src="../images/cb_11.png"  width="600">
+</div>
+
+<h3 id="32">3.2 双目相机标定<a class="headerlink" href="#32" title="Permanent link">&para;</a></h3>
+<h4 id="1-3">步骤1-3：同单目标定<a class="headerlink" href="#1-3" title="Permanent link">&para;</a></h4>
+<p>前三步操作与单目标定相同</p>
+<h4 id="4_1">步骤4：切换到双目模式<a class="headerlink" href="#4_1" title="Permanent link">&para;</a></h4>
+<ol>
+<li>在 <strong>"采集模式选择"</strong> 中选择 <strong>"双目标定"</strong></li>
+<li>此时界面提示："双目标定模式：显示左右两个画面"</li>
+</ol>
+<h4 id="5_1">步骤5：拍摄双目标定照片<a class="headerlink" href="#5_1" title="Permanent link">&para;</a></h4>
+<ol>
+<li>将标定板放置在左右相机共同视野内</li>
+<li>确保标定板在左右画面中都完整可见</li>
+<li>当系统同时检测到左右画面的棋盘格时，点击 <strong>"拍摄照片"</strong></li>
+<li>系统提示："双目照片已自动保存 - 左右都检测到棋盘格"</li>
+<li>拍摄<strong>至少20-30对</strong>照片</li>
+</ol>
+<div align="center">
+  <img src="../images/cb_13.png"  width="600">
+</div>
+
+<h4 id="6_1">步骤6：执行双目标定<a class="headerlink" href="#6_1" title="Permanent link">&para;</a></h4>
+<ol>
+<li>切换到 <strong>"双目标定"</strong> 标签页</li>
+<li>设置与单目相同的标定参数</li>
+<li>点击 <strong>"开始双目标定"</strong> 按钮</li>
+<li>等待标定完成</li>
+</ol>
+<div align="center">
+  <img src="../images/cb_12.png"  width="600">
+</div>
+
+<h4 id="7">步骤7：保存双目标定结果<a class="headerlink" href="#7" title="Permanent link">&para;</a></h4>
+<ol>
+<li>点击 <strong>"保存双目结果"</strong> 按钮</li>
+<li>结果包含左右相机的内参、畸变系数以及相对位置关系</li>
+</ol>
+<hr />
+<h2 id="4_2">4. 手眼标定操作指南<a class="headerlink" href="#4_2" title="Permanent link">&para;</a></h2>
+<h3 id="41">4.1 标定前准备<a class="headerlink" href="#41" title="Permanent link">&para;</a></h3>
+<h4 id="_7">确认相机标定已完成<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h4>
+<ol>
+<li>确保已完成相机标定（单目或双目）</li>
+<li>检查 <code>config/calibration_parameter.json</code> 文件存在</li>
+<li>文件中应包含相机内参和畸变系数</li>
+</ol>
+<h4 id="_8">连接机械臂<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h4>
+<ol>
+<li>确保机械臂已正确连接到上位机</li>
+<li>在主界面完成电机连接</li>
+<li>确认所有6个关节都能正常控制</li>
+</ol>
+<h3 id="42">4.2 采集标定位置<a class="headerlink" href="#42" title="Permanent link">&para;</a></h3>
+<p><code>手眼标定的结果非常看重标定的位置</code>
+1. 打开 <strong>示教器</strong> ，同时 <strong>打开视觉抓取的摄像头</strong>，<code>用于观察该标定位置是否包含整个标定板</code>
+2. 将示教器切换到 <strong>工具模式(Tool Mode)</strong>
+3. 示教器上的方向键(通常是摇杆或+X,-X,+Y,-Y,+2,-Z按钮)的含义变了:
+   - 要绕着工具Z轴旋转 (相机镜头朝向的轴)，你只需要找到并按住代表 RZ+或 RZ- 的旋转按钮。你会看到机器 人末端的J4,J5,J6关节会协同运动，以保持TCP位置不变，同时让整个未端工具(相机)绕着它自己的Z轴旋转。
+   - 要绕着工具Y轴旋转(左右摇头)，按住 R+或 RY-。</p>
+<ul>
+<li>
+<p>要绕着工具X轴旋转(上下点头)，按住 RX+或RX-。</p>
+</li>
+<li>
+<p>每改变一次有效角度就进行保存位置</p>
+</li>
+<li>
+<p>执行"大范围平移"</p>
+</li>
+<li>
+<p>将示教器切换回 <strong>基座/世界模式(Base/World Mode)</strong></p>
+</li>
+<li>
+<p>使用方向键 +X，-X，+Y，-Y 等，将整个机械臂移动到工作空间中另一个不同的位置。</p>
+</li>
+<li>
+<p>移动到位后，再切换回 <strong>工具模式 (Tool Mode)</strong>，重复<code>3</code>中的旋转操作。</p>
+</li>
+</ul>
+<div align="center">
+  <img src="../images/cb_15.png"  width="600">
+</div>
+
+<div align="center">
+  <img src="../images/cb_17.jpg"  width="400">
+</div>
+
+<p><code>每一次的标定位置都需要标定板的完整出现</code></p>
+<ol>
+<li>保存手眼标定位置</li>
+<li>在 <strong>"工具模式"</strong> 下，点击 <strong>"保存当前位置"</strong> 按钮</li>
+<li>保存的标定位置就会显示在 手眼标定的 <strong>"预设位置"</strong> 列表中</li>
+</ol>
+<blockquote>
+<p>标定位置采集的一些建议</p>
+</blockquote>
+<div align="center">
+  <img src="../images/cb_16.png"  width="600">
+</div>
+
+<h3 id="43">4.3 执行手眼标定<a class="headerlink" href="#43" title="Permanent link">&para;</a></h3>
+<h4 id="1_2">步骤1：打开手眼标定界面<a class="headerlink" href="#1_2" title="Permanent link">&para;</a></h4>
+<ol>
+<li>在主界面找到 <strong>"手眼标定"</strong> 功能模块</li>
+<li>点击进入手眼标定界面</li>
+</ol>
+<div align="center">
+  <img src="../images/cb_14.png"  width="600">
+</div>
+
+<h4 id="2_2">步骤2：检查系统状态<a class="headerlink" href="#2_2" title="Permanent link">&para;</a></h4>
+<p>界面会自动显示：
+- <strong>相机参数</strong>：显示已加载的右相机内参和畸变系数
+- <strong>预设位置</strong>：显示预加载的标定位置（强烈建议重新采集标定位置）
+- <strong>电机状态</strong>：显示已连接的电机数量</p>
+<h4 id="3_2">步骤3：设置标定参数<a class="headerlink" href="#3_2" title="Permanent link">&para;</a></h4>
+<ol>
+<li><strong>输出目录</strong>：默认为 <code>../data</code>，可点击📁按钮更改</li>
+<li><strong>摄像头ID</strong>：通常为0</li>
+<li><strong>标定板参数</strong>：</li>
+<li>宽度内角点：5（默认）</li>
+<li>高度内角点：8（默认）</li>
+<li>方格尺寸：0.03m（30mm）</li>
+</ol>
+<blockquote>
+<p>⚠️ <strong>注意</strong>：手眼标定的棋盘格参数可能与相机标定不同，请根据实际使用的标定板设置</p>
+</blockquote>
+<h4 id="4_3">步骤4：开始数据采集<a class="headerlink" href="#4_3" title="Permanent link">&para;</a></h4>
+<ol>
+<li>将标定板放置在机械臂工作空间内的固定位置</li>
+<li>确保标定板在整个采集过程中<strong>保持静止不动</strong></li>
+<li>点击 <strong>"🚀 开始采集"</strong> 按钮</li>
+<li>系统将自动执行：</li>
+<li>移动机械臂到第1个预设位置</li>
+<li>等待5秒确保运动完成</li>
+<li>拍摄标定板照片</li>
+<li>记录机械臂末端位姿</li>
+<li>重复以上步骤直到所有位置采集完成</li>
+</ol>
+<div align="center">
+  <img src="../images/cb_18.png"  width="600">
+</div>
+
+<h4 id="5_2">步骤5：查看标定结果<a class="headerlink" href="#5_2" title="Permanent link">&para;</a></h4>
+<p>采集完成后，系统会自动计算并显示：
+- <strong>旋转矩阵</strong>（Rotation Matrix）
+- <strong>平移向量</strong>（Translation Vector）
+- <strong>变换矩阵</strong>（RT_camera2end）
+- <strong>标定参数信息</strong></p>
+<div align="center">
+  <img src="../images/cb_19.png"  width="600">
+</div>
+
+<h3 id="44">4.4 验证标定精度<a class="headerlink" href="#44" title="Permanent link">&para;</a></h3>
+<h4 id="1_3">步骤1：点击验证按钮<a class="headerlink" href="#1_3" title="Permanent link">&para;</a></h4>
+<p>标定完成后，点击 <strong>"🔍 验证标定精度"</strong> 按钮
+验证窗口会打开，显示：
+- 摄像头画面
+- 测量控制面板
+- 结果显示区域</p>
+<div align="center">
+  <img src="../images/cb_20.png"  width="600">
+</div>
+
+<h4 id="2_3">步骤2：执行精度验证<a class="headerlink" href="#2_3" title="Permanent link">&para;</a></h4>
+<ol>
+<li>点击 <strong>"📷 启动摄像头"</strong></li>
+<li>在工作平面上放置一个<strong>易识别的物体</strong>（如标记点）</li>
+<li>在摄像头画面中<strong>点击该物体</strong>选择像素位置</li>
+<li>点击 <strong>"📍 记录测量点"</strong> 记录第1个测量点</li>
+<li>使用位置控制器移动机械臂到另一个位置（<code>位置A</code>或者<code>位置B</code>）</li>
+<li>在新位置再次点击<strong>同一物体</strong></li>
+<li>点击 <strong>"📍 记录第2个测量点"</strong></li>
+<li>点击 <strong>"📊 计算验证误差"</strong></li>
+</ol>
+<div align="center">
+  <img src="../images/cb_21.png"  width="600">
+</div>
+
+<h4 id="3_3">步骤3：查看验证结果<a class="headerlink" href="#3_3" title="Permanent link">&para;</a></h4>
+<p>系统会显示：
+- 两个测量点的世界坐标
+- X、Y、Z轴误差（mm）
+- 总3D距离误差（mm）
+- 精度评估：
+  - ✅ <strong>优秀</strong>（&lt; 5mm）
+  - ✅ <strong>良好</strong>（5-10mm）
+  - ⚠️ <strong>一般</strong>（10-20mm）
+  - ❌ <strong>较差</strong>（&gt; 20mm）</p>
+<h4 id="4_4">步骤4：保存标定结果<a class="headerlink" href="#4_4" title="Permanent link">&para;</a></h4>
+<ol>
+<li>点击 <strong>"保存标定结果"</strong> 按钮</li>
+<li>结果将保存到 <code>config/calibration_parameter.json</code> 文件</li>
+<li>系统提示：<strong>"手眼标定结果已保存"</strong></li>
+</ol>
+<hr />
+<h2 id="5_3">5. 精度验证操作指南<a class="headerlink" href="#5_3" title="Permanent link">&para;</a></h2>
+<h3 id="51">5.1 准备工作<a class="headerlink" href="#51" title="Permanent link">&para;</a></h3>
+<h4 id="_9">确认手眼标定已完成<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h4>
+<ol>
+<li>确保已完成手眼标定</li>
+<li>检查 <code>config/calibration_parameter.json</code> 文件存在</li>
+<li>文件中应包含手眼标定结果</li>
+</ol>
+<hr />
+<h3 id="_10">🎯 实际操作示例<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
+<h4 id="15">第一阶段：相机标定（约15分钟）<a class="headerlink" href="#15" title="Permanent link">&para;</a></h4>
+<ol>
+<li><strong>启动软件</strong> → 打开相机标定工具</li>
+<li><strong>选择单目标定</strong> → 开始预览</li>
+<li><strong>拍摄20张照片</strong> → 不同角度和距离</li>
+<li><strong>执行标定</strong> → 检查RMS误差 &lt; 1.0</li>
+<li><strong>保存结果</strong> → 自动保存到配置文件</li>
+</ol>
+<h4 id="20">第二阶段：手眼标定（约20分钟）<a class="headerlink" href="#20" title="Permanent link">&para;</a></h4>
+<ol>
+<li><strong>连接机械臂</strong> → 确认6个电机正常</li>
+<li><strong>放置标定板</strong> → 固定在工作空间</li>
+<li><strong>开始采集</strong> → 自动运行15-20个位置</li>
+<li><strong>等待完成</strong> → 查看标定结果</li>
+<li><strong>保存结果</strong> → 更新配置文件</li>
+</ol>
+<h4 id="5_4">第三阶段：精度验证（约5分钟）<a class="headerlink" href="#5_4" title="Permanent link">&para;</a></h4>
+<ol>
+<li><strong>打开验证窗口</strong> → 启动摄像头</li>
+<li><strong>放置测试物体</strong> → 在工作平面上</li>
+<li><strong>记录两个测量点</strong> → 不同视角</li>
+<li><strong>计算误差</strong> → 确认 &lt; 10mm</li>
+<li><strong>完成标定</strong> → 系统可用于视觉抓取</li>
+</ol>
+<hr />
+<h2 id="6_2">6. 常见问题解答<a class="headerlink" href="#6_2" title="Permanent link">&para;</a></h2>
+<h3 id="q1">❓ Q1: 为什么检测不到棋盘格？<a class="headerlink" href="#q1" title="Permanent link">&para;</a></h3>
+<p><strong>解决方案</strong>：
+- 检查光照是否均匀，避免反光
+- 调整标定板距离，确保在焦距范围内，整个标定板完整出现在窗口
+- 检查棋盘格参数设置是否正确</p>
+<h3 id="q2-rms">❓ Q2: 相机标定RMS误差过大怎么办？<a class="headerlink" href="#q2-rms" title="Permanent link">&para;</a></h3>
+<p><strong>解决方案</strong>：
+- 增加拍摄照片数量（建议20-30张）
+- 确保照片覆盖整个视野范围
+- 包含不同角度的倾斜照片
+- 重新测量并确认方格实际尺寸</p>
+<h3 id="q3">❓ Q3: 手眼标定精度不够怎么办？<a class="headerlink" href="#q3" title="Permanent link">&para;</a></h3>
+<p><strong>解决方案</strong>：
+- 确保标定板在整个过程中保持静止
+- 确保机械臂旋转轴的夹角越大越好
+- 增加标定位置数量
+- 确保相机标定质量良好
+- 重新进行标定</p>
+<h3 id="q4">❓ Q4: 选择针孔模型还是鱼眼模型？<a class="headerlink" href="#q4" title="Permanent link">&para;</a></h3>
+<p><strong>判断标准</strong>：
+- <strong>针孔模型</strong>：适用于普通相机（视场角 &lt; 90°）
+- <strong>鱼眼模型</strong>：适用于广角相机（视场角 &gt; 90°，如105°广角镜头）
+- 查看相机规格说明书确认视场角</p>
+<h3 id="q5">❓ Q5: 标定结果保存在哪里？<a class="headerlink" href="#q5" title="Permanent link">&para;</a></h3>
+<p><strong>文件位置</strong>：
+- 相机标定结果：<code>config/calibration_parameter.json</code> 中的 <code>one</code> 或 <code>two</code> 字段
+- 手眼标定结果：同文件中的 <code>eyeinhand</code> 字段
+- 采集的图片：<code>data/</code> 目录下的相应文件夹</p>
+<h3 id="q6">❓ Q6: 如何判断标定质量？<a class="headerlink" href="#q6" title="Permanent link">&para;</a></h3>
+<p><strong>评判标准</strong>：
+- <strong>相机标定</strong>：RMS误差 &lt; 1.0 像素
+- <strong>手眼标定</strong>：验证误差 &lt; 10mm
+- <strong>实际测试</strong>：进行实际抓取测试验证</p>
+<hr />
+<h2 id="_11">注意事项<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>标定顺序</strong>：必须先完成相机标定，再进行手眼标定</li>
+<li><strong>标定板固定</strong>：手眼标定时标定板必须保持静止</li>
+<li><strong>相机模型一致</strong>：相机标定和手眼标定必须使用相同的相机模型</li>
+<li><strong>定期重新标定</strong>：如果相机或机械臂结构发生变化，需要重新标定</li>
+<li><strong>数据备份</strong>：建议备份 <code>calibration_parameter.json</code> 文件</li>
+</ol>
+<p>如有其他问题，请参考技术文档或联系技术支持。</p>
+<hr />
+<div align="center" style="margin: 30px 0; padding: 20px; background-color: #f8f9fa; border-radius: 10px;">
+<p style="font-size: 14px; color: #6c757d; margin: 0;">
+<strong>视觉标定详解</strong> | 让视觉抓取更精准<br>
+© 2025 Horizon Arm • 智能、灵活、易用
+</p>
+</div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../user_guide/" class="btn btn-neutral float-left" title="用户指南"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../joycon_control_guide/" class="btn btn-neutral float-right" title="Joy-Con手柄控制">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../user_guide/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../joycon_control_guide/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

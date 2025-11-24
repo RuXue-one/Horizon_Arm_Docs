@@ -1,0 +1,2109 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Horizon_Arm Team" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>用户指南 - Horizon_Arm 文档</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "\u7528\u6237\u6307\u5357";
+        var mkdocs_page_input_path = "user_guide.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Horizon_Arm 文档
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">首页</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../first_time_setup/">首次使用</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">用户指南</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#_1">使用建议</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_2">⚠️ 重要安全注意事项</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_3">机械臂断电操作规范</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#1">1. 许可证与激活</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_4">首次激活</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_5">激活状态</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_6">离线使用</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_7">销毁锁定说明</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#2">2. 开始之前</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_8">准备工作</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#3">3. 安装与启动</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_9">安装步骤</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#4">4. 第一次连接电机（最重要）</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_10">连接配置</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#xy">X/Y 板操作对照</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#41">4.1 连接步骤</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#42">4.2 遇到失败时</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#5">5. 界面与功能导航</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_11">主界面布局</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#6">6. 机械臂控制</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_12">整体控制</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_13">机械臂设置</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_14">机械臂控制</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_15">状态监控</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#mujoco">MuJoCo 仿真联动</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#7">7. 电机参数设置</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#6_1">6轴运动方向参考标准</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_16">参数配置</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_17">默认参数配置</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#_18">减速比设置</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_19">方向设置</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_20">参数调整</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#_21">减速比调整原则</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_22">方向调整方法</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_23">参数保存</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_24">应用范围</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_25">使用建议</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#8">8. 示教器</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_26">控制模式</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_27">示教编程</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_28">插补类型</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_29">动态参数</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#9">9. 视觉抓取</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_30">核心功能</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_31">操作流程</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_32">参数配置</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#_33">视觉检测参数</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_34">🤖 抓取控制参数</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_35">深度估计参数</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_36">使用技巧</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#10">10. 具身智能</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_37">执行模式</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_38">功能特性</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#ai">配置AI服务</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_39">使用方法</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_40">注意事项</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#11">11. 相机与标定</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_41">标定工具入口</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_42">详细标定指南</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#12-joy-con">12. Joy-Con 手柄控制</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_43">核心功能</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#13-ros2">13. ROS2控制平台</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_44">核心功能</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_45">📦 快速访问</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_46">主要特性</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#14-io">14. IO控制系统</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_47">核心功能</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_48">硬件配置</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_49">使用流程</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_50">应用场景</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#15">15. 数字孪生（可选）</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_51">仿真功能</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#16">16. 全局安全：紧急停止（必读）</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_52">全局紧急停止系统</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_53">触发方式</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_54">停止范围</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_55">安全特性</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_56">使用建议</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#17">17. 单电机控制</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_57">基础控制</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_58">🔄 循环运动配置</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#_59">默认循环动作参数</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_60">参数说明</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_61">使用技巧</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#18">18. 多电机控制</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_62">同步控制</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#_63">多电机循环控制默认参数</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_64">同步控制说明</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_65">使用技巧</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#19">19. 快捷键</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_66">连接相关</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_67">控制相关</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_68">使用说明</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#20">20. 常见问题与排查</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_69">连接失败/无响应</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_70">多机同步不工作</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_71">状态读取不稳定</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_72">位置角度异常/方向不一致</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_73">数字孪生显示异常</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#21">21. 快速参考</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_74">文档导航</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_75">结语</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_76">使用建议</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../calibration_guide/">视觉标定详解</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../joycon_control_guide/">Joy-Con手柄控制</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../IO_Control_System/">IO控制系统</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../api_guide/">AI API配置指南</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../ros2_guide/">ROS2控制平台</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../activation/">序列号与激活</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../troubleshooting/">故障排除</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Horizon_Arm 文档</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">用户指南</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="horizon_arm">Horizon_Arm 用户指南<a class="headerlink" href="#horizon_arm" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p>使用用已安装的程序（exe）完成连接、控制与标定。</p>
+</blockquote>
+<p style="color: red; font-weight: bold;">注：图片可右键放大查看；任何界面按空格键触发"全局急停"。</p>
+
+<hr />
+<h2 id="_1">使用建议<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>❓ 遇到问题</strong>：优先查看 <a href="../troubleshooting/">故障排除</a></li>
+<li><strong>📚 完整学习</strong>：按顺序阅读本指南章节</li>
+<li><strong>🔍 快速查找</strong>：使用 <code>Ctrl+F</code> 搜索关键词</li>
+</ul>
+<blockquote>
+<p><strong>⚠️ 重要提示</strong>：首次使用前，请务必查看"电机参数设置"中的"6轴运动方向参考标准"，确保各轴运动方向与仿真系统一致。如发现方向不对，请及时调整电机方向参数。</p>
+</blockquote>
+<hr />
+<h2 id="_2">⚠️ 重要安全注意事项<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h3 id="_3">机械臂断电操作规范<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p><strong>禁止操作</strong>：</p>
+<p>机械臂在通电运行状态下，<span style="color: red; font-weight: bold;"><strong>严禁直接拔掉基座后面的电源线</strong></span>。工作环境应保持整洁，避免因拉扯、拖拽导致电源线意外脱落。</p>
+<p><strong>非正常断电的严重后果</strong>：</p>
+<ol>
+<li>
+<p><strong>机械臂末端砸落</strong><br />
+   瞬间断电会导致机械臂失去动力支撑，末端会因重力快速下坠，极易砸坏相机、夹爪等精密模块。</p>
+</li>
+<li>
+<p><strong>回零参数异常</strong><br />
+   瞬时断电可能导致机械臂回零参数丢失或错乱，重新通电后回零位置可能偏离标准位置，影响后续操作精度。</p>
+</li>
+<li>
+<p><strong>电源系统故障</strong><br />
+   非正常断电可能导致各轴电机的供电逻辑异常，电机会错误地将内部电池识别为主要电源，即使重新通电，机械臂仍处于失能状态。此时需要<strong>手动拆开各轴外壳，逐个重新插拔电池</strong>才能恢复正常。</p>
+</li>
+</ol>
+<p><span style="color: red; font-weight: bold;"><strong>正确断电流程</strong>：</span></p>
+<ol>
+<li><strong>扶住机身</strong>：断电前用手扶住机械臂，防止失能后砸落</li>
+<li><strong>手动关闭开关</strong>：在基座后面手动关闭电源开关</li>
+<li><strong>确认断电</strong>：等待指示灯熄灭，确认完全断电</li>
+</ol>
+<blockquote>
+<p><strong>💡 温馨提示</strong>：<br />
+养成良好的断电习惯，可以有效延长机械臂使用寿命，避免不必要的维修成本。</p>
+</blockquote>
+<p><strong>售后说明</strong>：</p>
+<p>因人为操作不当（如非正常断电、暴力操作等）导致的机械臂末端夹爪、相机或机械臂整体部件损坏，<strong>不受理退货</strong>，仅支持<strong>自费维修</strong>。</p>
+<p>如果出现通电机械臂无法直立，查看第四周电机后盖指示灯-绿-常亮，此时就要重新插拔电池，那几轴有问题就重新插拔那几轴的电池，具体电机电池位置参考图。</p>
+<div align="center">
+  <img src="../images/电机位置特写图.png" alt="电机位置特写图" width="800">
+  <p><em>电机位置特写图</em></p>
+</div>
+
+<div align="center">
+  <img src="../images/基座开关.png" alt="基座开关" width="800">
+  <p><em>基座开关</em></p>
+</div>
+
+<hr />
+<h2 id="1">1. 许可证与激活<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
+<h3 id="_4">首次激活<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<p><strong>激活步骤</strong></p>
+<ol>
+<li>
+<p><strong>启动程序</strong>：双击桌面"Horizon_Arm"图标，弹出激活窗口</p>
+</li>
+<li>
+<p><strong>输入信息</strong>：</p>
+<ul>
+<li>序列号：你收到的唯一序列号</li>
+<li>用户标识：手机号或邮箱</li>
+</ul>
+</li>
+<li>
+<p><strong>点击激活</strong>：点击"立即激活"按钮</p>
+</li>
+<li>
+<p><strong>激活成功</strong>：显示"激活成功"后关闭窗口</p>
+</li>
+</ol>
+<p style="color: red; font-weight: bold;">（首次激活将在打开软件时进行，如选择关闭激活窗口以及选择不激活将无法正常使用本软件）</p>
+
+<div align="center">
+  <img src="../images/首次激活演示.gif" alt="首次激活演示" width="800">
+  <p><em>首次激活演示</em></p>
+</div>
+
+<h3 id="_5">激活状态<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<p><strong>状态类型</strong></p>
+<ul>
+<li>
+<p><strong>已激活</strong>：显示"已激活（本机）"，无需再次操作</p>
+</li>
+<li>
+<p><strong>未激活</strong>：显示"未激活，请输入序列号"，按上述步骤激活</p>
+</li>
+<li>
+<p><strong>设备超限</strong>：显示"设备数量已达上限"，联系管理员处理</p>
+</li>
+<li>
+<p><strong>已锁定（销毁）</strong>：显示"序列号已锁定（已销毁）"，该序列号已永久失效</p>
+</li>
+</ul>
+<div align="center">
+  <img src="../images/激活状态查看.png" alt="激活状态查看" width="800">
+  <p><em>激活状态查看</em></p>
+</div>
+
+<h3 id="_6">离线使用<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<p><strong>使用说明</strong>
+- 首次激活成功后，系统会在本机保存激活凭据
+- 之后即使没有网络也可以正常启动和使用
+- 序列号具有唯一性，不可复制或多设备共享</p>
+<h3 id="_7">销毁锁定说明<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<p><strong>含义</strong>
+- 销毁锁定为不可逆操作，被执行后序列号永久禁用</p>
+<p><strong>锁定后影响</strong>
+- 本机离线凭据在后续启动校验时失效
+- 任意设备均无法再激活该序列号</p>
+<p><strong>注意</strong>
+- 如需迁移/交接许可证，请先联系管理员合规处理，避免误销毁</p>
+<p style="color: red; font-weight: bold;"> **注意**：激活需要网络连接，激活成功后可离线使用</p>
+
+<hr />
+<h2 id="2">2. 开始之前<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
+<h3 id="_8">准备工作<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<p><strong>版本区分</strong></p>
+<ul>
+<li>
+<p>驱动板绿灯常亮的是 X 版</p>
+</li>
+<li>
+<p>驱动板绿灯每间隔1秒闪烁的是 Y 版</p>
+</li>
+<li>
+<p>两版在同步、回零、到位确认等细节略有不同</p>
+</li>
+</ul>
+<p style="color: red; font-weight: bold;">本系统默认使用Y版</p>
+
+<p><strong>系统要求</strong></p>
+<ul>
+<li>
+<p>电脑：Windows 10/11（64 位）</p>
+</li>
+<li>
+<p>设备：USB 转 CAN（如 CANable，SLCAN 协议）</p>
+</li>
+</ul>
+<p><strong>接线要求</strong>
+- 确保 CAN_H/CAN_L 正确连接
+- 电机上电且 ID 唯一（1~255）</p>
+<hr />
+<h2 id="3">3. 安装与启动<a class="headerlink" href="#3" title="Permanent link">&para;</a></h2>
+<h3 id="_9">安装步骤<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
+<p><strong>1. 运行安装包</strong>
+- 按照向导完成安装</p>
+<p><strong>2. 启动程序</strong>
+- 桌面双击 "Horizon_Arm" 图标启动程序</p>
+<p><strong>3. 进入主界面</strong>
+- 程序启动后进入主界面</p>
+<div align="center">
+  <img src="../images/首页.png" alt="Horizon_Arm 具身智能系统界面" width="800">
+  <p><em>Horizon_Arm 具身智能系统界面</em></p>
+</div>
+
+<hr />
+<h2 id="4">4. 第一次连接电机（最重要）<a class="headerlink" href="#4" title="Permanent link">&para;</a></h2>
+<h3 id="_10">连接配置<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
+<p><strong>访问入口</strong>
+- 菜单：连接 → 连接电机</p>
+<p><strong>基本设置</strong>
+- 设置串口参数
+- 配置波特率
+- 选择"驱动板版本 X/Y"
+- 系统自动匹配合适的回零与同步方式</p>
+<p><strong>连接模式</strong>
+- 单电机模式
+- 双电机模式
+- 机械臂模式
+- 自定义 ID 配置</p>
+<h3 id="xy">X/Y 板操作对照<a class="headerlink" href="#xy" title="Permanent link">&para;</a></h3>
+<p><strong>差异速览表</strong></p>
+<table>
+<thead>
+<tr>
+<th>操作项</th>
+<th>X 板</th>
+<th>Y 板</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>同步位置/速度/梯形</td>
+<td>同步标志 + 广播触发</td>
+<td>多电机命令一次性下发</td>
+</tr>
+<tr>
+<td>批量回零</td>
+<td>4 种模式</td>
+<td>6 种模式（含绝对零点/掉电位置）</td>
+</tr>
+<tr>
+<td>多机读取实时角度</td>
+<td>逐台读取</td>
+<td>支持 0x36 一次性读取</td>
+</tr>
+<tr>
+<td>到位确认/超时提示</td>
+<td>按常规返回</td>
+<td>运动类仅地址1确认；默认不等待以避免超时提示</td>
+</tr>
+<tr>
+<td>修改电机 ID</td>
+<td>支持</td>
+<td>支持（AE 4B；可选存储）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="41">4.1 连接步骤<a class="headerlink" href="#41" title="Permanent link">&para;</a></h3>
+<p><strong>1. 打开菜单"连接 → 连接电机"</strong></p>
+<p><strong>2. 在弹出的对话框中设置</strong></p>
+<ul>
+<li><strong>串口</strong>：选择实际端口，如 <code>COM8</code></li>
+<li><strong>波特率</strong>：保持 <code>500000</code>（与驱动板配置一致）</li>
+<li><strong>电机 ID</strong>：</li>
+<li>可点"单电机(ID=1) / 双电机(1,2) / 机械臂(1..6)"快速填入</li>
+<li>或在"自定义ID"里输入，如 <code>1,2,3,4,5,6</code></li>
+</ul>
+<p><strong>3. 点击"确定"</strong></p>
+<ul>
+<li>系统将逐一连接每个 ID</li>
+<li>并验证能否读取状态</li>
+</ul>
+<p><strong>4. 成功后确认</strong></p>
+<ul>
+<li>状态栏显示"已连接 X 个电机"</li>
+<li>所有控制功能页面自动激活，可开始控制</li>
+</ul>
+<div align="center">
+  <img src="../images/电机连接.gif" alt="连接电机" width="800">
+  <p><em>连接电机操作</em></p>
+</div>
+
+<h3 id="42">4.2 遇到失败时<a class="headerlink" href="#42" title="Permanent link">&para;</a></h3>
+<p><strong>常见原因</strong>
+- 串口占用
+- 波特率/CAN 速率不匹配
+- 电机未上电
+- ID 错误</p>
+<p>提示会列出失败的 ID 与错误详情。</p>
+<div align="center">
+  <img src="../images/6.png" alt="常见错误" width="800">
+  <p><em>常见错误-串口选错</em></p>
+</div>
+
+<p><strong>断开连接</strong>
+- 菜单"连接 → 断开连接"
+- 断开所有电机连接</p>
+<hr />
+<h2 id="5">5. 界面与功能导航<a class="headerlink" href="#5" title="Permanent link">&para;</a></h2>
+<h3 id="_11">主界面布局<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h3>
+<p><strong>标签页功能</strong>
+- 🦾 <strong>机械臂控制</strong>
+- 🎮 <strong>示教器</strong>
+- 👁️ <strong>视觉抓取</strong>
+- 🧠 <strong>具身智能</strong>
+- 🔌 <strong>IO控制</strong></p>
+<div align="center">
+  <img src="../images/标签页.png" alt="标签页" width="800">
+  <p><em>标签页</em></p>
+</div>
+
+<p><strong>菜单功能（独立窗口）</strong>
+- <strong>单电机控制</strong>（Ctrl+1）
+- <strong>多电机控制</strong>（Ctrl+2）</p>
+<p><strong>工具菜单</strong>
+- <strong>手眼标定</strong>
+- <strong>相机标定</strong>
+- <strong>电机参数设置</strong>
+- <strong>夹爪连接</strong></p>
+<p>连接电机后，所有控制功能会自动激活并可以正常使用。</p>
+<div align="center">
+  <img src="../images/顶部工具栏.gif" alt="顶部工具" width="800">
+  <p><em>顶部工具</em></p>
+</div>
+
+<hr />
+<h2 id="6">6. 机械臂控制<a class="headerlink" href="#6" title="Permanent link">&para;</a></h2>
+<h3 id="_12">整体控制<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h3>
+<p>适合 6 关节机械臂的整体控制。</p>
+<p><strong>连接状态</strong>
+- 连接成功后，机械臂控制功能自动激活
+- 断开连接后，控制功能暂停使用</p>
+<p><strong>主要功能</strong>
+- 关节控制：可以单独控制 6 个关节的角度
+- 整体运动：输入目标角度后，所有关节协调运动到目标位置
+- 参数重载：修改电机参数后，点击"重新加载配置"使新参数生效</p>
+<h3 id="_13">机械臂设置<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h3>
+<p><strong>运动参数配置</strong>
+- 最大速度设置
+- 加速度参数调整
+- 减速度参数配置</p>
+<p><strong>关节微调功能</strong>
+- 每个关节 ±1° 即时执行
+- 便于精细调整和定位</p>
+<p><strong>零位设置</strong>
+- 在合适姿态点击设置
+- 可将当前姿态作为参考零位</p>
+<p style="color: red; font-weight: bold;">若机械臂位置未归零可以手动微调归零，再设置零点，需要注意机械臂关机不能直接拔线！！！
+需要手动关闭开关后再拔线。</p>
+
+<p><strong>末端位姿显示</strong>
+- 实时显示位置信息（Z/Y/X）
+- 实时显示姿态信息（Yaw/Pitch/Roll）</p>
+<div align="center">
+  <img src="../images/首页.png" alt="机械臂控制&参数调整" width="800">
+  <p><em>机械臂控制&参数调整</em></p>
+</div>
+
+<h3 id="_14">机械臂控制<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h3>
+<p><strong>关节角输入</strong>
+- 支持 6 个关节角度输入
+- 提供"绝对位置"模式
+- 提供"相对位置"模式</p>
+<p><strong>控制按钮</strong>
+- 移动到位置
+- 回零位
+- 停止运动</p>
+<h3 id="_15">状态监控<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h3>
+<p><strong>刷新方式</strong>
+- 自动刷新模式
+- 手动刷新模式</p>
+<p><strong>监控数据</strong>
+- 使能状态
+- 到位状态
+- 输出端角度
+- 运动速度
+- 电压信息
+- 电流信息
+- 温度监控</p>
+<div align="center">
+  <img src="../images/状态监控.png" alt="状态监控" width="800">
+  <p><em>状态监控</em></p>
+</div>
+
+<h3 id="mujoco">MuJoCo 仿真联动<a class="headerlink" href="#mujoco" title="Permanent link">&para;</a></h3>
+<p><strong>仿真功能</strong>：在页面顶部可"启动/停止"联动，便于在仿真中预演动作，提高操作安全性。</p>
+<p><strong>使用建议</strong>
+- 机械臂控制功能较多
+- 建议先用"单电机控制"测试每个关节
+- 确认正常后再进行整臂控制</p>
+<div align="center">
+  <img src="../images/MuJoCo 仿真.gif" alt="MuJoCo 仿真" width="800">
+  <p><em>MuJoCo 仿真</em></p>
+</div>
+<hr />
+<h2 id="7">7. 电机参数设置<a class="headerlink" href="#7" title="Permanent link">&para;</a></h2>
+<h3 id="6_1">6轴运动方向参考标准<a class="headerlink" href="#6_1" title="Permanent link">&para;</a></h3>
+<p>在调整电机参数之前，请先了解各轴的标准运动方向。以下是基于仿真系统的6轴机械臂标准运动方向，<strong>所有方向描述均以机械臂自身为参考坐标系</strong>：</p>
+<p><strong>1轴（基座旋转）- 正方向参考</strong></p>
+<div align="center">
+  <img src="../images/1轴方向参考.gif" alt="1轴正方向参考" width="400">
+  <p><em>1轴正方向：基座逆时针旋转（以机械臂自身坐标系为准）</em></p>
+</div>
+
+<p><strong>2轴（大臂摆动）- 正方向参考</strong></p>
+<div align="center">
+  <img src="../images/2轴方向参考.gif" alt="2轴正方向参考" width="400">
+  <p><em>2轴正方向：大臂向下摆动（以机械臂自身坐标系为准）</em></p>
+</div>
+
+<p><strong>3轴（小臂摆动）- 正方向参考</strong></p>
+<div align="center">
+  <img src="../images/3轴方向参考.gif" alt="3轴正方向参考" width="400">
+  <p><em>3轴正方向：小臂向下摆动（以机械臂自身坐标系为准）</em></p>
+</div>
+
+<p><strong>4轴（腕部旋转）- 正方向参考</strong></p>
+<div align="center">
+  <img src="../images/4轴方向参考.gif" alt="4轴正方向参考" width="400">
+  <p><em>4轴正方向：腕部右转（以机械臂自身方向为准）</em></p>
+</div>
+
+<p><strong>5轴（腕部俯仰）- 正方向参考</strong></p>
+<div align="center">
+  <img src="../images/5轴方向参考.gif" alt="5轴正方向参考" width="400">
+  <p><em>5轴正方向：腕部向下俯仰（以机械臂自身坐标系为准）</em></p>
+</div>
+
+<p><strong>6轴（末端旋转）- 正方向参考</strong></p>
+<div align="center">
+  <img src="../images/6轴方向参考.gif" alt="6轴正方向参考" width="400">
+  <p><em>6轴正方向：末端右转（以机械臂自身方向为准）</em></p>
+</div>
+
+<blockquote>
+<p><strong>重要提示</strong>：如果您的机械臂某个轴的运动方向与上述参考方向相反，请按照下面的参数配置方法进行调整。</p>
+</blockquote>
+<h3 id="_16">参数配置<a class="headerlink" href="#_16" title="Permanent link">&para;</a></h3>
+<p><strong>访问方式</strong>
+- 菜单：工具 → 电机参数设置</p>
+<div align="center">
+  <img src="../images/电机参数设置.png" alt="电机参数设置" width="800">
+  <p><em>电机参数设置界面</em></p>
+</div>
+
+<h3 id="_17">默认参数配置<a class="headerlink" href="#_17" title="Permanent link">&para;</a></h3>
+<h4 id="_18">减速比设置<a class="headerlink" href="#_18" title="Permanent link">&para;</a></h4>
+<p>各关节电机的默认减速比配置：</p>
+<table>
+<thead>
+<tr>
+<th>电机ID</th>
+<th>关节名称</th>
+<th>默认减速比</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>基座旋转</td>
+<td>62.0</td>
+<td>基座关节，需要较高精度</td>
+</tr>
+<tr>
+<td>2</td>
+<td>大臂摆动</td>
+<td>51.0</td>
+<td>大臂关节，承载较大负载</td>
+</tr>
+<tr>
+<td>3</td>
+<td>小臂摆动</td>
+<td>51.0</td>
+<td>小臂关节，平衡精度与速度</td>
+</tr>
+<tr>
+<td>4</td>
+<td>腕部旋转</td>
+<td>62.0</td>
+<td>腕部关节，需要较高精度</td>
+</tr>
+<tr>
+<td>5</td>
+<td>腕部俯仰</td>
+<td>12.0</td>
+<td>腕部俯仰，需要较快响应</td>
+</tr>
+<tr>
+<td>6</td>
+<td>末端旋转</td>
+<td>10.0</td>
+<td>末端关节，需要快速调整</td>
+</tr>
+</tbody>
+</table>
+<h4 id="_19">方向设置<a class="headerlink" href="#_19" title="Permanent link">&para;</a></h4>
+<p>各关节电机的默认方向配置：</p>
+<table>
+<thead>
+<tr>
+<th>电机ID</th>
+<th>关节名称</th>
+<th>默认方向</th>
+<th>数值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>基座旋转</td>
+<td>反向</td>
+<td>-1</td>
+<td>逆时针为正方向</td>
+</tr>
+<tr>
+<td>2</td>
+<td>大臂摆动</td>
+<td>反向</td>
+<td>-1</td>
+<td>向下摆动为正方向</td>
+</tr>
+<tr>
+<td>3</td>
+<td>小臂摆动</td>
+<td>正向</td>
+<td>1</td>
+<td>向下摆动为正方向</td>
+</tr>
+<tr>
+<td>4</td>
+<td>腕部旋转</td>
+<td>反向</td>
+<td>-1</td>
+<td>右转为正方向</td>
+</tr>
+<tr>
+<td>5</td>
+<td>腕部俯仰</td>
+<td>正向</td>
+<td>1</td>
+<td>向下俯仰为正方向</td>
+</tr>
+<tr>
+<td>6</td>
+<td>末端旋转</td>
+<td>反向</td>
+<td>-1</td>
+<td>右转为正方向</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_20">参数调整<a class="headerlink" href="#_20" title="Permanent link">&para;</a></h3>
+<h4 id="_21">减速比调整原则<a class="headerlink" href="#_21" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>高精度关节</strong>：基座、腕部旋转使用较高减速比（62.0）</li>
+<li><strong>负载关节</strong>：大臂、小臂使用中等减速比（51.0）</li>
+<li><strong>快速响应关节</strong>：腕部俯仰、末端旋转使用较低减速比（10.0-12.0）</li>
+</ul>
+<h4 id="_22">方向调整方法<a class="headerlink" href="#_22" title="Permanent link">&para;</a></h4>
+<p><strong>步骤1：测试当前方向</strong></p>
+<ol>
+<li>打开"单电机控制"页面</li>
+<li>选择要测试的电机ID（1-6）</li>
+<li>使能电机</li>
+<li>设置小角度（如10°）进行正方向测试</li>
+<li>观察实际运动方向</li>
+</ol>
+<p><strong>步骤2：对比参考标准</strong></p>
+<ul>
+<li>将实际运动方向与上述6轴方向参考GIF对比</li>
+<li>确认是否与标准正方向一致</li>
+</ul>
+<p><strong>步骤3：调整方向参数</strong></p>
+<p>如果运动方向与参考标准相反：</p>
+<ol>
+<li>进入"电机参数设置"</li>
+<li>找到对应电机的方向设置</li>
+<li>将方向从"正向"改为"反向"，或从"反向"改为"正向"</li>
+<li>点击保存设置</li>
+</ol>
+<p><strong>步骤4：验证调整结果</strong></p>
+<ol>
+<li>返回"单电机控制"页面</li>
+<li>点击"重新加载配置"</li>
+<li>重新测试该轴的正方向运动</li>
+<li>确认运动方向与参考标准一致</li>
+</ol>
+<p><strong>方向调整对照表</strong></p>
+<table>
+<thead>
+<tr>
+<th>轴号</th>
+<th>参考正方向</th>
+<th>如果实际相反</th>
+<th>调整方法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1轴</td>
+<td>基座逆时针旋转</td>
+<td>基座顺时针旋转</td>
+<td>正向↔反向切换</td>
+</tr>
+<tr>
+<td>2轴</td>
+<td>大臂向下摆动</td>
+<td>大臂向上摆动</td>
+<td>正向↔反向切换</td>
+</tr>
+<tr>
+<td>3轴</td>
+<td>小臂向下摆动</td>
+<td>小臂向上摆动</td>
+<td>正向↔反向切换</td>
+</tr>
+<tr>
+<td>4轴</td>
+<td>腕部右转（机械臂自身方向）</td>
+<td>腕部左转</td>
+<td>正向↔反向切换</td>
+</tr>
+<tr>
+<td>5轴</td>
+<td>腕部向下俯仰</td>
+<td>腕部向上俯仰</td>
+<td>正向↔反向切换</td>
+</tr>
+<tr>
+<td>6轴</td>
+<td>末端右转（机械臂自身方向）</td>
+<td>末端左转</td>
+<td>正向↔反向切换</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>坐标系说明</strong>：所有方向判断均以机械臂自身坐标系为准，向上就是向上，向下就是向下，不受观察角度影响。</p>
+<p><strong>旋转方向说明</strong>：
+- <strong>左转/右转</strong>：站在机械臂前方观察，左转就是向左旋转，右转就是向右旋转
+- <strong>机械臂自身方向</strong>：以机械臂本身的坐标系为准，不受观察者位置影响
+- 这样的描述比"顺时针/逆时针"更直观易懂</p>
+</blockquote>
+<h3 id="_23">参数保存<a class="headerlink" href="#_23" title="Permanent link">&para;</a></h3>
+<p><strong>自动保存</strong>
+- 参数修改后会自动保存到系统中
+- 下次启动程序时会自动加载之前的设置</p>
+<div align="center">
+  <img src="../images/参数保存.png" alt="参数保存" width="800">
+  <p><em>参数保存</em></p>
+</div>
+
+<h3 id="_24">应用范围<a class="headerlink" href="#_24" title="Permanent link">&para;</a></h3>
+<p><strong>自动应用模块</strong>
+- 保存后自动应用到相关页面：
+  - 单电机控制
+  - 机械臂控制<br />
+  - 示教器
+  - 具身智能
+  - 视觉抓取
+  - 其他相关功能模块</p>
+<p><strong>应用新参数</strong>
+- 修改参数后，需要在相关功能页面点击"重新加载配置"
+- 或重启程序使新参数生效</p>
+<h3 id="_25">使用建议<a class="headerlink" href="#_25" title="Permanent link">&para;</a></h3>
+<p><strong>调试流程</strong></p>
+<ol>
+<li>
+<p><strong>逐个测试</strong>：逐个关节测试运动方向和速度</p>
+</li>
+<li>
+<p><strong>小幅调整</strong>：每次只调整一个参数，观察效果</p>
+</li>
+<li>
+<p><strong>验证效果</strong>：确认调整后的参数符合预期</p>
+</li>
+</ol>
+<p><strong>常见问题</strong></p>
+<ul>
+<li>
+<p><strong>运动方向错误</strong>：调整对应电机的方向参数</p>
+</li>
+<li>
+<p><strong>运动速度异常</strong>：检查减速比设置是否正确</p>
+</li>
+<li>
+<p><strong>精度不足</strong>：适当增加减速比</p>
+</li>
+<li>
+<p><strong>响应过慢</strong>：适当减少减速比</p>
+</li>
+</ul>
+<hr />
+<h2 id="8">8. 示教器<a class="headerlink" href="#8" title="Permanent link">&para;</a></h2>
+<div align="center">
+  <img src="../images/示教器.png" alt="示教器" width="800">
+  <p><em>示教器</em></p>
+</div>
+
+<h3 id="_26">控制模式<a class="headerlink" href="#_26" title="Permanent link">&para;</a></h3>
+<p>支持三种控制模式的智能示教系统，可录制和回放复杂动作序列。</p>
+<p><strong>关节模式</strong>
+- 直接控制每个关节的角度
+- 精确的关节级控制</p>
+<div align="center">
+  <img src="../images/关节模式.png" alt="关节模式" width="800">
+  <p><em>关节模式</em></p>
+</div>
+
+<p><strong>基座模式</strong>
+- 以基座坐标系为参考进行控制
+- 全局坐标系操作</p>
+<div align="center">
+  <img src="../images/基座模式.png" alt="基座模式" width="800">
+  <p><em>基座模式</em></p>
+</div>
+
+<p><strong>工具模式</strong>
+- 以末端工具坐标系为参考进行控制
+- 工具坐标系操作</p>
+<div align="center">
+  <img src="../images/工具模式.png" alt="工具模式" width="800">
+  <p><em>工具模式</em></p>
+</div>
+
+<h3 id="_27">示教编程<a class="headerlink" href="#_27" title="Permanent link">&para;</a></h3>
+<p><strong>轨迹录制</strong>
+- 在各种模式下录制机械臂动作点
+- 支持多点轨迹记录</p>
+<p><strong>动作回放</strong>
+- 按顺序回放录制的动作序列
+- 精确复现示教动作</p>
+<p><strong>参数调节</strong>
+- 速度参数调整
+- 加速度参数设置
+- 插补类型选择</p>
+<p><strong>程序管理</strong>
+- 保存示教程序
+- 加载历史程序
+- 编辑程序内容</p>
+<div align="center">
+  <img src="../images/示教编程.gif" alt="示教编程" width="800">
+  <p><em>示教编程</em></p>
+</div>
+<h3 id="_28">插补类型<a class="headerlink" href="#_28" title="Permanent link">&para;</a></h3>
+<p><strong>关节空间插补</strong>
+- 在关节角度空间进行平滑过渡
+- 保证关节运动的连续性</p>
+<p><strong>笛卡尔空间插补</strong>
+- 在直角坐标空间进行直线插补
+- 支持圆弧插补功能</p>
+<h3 id="_29">动态参数<a class="headerlink" href="#_29" title="Permanent link">&para;</a></h3>
+<p><strong>运动参数</strong>
+- 根据驱动板类型（X/Y版）自动调整
+- 根据插补类型优化参数</p>
+<p><strong>速度控制</strong>
+- 支持线性速度独立设置
+- 支持角速度独立设置</p>
+<p><strong>安全设置</strong>
+- 自动限位检查
+- 碰撞保护机制</p>
+<p><strong>提示</strong>：示教编程支持复杂的多点轨迹录制，适合重复性任务自动化</p>
+<hr />
+<h2 id="9">9. 视觉抓取<a class="headerlink" href="#9" title="Permanent link">&para;</a></h2>
+<h3 id="_30">核心功能<a class="headerlink" href="#_30" title="Permanent link">&para;</a></h3>
+<p>集成双目深度估计的智能视觉抓取系统，实现精确的目标检测和定位。</p>
+<p><strong>实时图像显示</strong>
+- 640x480固定分辨率
+- 确保抓取精度
+- 支持双目相机同步显示</p>
+<p><strong>深度估计</strong>
+- 双目视觉模式（自动计算深度）
+- 固定深度模式（手动设置深度值）
+- 实时深度图显示</p>
+<p><strong>目标检测</strong>
+- HSV颜色阈值检测
+- 圆形检测算法
+- 二维码检测
+- 最小外接矩形检测</p>
+<p><strong>坐标转换</strong>
+- 鼠标点击位置转换
+- 转换为机械臂坐标
+- 支持手眼标定矩阵</p>
+<p><strong>智能抓取</strong>
+- 自动规划抓取轨迹
+- 夹爪控制
+- 姿态自适应调整</p>
+<div align="center">
+  <img src="../images/视觉抓取.png" alt="视觉抓取" width="800">
+  <p><em>视觉抓取</em></p>
+</div>
+
+<h3 id="_31">操作流程<a class="headerlink" href="#_31" title="Permanent link">&para;</a></h3>
+<p><strong>1. 连接相机</strong>
+- 确保相机设备正常连接
+- 设置相机设备ID（默认：0）
+- 检查设备状态</p>
+<p><strong>2. 标定系统</strong>
+- 完成相机标定（获取内参和畸变系数）
+- 完成手眼标定（建立相机与机械臂坐标系关系）</p>
+<p><strong>3. 设置参数</strong>
+- 调整检测参数
+- 配置抓取参数
+- 设置深度估计参数</p>
+<p><strong>4. 目标检测</strong>
+- 在实时图像中识别目标对象
+- 验证检测效果
+- 查看检测结果</p>
+<p><strong>5. 执行抓取</strong>
+- 点击目标执行抓取
+- 或自动执行抓取动作
+- 监控抓取过程</p>
+<div align="center">
+  <img src="../images/配置参数启动相机.gif" alt="配置参数启动相机" width="800">
+  <p><em>配置参数启动相机</em></p>
+</div>
+<h3 id="_32">参数配置<a class="headerlink" href="#_32" title="Permanent link">&para;</a></h3>
+<h4 id="_33">视觉检测参数<a class="headerlink" href="#_33" title="Permanent link">&para;</a></h4>
+<p><strong>颜色检测参数</strong>
+- HSV下限阈值：(0, 100, 100) - 色调/饱和度/明度的最小值
+- HSV上限阈值：(10, 255, 255) - 色调/饱和度/明度的最大值
+- 最小检测面积：500像素 - 过滤小目标
+- 调整方法：根据目标颜色调整H值，根据光照调整S和V值</p>
+<div align="center">
+  <img src="../images/视觉检测参数-颜色.png" alt="视觉检测参数-颜色" width="800">
+  <p><em>视觉检测参数-颜色</em></p>
+</div>
+
+<p><strong>圆形检测参数</strong>
+- 累加器分辨率：1.2 - 检测精度，值越小越精确
+- 圆心最小距离：20像素 - 避免重复检测
+- Canny高阈值：100 - 边缘检测敏感度
+- 累加器阈值：30 - 圆形判定阈值，值越小检测越多
+- 最小半径：5像素
+- 最大半径：200像素</p>
+<div align="center">
+  <img src="../images/视觉检测参数-圆形.png" alt="视觉检测参数-圆形" width="800">
+  <p><em>视觉检测参数-圆形</em></p>
+</div>
+
+<p><strong>二维码检测参数</strong>
+- 自动检测QR码和条形码
+- 支持多种编码格式</p>
+<div align="center">
+  <img src="../images/视觉检测参数-二维码.png" alt="视觉检测参数-二维码" width="800">
+  <p><em>视觉检测参数-二维码</em></p>
+</div>
+
+<h4 id="_34">🤖 抓取控制参数<a class="headerlink" href="#_34" title="Permanent link">&para;</a></h4>
+<p><strong>末端姿态设置（欧拉角）</strong>
+- Yaw角：0.0° - 绕Z轴旋转（航向角）
+- Pitch角：0.0° - 绕Y轴旋转（俯仰角）
+- Roll角：180.0° - 绕X轴旋转（翻滚角）
+- 姿态模式：
+  - 固定姿态：使用设定的固定欧拉角
+  - 动态姿态：Yaw角跟随目标旋转，Pitch/Roll使用设定值</p>
+<p><strong>运动参数</strong>
+- 运动速度：100 - 机械臂运动速度（单位：度/秒或毫米/秒）
+- 运动加速度：200 - 机械臂加速度参数</p>
+<p><strong>TCP修正参数（毫米）</strong>
+- X轴偏移：0.0mm - 工具中心点X方向修正
+- Y轴偏移：0.0mm - 工具中心点Y方向修正
+- Z轴偏移：0.0mm - 工具中心点Z方向修正</p>
+<p><strong>夹爪控制参数</strong>
+- 张开角度：0.0° - 夹爪完全张开时的角度
+- 闭合角度：90.0° - 夹爪完全闭合时的角度</p>
+<div align="center">
+  <img src="../images/抓取控制参数.png" alt="抓取控制参数" width="800">
+  <p><em>抓取控制参数</em></p>
+</div>
+
+<h4 id="_35">深度估计参数<a class="headerlink" href="#_35" title="Permanent link">&para;</a></h4>
+<p><strong>固定深度模式</strong>
+- 固定深度值：300.0mm - 当无法进行双目深度估计时使用</p>
+<p><strong>双目深度参数</strong>
+- 最小视差：0 - 深度计算的起始值
+- 视差范围：128 - 深度检测的范围
+- 匹配精度：5 - 影响深度计算的精确度
+- 可靠性要求：10 - 深度数据的可靠性检查
+- 调整建议：
+  - 视差范围：增大可检测更近的物体
+  - 匹配精度：增大可减少噪声，但会降低细节
+  - 可靠性要求：增大可减少错误的深度数据</p>
+<div align="center">
+  <img src="../images/深度估计参数.png" alt="深度估计参数" width="800">
+  <p><em>深度估计参数</em></p>
+</div>
+
+<h3 id="_36">使用技巧<a class="headerlink" href="#_36" title="Permanent link">&para;</a></h3>
+<p><strong>参数调整建议</strong></p>
+<ol>
+<li>
+<p><strong>光照条件</strong>：确保光照均匀，避免强烈阴影</p>
+</li>
+<li>
+<p><strong>颜色检测</strong>：调整颜色参数时，H值控制颜色种类，S值控制颜色鲜艳度，V值控制亮度</p>
+</li>
+<li>
+<p><strong>深度精度</strong>：双目相机距离越远，深度测量越准确</p>
+</li>
+<li>
+<p><strong>抓取成功率</strong>：正确的工具偏移和姿态设置很重要</p>
+</li>
+</ol>
+<p><strong>常见问题解决</strong>
+- 检测不到目标：调整颜色阈值范围
+- 深度不准确：重新进行双目标定或调整深度参数
+- 抓取位置偏移：检查手眼标定精度和工具偏移设置</p>
+<p><strong>提示</strong>：视觉抓取需要完成相机标定和手眼标定才能获得最佳精度。建议在固定光照条件下进行标定和使用。</p>
+<hr />
+<h2 id="10">10. 具身智能<a class="headerlink" href="#10" title="Permanent link">&para;</a></h2>
+<h3 id="_37">执行模式<a class="headerlink" href="#_37" title="Permanent link">&para;</a></h3>
+<p>通过自然语言指令控制机械臂，支持流式执行和传统执行两种模式。</p>
+<p><strong>流式执行</strong>
+- 边解析边执行
+- 响应更快
+- 适合简单任务</p>
+<p><strong>传统执行</strong>
+- 完整解析后执行
+- 更稳定可靠
+- 适合复杂任务</p>
+<h3 id="_38">功能特性<a class="headerlink" href="#_38" title="Permanent link">&para;</a></h3>
+<p><strong>文本输入</strong>
+- 支持复杂的自然语言指令
+- 智能指令解析</p>
+<p><strong>语音控制</strong>
+- 语音识别转文本执行
+- 实时语音处理</p>
+<p><strong>视觉问答</strong>
+- 结合摄像头画面进行智能对话
+- 视觉理解能力</p>
+<p><strong>任务队列</strong>
+- 支持多任务排队
+- 任务管理功能</p>
+<p><strong>紧急停止</strong>
+- 集成全局紧急停止机制
+- 安全保障</p>
+<h3 id="ai">配置AI服务<a class="headerlink" href="#ai" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p><strong>⚠️ 重要提示</strong>：软件不包含具身智能部分的API密钥，您需要自行获取。</p>
+</blockquote>
+<p><strong>支持的AI平台</strong>
+- 🔷 <strong>阿里云通义千问</strong>（Alibaba Qwen）
+- 🔷 <strong>DeepSeek深度求索</strong></p>
+<p><strong>获取API密钥</strong></p>
+<p>软件不包含内置的AI服务API密钥，您需要：</p>
+<ol>
+<li>自行注册对应平台账号</li>
+<li>获取API密钥</li>
+<li>在软件中配置您的密钥</li>
+</ol>
+<p><strong>详细配置教程</strong>：请查看 <strong><a href="../api_guide/">AI API配置指南</a></strong>，其中包含：
+- 阿里云通义千问注册与API获取教程
+- DeepSeek平台注册与API获取教程
+- 配置文件详细说明
+- 使用技巧与最佳实践
+-  常见问题解决方案</p>
+<h3 id="_39">使用方法<a class="headerlink" href="#_39" title="Permanent link">&para;</a></h3>
+<p><strong>1. 配置AI服务</strong>
+- 参考 <a href="../api_guide/">AI API配置指南</a> 获取API密钥
+- 在"具身智能"标签页设置LLM提供商
+- 配置您的API密钥
+- 选择合适的模型</p>
+<p><strong>2. 选择执行模式</strong>
+- 流式执行模式
+- 传统执行模式</p>
+<p><strong>3. 输入指令</strong>
+- 文字输入任务指令
+- 语音输入任务指令</p>
+<p><strong>4. 监控执行</strong>
+- 观察任务执行过程
+- 查看执行结果</p>
+<p><strong>5. 紧急停止</strong>
+- 必要时使用空格键紧急停止
+- 确保操作安全</p>
+<div align="center">
+  <img src="../images/具身智能系统.png" alt="具身智能系统" width="800">
+  <p><em>具身智能系统</em></p>
+</div>
+
+<h3 id="_40">注意事项<a class="headerlink" href="#_40" title="Permanent link">&para;</a></h3>
+<p><strong>使用前准备</strong>
+- 首次使用需完成AI服务配置（获取API密钥）
+- 确保网络连接稳定
+- 建议先阅读 <a href="../api_guide/">AI API配置指南</a></p>
+<p><strong>执行建议</strong>
+- 复杂任务建议使用传统执行模式
+- 简单任务可使用流式执行模式</p>
+<p><strong>成本控制</strong>
+- API调用会产生费用，请注意用量
+- 建议在测试阶段使用较小的max_tokens参数
+- 定期检查平台的使用统计和费用</p>
+<hr />
+<h2 id="11">11. 相机与标定<a class="headerlink" href="#11" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p><strong>💡 重要提示</strong>：视觉标定是系统的核心功能，详细的标定步骤和技巧请参考 <strong><a href="../calibration_guide/">视觉标定详解指南</a></strong>。</p>
+</blockquote>
+<h3 id="_41">标定工具入口<a class="headerlink" href="#_41" title="Permanent link">&para;</a></h3>
+<p><strong>相机标定</strong>
+- 菜单：工具 → 相机标定
+- 功能：获取相机内参和畸变系数
+- 建议：采集15-20张不同角度的棋盘格图像</p>
+<p><strong>手眼标定</strong><br />
+- 菜单：工具 → 手眼标定
+- 功能：建立相机与机械臂坐标系的变换关系
+- 建议：采集≥10个不同姿态的标定点</p>
+<h3 id="_42">详细标定指南<a class="headerlink" href="#_42" title="Permanent link">&para;</a></h3>
+<p><strong>完整标定流程</strong>请查看：
+- 📖 <strong><a href="../calibration_guide/">视觉标定详解指南</a></strong> - 包含详细步骤、参数优化、常见问题解决</p>
+<p><strong>标定质量直接影响</strong>：
+- 视觉抓取精度
+- AI场景理解准确度<br />
+- 智能控制效果</p>
+<p><strong>建议</strong>：首次使用前务必完成高质量的标定，这是获得最佳使用体验的关键。</p>
+<hr />
+<h2 id="12-joy-con">12. Joy-Con 手柄控制<a class="headerlink" href="#12-joy-con" title="Permanent link">&para;</a></h2>
+<h3 id="_43">核心功能<a class="headerlink" href="#_43" title="Permanent link">&para;</a></h3>
+<p>支持使用 Nintendo Switch Joy-Con 手柄直观控制机械臂，提供沉浸式的操作体验。</p>
+<p><strong>控制模式</strong>
+- <strong>笛卡尔模式</strong>：直接控制末端位置和姿态
+- <strong>关节模式</strong>：精确控制各个关节角度
+- <strong>一键切换</strong>：灵活适应不同操作场景</p>
+<p><strong>主要特性</strong>
+- 🎮 <strong>双手柄协同</strong>：左右手柄分工明确，操作直观
+- ⚡ <strong>实时响应</strong>：50Hz高频控制，运动流畅
+- 🎯 <strong>精确控制</strong>：微调模式+速度调节，精度可控
+- 🛑 <strong>安全保护</strong>：紧急停止、速度限制等安全机制</p>
+<p><strong>快速入门</strong>
+- 📖 <strong>完整指南</strong>：详细的操作说明请参考 <strong><a href="../joycon_control_guide/">Joy-Con手柄控制指南</a></strong>
+- 🎮 <strong>按键映射</strong>：笛卡尔模式和关节模式的完整按键说明
+- 💡 <strong>使用技巧</strong>：提高操作效率的实用技巧</p>
+<p><strong>应用场景</strong>
+- 现场演示和展示
+- 快速示教编程
+- 灵活的手动操作
+- 教学培训场景</p>
+<p><strong>硬件要求</strong>
+- Nintendo Switch 左右 Joy-Con 各一个
+- 电脑蓝牙功能（内置或外置适配器）
+- Windows 10/11 系统</p>
+<div align="center">
+  <img src="../images/手柄控制位置.png" alt="手柄控制位置" width="800">
+  <p><em>手柄控制位置</em></p>
+</div>
+
+<div align="center">
+  <img src="../images/手柄控制界面.png" alt="手柄控制界面" width="800">
+  <p><em>手柄控制界面</em></p>
+</div>
+
+<blockquote>
+<p><strong>提示</strong>：手柄控制功能需要先配对 Joy-Con，详细配置和使用方法请查看专门的手柄控制指南。</p>
+</blockquote>
+<hr />
+<h2 id="13-ros2">13. ROS2控制平台<a class="headerlink" href="#13-ros2" title="Permanent link">&para;</a></h2>
+<h3 id="_44">核心功能<a class="headerlink" href="#_44" title="Permanent link">&para;</a></h3>
+<p>本系统还提供基于ROS2的高级控制平台，为专业用户提供更强大的控制能力。</p>
+<p><strong>分布式控制</strong>
+- 多节点协作架构
+- 话题通信机制
+- 服务调用接口</p>
+<p><strong>运动规划</strong>
+- 集成MoveIt2路径规划
+- 智能避障算法
+- 轨迹优化</p>
+<p><strong>可视化仿真</strong>
+- RViz 3D仿真环境
+- 实时轨迹显示
+- 交互式调试</p>
+<p><strong>编程接口</strong>
+- 标准ROS2话题接口
+- 服务调用接口
+- 参数配置系统</p>
+<h3 id="_45">📦 快速访问<a class="headerlink" href="#_45" title="Permanent link">&para;</a></h3>
+<p><strong>资源链接</strong>
+- 📦 <strong>ROS2仓库</strong>：<a href="https://github.com/RuXue-one/Horizon_ARM_ROS2">https://github.com/RuXue-one/Horizon_ARM_ROS2</a>
+- 📚 <strong>详细文档</strong>：请参阅「ROS2控制平台」文档</p>
+<h3 id="_46">主要特性<a class="headerlink" href="#_46" title="Permanent link">&para;</a></h3>
+<p><strong>架构优势</strong></p>
+<ul>
+<li>
+<p><strong>模块化架构</strong>：清晰的分层设计，易于理解和扩展</p>
+</li>
+<li>
+<p><strong>多控制模式</strong>：支持直接控制、话题通信、运动规划</p>
+</li>
+<li>
+<p><strong>完整可视化</strong>：集成MoveIt2和RViz的3D仿真环境</p>
+</li>
+<li>
+<p><strong>实时控制</strong>：高频率实时控制和轨迹跟踪</p>
+</li>
+</ul>
+<hr />
+<h2 id="14-io">14. IO控制系统<a class="headerlink" href="#14-io" title="Permanent link">&para;</a></h2>
+<h3 id="_47">核心功能<a class="headerlink" href="#_47" title="Permanent link">&para;</a></h3>
+<p>IO控制系统是Horizon具身智能机械臂的外部信号交互模块，通过ESP32微控制器实现数字输入(DI)和数字输出(DO)的控制，支持外部设备触发机械臂作业执行和机械臂状态输出。</p>
+<p><strong>主要特性</strong></p>
+<ul>
+<li>
+<p><strong>外部信号触发</strong>：通过DI信号自动触发预设作业</p>
+</li>
+<li>
+<p><strong>设备联动控制</strong>：通过DO信号控制外部设备</p>
+</li>
+<li>
+<p><strong>生产线集成</strong>：支持与生产线设备的信号交互</p>
+</li>
+<li>
+<p><strong>ESP32微控制器</strong>：稳定可靠的硬件控制平台</p>
+</li>
+</ul>
+<h3 id="_48">硬件配置<a class="headerlink" href="#_48" title="Permanent link">&para;</a></h3>
+<p><strong>数字输入(DI)</strong></p>
+<ul>
+<li>
+<p>8路数字输入：DI0-DI7</p>
+</li>
+<li>
+<p>GPIO引脚：23, 22, 17, 16, 21, 19, 18, 5</p>
+</li>
+<li>
+<p>支持上升沿、下降沿、高电平、低电平触发</p>
+</li>
+<li>
+<p>内部上拉电阻配置</p>
+</li>
+</ul>
+<p><strong>数字输出(DO)</strong></p>
+<ul>
+<li>
+<p>8路数字输出：DO0-DO7</p>
+</li>
+<li>
+<p>GPIO引脚：2, 4, 25, 26, 27, 32, 33, 13</p>
+</li>
+<li>
+<p>3.3V输出电平</p>
+</li>
+<li>
+<p>支持手动控制和程序控制</p>
+</li>
+</ul>
+<h3 id="_49">使用流程<a class="headerlink" href="#_49" title="Permanent link">&para;</a></h3>
+<p><strong>1. 连接ESP32</strong></p>
+<ul>
+<li>
+<p>选择正确的串口（波特率115200）</p>
+</li>
+<li>
+<p>点击"连接"按钮建立通信</p>
+</li>
+</ul>
+<p><strong>2. 配置IO映射</strong></p>
+<ul>
+<li>
+<p>添加DI映射：设置触发方式和关联作业</p>
+</li>
+<li>
+<p>添加DO映射：配置输出控制</p>
+</li>
+<li>
+<p>保存配置文件</p>
+</li>
+</ul>
+<p><strong>3. 创建作业</strong></p>
+<ul>
+<li>
+<p>创建普通作业或导入示教程序</p>
+</li>
+<li>
+<p>添加关节运动、夹爪控制、等待、IO控制等步骤</p>
+</li>
+<li>
+<p>保存作业到配置文件</p>
+</li>
+</ul>
+<p><strong>4. 外部控制模式</strong></p>
+<ul>
+<li>
+<p>进入外部控制模式</p>
+</li>
+<li>
+<p>系统监控DI状态变化</p>
+</li>
+<li>
+<p>自动执行对应作业</p>
+</li>
+</ul>
+<h3 id="_50">应用场景<a class="headerlink" href="#_50" title="Permanent link">&para;</a></h3>
+<p><strong>生产线集成</strong></p>
+<ul>
+<li>
+<p>传感器信号触发抓取动作</p>
+</li>
+<li>
+<p>完成信号输出给下游设备</p>
+</li>
+<li>
+<p>多工位协调控制</p>
+</li>
+</ul>
+<p><strong>自动化流程</strong></p>
+<ul>
+<li>
+<p>按钮触发示教程序执行</p>
+</li>
+<li>
+<p>状态指示灯控制</p>
+</li>
+<li>
+<p>设备启停信号联动</p>
+</li>
+</ul>
+<p><strong>详细说明</strong>：完整的IO控制系统操作指南请参考 <strong><a href="../IO_Control_System/">IO控制系统操作说明</a></strong></p>
+<hr />
+<h2 id="15">15. 数字孪生（可选）<a class="headerlink" href="#15" title="Permanent link">&para;</a></h2>
+<h3 id="_51">仿真功能<a class="headerlink" href="#_51" title="Permanent link">&para;</a></h3>
+<p><strong>功能说明</strong>
+- 如版本提供"数字孪生"页面
+- 可在软件内直接查看仿真
+- 支持滑块交互操作
+- 无需命令行操作</p>
+<p><strong>使用优势</strong>
+- 直观的3D仿真界面
+- 实时交互控制
+- 简化操作流程</p>
+<div align="center">
+  <img src="../images/MuJoCo 仿真.gif" alt="3D仿真" width="800">
+  <p><em>3D仿真</em></p>
+</div>
+
+<hr />
+<h2 id="16">16. 全局安全：紧急停止（必读）<a class="headerlink" href="#16" title="Permanent link">&para;</a></h2>
+<h3 id="_52">全局紧急停止系统<a class="headerlink" href="#_52" title="Permanent link">&para;</a></h3>
+<p>Horizon ARM 1.3版本配备了完整的全局紧急停止系统，确保在任何情况下都能快速停止所有运动。</p>
+<h3 id="_53">触发方式<a class="headerlink" href="#_53" title="Permanent link">&para;</a></h3>
+<p><strong>快捷键操作</strong>
+- 在任意界面按<strong>空格键（Space）</strong>
+- 快速响应，即时生效</p>
+<p><strong>智能识别</strong>
+- 系统自动识别当前焦点
+- 避免在输入框中误触发
+- 智能判断操作环境</p>
+<p><strong>全覆盖保护</strong>
+- 覆盖所有子系统和运动控制
+- 确保全面安全保护</p>
+<h3 id="_54">停止范围<a class="headerlink" href="#_54" title="Permanent link">&para;</a></h3>
+<p>全局紧急停止会依次停止以下系统：</p>
+<p><strong>1. 示教程序线程</strong>
+- 停止正在执行的示教程序
+- 中断程序执行流程</p>
+<p><strong>2. 多电机循环控制</strong>
+- 停止所有循环运动
+- 终止循环控制逻辑</p>
+<p><strong>3. 具身智能系统</strong>
+- 停止任务队列
+- 停止执行线程</p>
+<p><strong>4. 所有电机运动</strong>
+- 尝试紧急停止
+- 失败则降级为普通停止</p>
+<h3 id="_55">安全特性<a class="headerlink" href="#_55" title="Permanent link">&para;</a></h3>
+<p><strong>防误触发</strong>
+- 在文本输入框中按空格不会触发
+- 在数字输入框中按空格不会触发
+- 智能环境识别</p>
+<p><strong>状态反馈</strong>
+- 实时显示停止结果
+- 显示电机状态信息
+- 提供操作反馈</p>
+<p><strong>错误处理</strong>
+- 即使部分电机停止失败
+- 也会继续处理其他电机
+- 确保最大程度保护</p>
+<p><strong>快速响应</strong>
+- 整个停止过程在毫秒级完成
+- 极速响应保障安全</p>
+<h3 id="_56">使用建议<a class="headerlink" href="#_56" title="Permanent link">&para;</a></h3>
+<p><strong>硬件保护</strong>
+- 建议配备物理急停按钮作为硬件保护
+- 双重安全保障</p>
+<p><strong>软件补充</strong>
+- 空格键软件急停作为便捷补充
+- 随时随地可用</p>
+<p><strong>定期测试</strong>
+- 定期测试紧急停止功能
+- 确保功能有效性</p>
+<blockquote>
+<p><strong>重要提示</strong>：紧急停止是最重要的安全功能，使用前务必熟悉操作方法</p>
+</blockquote>
+<div style="display: flex; justify-content: space-between; align-items: center; margin: 30px 0;">
+  <img src="../images/紧急停止（未触发）.png" alt="紧急停止（未触发）" style="width: 50%; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+  <img src="../images/紧急停止（已触发）.png" alt="紧急停止（已触发）" style="width: 50%; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+</div>
+
+<hr />
+<h2 id="17">17. 单电机控制<a class="headerlink" href="#17" title="Permanent link">&para;</a></h2>
+<h3 id="_57">基础控制<a class="headerlink" href="#_57" title="Permanent link">&para;</a></h3>
+<p>适合先验证通信与基础动作。</p>
+<p><strong>基本步骤</strong>
+- 菜单"电机控制 → 单电机控制"或 Ctrl+1 打开
+- 窗口中选择要控制的电机ID</p>
+<p><strong>常用操作</strong></p>
+<pre><code>- 使能/失能
+- 停止
+- 位置控制（绝对/相对）
+- 速度控制  
+- 力矩/电流设置
+- 读取状态（位置、速度、温度、电压、电流、到位状态等）
+</code></pre>
+<div align="center">
+  <img src="../images/单电机控制.png" alt="单电机控制" width="800">
+  <p><em>单电机控制</em></p>
+</div>
+
+<h3 id="_58">🔄 循环运动配置<a class="headerlink" href="#_58" title="Permanent link">&para;</a></h3>
+<p><strong>动作步骤设置</strong>
+- 可配置 5 步动作序列
+- 每步包含以下参数：
+  - 位置角度设置
+  - 最大速度配置
+  - 加速度参数
+  - 减速度参数
+  - 运动方向（CW/CCW）
+  - 绝对/相对位置模式</p>
+<div align="center">
+  <img src="../images/单电机循环.gif" alt="单电机循环" width="800">
+  <p><em>单电机循环</em></p>
+</div>
+
+<h4 id="_59">默认循环动作参数<a class="headerlink" href="#_59" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>步骤</th>
+<th>位置角度(°)</th>
+<th>最大速度(RPM)</th>
+<th>加速度(RPM/s)</th>
+<th>减速度(RPM/s)</th>
+<th>方向</th>
+<th>位置模式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>360.0</td>
+<td>500.0</td>
+<td>1000</td>
+<td>1000</td>
+<td>CW</td>
+<td>相对位置</td>
+</tr>
+<tr>
+<td>2</td>
+<td>360.0</td>
+<td>600.0</td>
+<td>1200</td>
+<td>1200</td>
+<td>CCW</td>
+<td>相对位置</td>
+</tr>
+<tr>
+<td>3</td>
+<td>180.0</td>
+<td>700.0</td>
+<td>1400</td>
+<td>1400</td>
+<td>CW</td>
+<td>相对位置</td>
+</tr>
+<tr>
+<td>4</td>
+<td>180.0</td>
+<td>800.0</td>
+<td>1600</td>
+<td>1600</td>
+<td>CCW</td>
+<td>相对位置</td>
+</tr>
+<tr>
+<td>5</td>
+<td>90.0</td>
+<td>500.0</td>
+<td>1000</td>
+<td>1000</td>
+<td>CW</td>
+<td>相对位置</td>
+</tr>
+</tbody>
+</table>
+<h4 id="_60">参数说明<a class="headerlink" href="#_60" title="Permanent link">&para;</a></h4>
+<p><strong>位置角度</strong>
+- 单位：度(°)
+- 相对位置：相对于当前位置的移动角度
+- 绝对位置：移动到指定的绝对角度位置</p>
+<p><strong>速度参数</strong>
+- 最大速度：电机运行的最高转速(RPM)
+- 建议范围：100-1000 RPM
+- 过高可能导致失步，过低影响效率</p>
+<p><strong>加速度参数</strong>
+- 加速度/减速度：电机启动和停止的加速度(RPM/s)
+- 建议范围：500-2000 RPM/s
+- 影响运动的平滑性和响应速度</p>
+<p><strong>运动方向</strong>
+- CW：顺时针方向
+- CCW：逆时针方向
+- 实际方向受电机方向参数影响</p>
+<p><strong>时间控制</strong>
+- 动作间隔时间：默认1000ms
+- 可设置每个动作之间的等待时间
+- 点击"开始循环运动"后按顺序执行</p>
+<p><strong>安全控制</strong>
+- 随时可"停止循环"
+- 支持"紧急停止"功能
+- 空格键全局紧急停止</p>
+<h3 id="_61">使用技巧<a class="headerlink" href="#_61" title="Permanent link">&para;</a></h3>
+<p><strong>参数调整建议</strong></p>
+<ol>
+<li>
+<p><strong>首次使用</strong>：使用默认参数进行测试</p>
+</li>
+<li>
+<p><strong>速度调整</strong>：根据负载和精度要求调整速度</p>
+</li>
+<li>
+<p><strong>加速度调整</strong>：根据机械特性调整加速度</p>
+</li>
+<li>
+<p><strong>角度设置</strong>：根据实际应用需求设置运动角度</p>
+</li>
+</ol>
+<p><strong>安全注意事项</strong>
+- 首次运行前检查机械臂工作空间
+- 确保没有障碍物阻挡运动路径
+- 准备随时使用紧急停止功能</p>
+<p><strong>安全提示</strong>：建议先小角度、低速度进行验证；异常情况请立即停止。</p>
+<p><strong>使用建议</strong>
+- 先做小角度、低速度动作
+- 确认方向/减速比设置正确</p>
+<hr />
+<h2 id="18">18. 多电机控制<a class="headerlink" href="#18" title="Permanent link">&para;</a></h2>
+<h3 id="_62">同步控制<a class="headerlink" href="#_62" title="Permanent link">&para;</a></h3>
+<p>面向同步/批量操作。窗口包含"同步控制 / 批量操作 / 循环控制 / 回零参数设置 / 状态监控"等标签。</p>
+<p><strong>常用场景</strong></p>
+<p><strong>同步控制</strong>
+- 为多台电机设置目标（直通/梯形/速度等）
+- 发送带同步标志命令
+- 系统自动处理同步触发信号</p>
+<p><strong>批量操作</strong>
+- 批量使能/失能
+- 批量停止</p>
+<p><strong>循环控制</strong>
+- 配置每台电机的动作序列，循环执行</p>
+<p><strong>状态监控</strong>
+- 周期读取各电机状态，显示是否在线、当前角度/速度等</p>
+<div align="center">
+  <img src="../images/多电机控制.png" alt="多电机控制" width="800">
+  <p><em>多电机控制</em></p>
+</div>
+
+<h4 id="_63">多电机循环控制默认参数<a class="headerlink" href="#_63" title="Permanent link">&para;</a></h4>
+<p>每个电机的默认循环动作配置：</p>
+<table>
+<thead>
+<tr>
+<th>步骤</th>
+<th>位置角度(°)</th>
+<th>最大速度(RPM)</th>
+<th>加速度(RPM/s)</th>
+<th>减速度(RPM/s)</th>
+<th>方向</th>
+<th>位置模式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>45.0</td>
+<td>800.0</td>
+<td>400</td>
+<td>400</td>
+<td>CW</td>
+<td>相对位置</td>
+</tr>
+<tr>
+<td>2</td>
+<td>45.0</td>
+<td>800.0</td>
+<td>400</td>
+<td>400</td>
+<td>CCW</td>
+<td>相对位置</td>
+</tr>
+<tr>
+<td>3</td>
+<td>45.0</td>
+<td>800.0</td>
+<td>400</td>
+<td>400</td>
+<td>CCW</td>
+<td>相对位置</td>
+</tr>
+<tr>
+<td>4</td>
+<td>45.0</td>
+<td>800.0</td>
+<td>400</td>
+<td>400</td>
+<td>CW</td>
+<td>相对位置</td>
+</tr>
+<tr>
+<td>5</td>
+<td>0.0</td>
+<td>800.0</td>
+<td>400</td>
+<td>400</td>
+<td>CW</td>
+<td>绝对位置</td>
+</tr>
+</tbody>
+</table>
+<h4 id="_64">同步控制说明<a class="headerlink" href="#_64" title="Permanent link">&para;</a></h4>
+<p><strong>同步原理</strong>
+- X版：同步标志 + 广播触发模式
+- Y版：多电机命令一次性下发模式
+- 确保多电机协调运动</p>
+<p><strong>同步设置步骤</strong></p>
+<ol>
+<li>
+<p><strong>连接电机</strong>：确保所有目标电机已正确连接</p>
+</li>
+<li>
+<p><strong>使能电机</strong>：批量使能所有参与同步的电机</p>
+</li>
+<li>
+<p><strong>设置目标</strong>：为每台电机设置运动目标参数</p>
+</li>
+<li>
+<p><strong>发送同步命令</strong>：系统自动处理同步标志和触发</p>
+</li>
+<li>
+<p><strong>监控执行</strong>：观察所有电机的同步运动状态</p>
+</li>
+</ol>
+<p><strong>状态监控参数</strong>
+- 刷新频率：默认100ms
+- 监控内容：位置、速度、温度、电压、电流
+- 在线状态：实时显示电机连接状态
+- 到位状态：显示电机是否到达目标位置</p>
+<h3 id="_65">使用技巧<a class="headerlink" href="#_65" title="Permanent link">&para;</a></h3>
+<p><strong>同步控制建议</strong></p>
+<ol>
+<li>
+<p><strong>预备工作</strong>：同步前确认所有电机已使能</p>
+</li>
+<li>
+<p><strong>参数检查</strong>：确保各电机参数设置合理</p>
+</li>
+<li>
+<p><strong>逐步测试</strong>：先进行小幅度同步测试</p>
+</li>
+<li>
+<p><strong>监控状态</strong>：实时观察电机状态和响应</p>
+</li>
+</ol>
+<p><strong>故障排除</strong></p>
+<ul>
+<li>
+<p><strong>同步失败</strong>：检查电机ID是否唯一</p>
+</li>
+<li>
+<p><strong>运动不协调</strong>：检查各电机的减速比和方向设置</p>
+</li>
+<li>
+<p><strong>通信异常</strong>：检查CAN总线连接和波特率设置</p>
+</li>
+</ul>
+<p><strong>小贴士</strong>
+- 同步前确认所有电机已使能，且已成功读取过状态
+- 同步失败时，优先检查 ID 是否唯一、是否设置了同步标志以及是否发送了广播触发
+- 建议在同步控制前先用单电机控制验证各电机工作正常</p>
+<hr />
+<h2 id="19">19. 快捷键<a class="headerlink" href="#19" title="Permanent link">&para;</a></h2>
+<h3 id="_66">连接相关<a class="headerlink" href="#_66" title="Permanent link">&para;</a></h3>
+<p><strong>连接操作</strong>
+- <strong>连接电机</strong>：Ctrl+E
+- <strong>断开连接</strong>：Ctrl+D</p>
+<h3 id="_67">控制相关<a class="headerlink" href="#_67" title="Permanent link">&para;</a></h3>
+<p><strong>控制功能</strong>
+- <strong>单电机控制</strong>：Ctrl+1
+- <strong>多电机控制</strong>：Ctrl+2
+- <strong>全局紧急停止</strong>：空格键（Space）</p>
+<h3 id="_68">使用说明<a class="headerlink" href="#_68" title="Permanent link">&para;</a></h3>
+<p><strong>通用快捷键</strong>
+- F1/保存/打开等通用快捷键以当前 Windows/编辑器为准
+- 本程序未绑定 Esc 急停功能
+- 建议使用空格键进行紧急停止</p>
+<hr />
+<h2 id="20">20. 常见问题与排查<a class="headerlink" href="#20" title="Permanent link">&para;</a></h2>
+<h3 id="_69">连接失败/无响应<a class="headerlink" href="#_69" title="Permanent link">&para;</a></h3>
+<p><strong>检查项目</strong>
+- 是否选对串口（设备管理器确认）？
+- 波特率 500000、CAN 速率 500K 是否匹配？
+- 电机是否上电、ID 唯一？
+- 是否被其他程序占用串口（如 CANgaroo）？</p>
+<h3 id="_70">多机同步不工作<a class="headerlink" href="#_70" title="Permanent link">&para;</a></h3>
+<p><strong>检查项目</strong>
+- 是否对每台电机发送了"带同步标志"的命令？
+- 是否发送了广播同步触发（ID=0，00 FF 66 6B）？
+- 所有电机是否都已使能且能读取状态？</p>
+<h3 id="_71">状态读取不稳定<a class="headerlink" href="#_71" title="Permanent link">&para;</a></h3>
+<p><strong>解决方法</strong>
+- 检查 USB 线缆与接口
+- 仅保留本程序占用 CAN/串口
+- 降低读取频率（状态监控标签中调整）</p>
+<h3 id="_72">位置角度异常/方向不一致<a class="headerlink" href="#_72" title="Permanent link">&para;</a></h3>
+<p><strong>解决方法</strong>
+- 在"电机参数设置"里校正减速比与方向
+- 小范围、低速度试动，确认后再进行大幅度动作</p>
+<h3 id="_73">数字孪生显示异常<a class="headerlink" href="#_73" title="Permanent link">&para;</a></h3>
+<p><strong>解决方法</strong>
+- 检查显卡/驱动兼容性
+- 尝试更新或更换电脑</p>
+<hr />
+<h2 id="21">21. 快速参考<a class="headerlink" href="#21" title="Permanent link">&para;</a></h2>
+<h3 id="_74">文档导航<a class="headerlink" href="#_74" title="Permanent link">&para;</a></h3>
+<p><strong>入门文档</strong></p>
+<ul>
+<li>
+<p>🚀 <a href="../first_time_setup/">首次使用</a> - 开箱到首次运行</p>
+</li>
+<li>
+<p>📖 <a href="./">用户指南</a> - 软件功能完整说明（本文档）</p>
+</li>
+</ul>
+<p><strong>功能文档</strong></p>
+<ul>
+<li>
+<p>📷 <a href="../calibration_guide/">视觉标定详解</a> - 相机和手眼标定</p>
+</li>
+<li>
+<p>🎮 <a href="../joycon_control_guide/">Joy-Con手柄控制</a> - 手柄操作指南</p>
+</li>
+<li>
+<p>🔌 <a href="../IO_Control_System/">IO控制系统</a> - 外部信号控制</p>
+</li>
+<li>
+<p>🤖 <a href="../api_guide/">AI API配置指南</a> - 获取和配置AI服务密钥</p>
+</li>
+</ul>
+<p><strong>进阶文档</strong></p>
+<ul>
+<li>
+<p>🤖 <a href="../ros2_guide/">ROS2控制平台</a> - 高级开发平台</p>
+</li>
+<li>
+<p>🆘 <a href="../troubleshooting/">故障排除</a> - 问题诊断和解决</p>
+</li>
+</ul>
+<p><strong>控制方式对比</strong></p>
+<table>
+<thead>
+<tr>
+<th>控制方式</th>
+<th>适用场景</th>
+<th>优势</th>
+<th>学习难度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>软件界面</strong></td>
+<td>精确控制、参数调试</td>
+<td>功能全面、参数可视化</td>
+<td>⭐⭐</td>
+</tr>
+<tr>
+<td><strong>Joy-Con手柄</strong></td>
+<td>演示、示教、灵活操作</td>
+<td>直观、便携、响应快</td>
+<td>⭐</td>
+</tr>
+<tr>
+<td><strong>ROS2平台</strong></td>
+<td>研究开发、复杂规划</td>
+<td>功能强大、扩展性强</td>
+<td>⭐⭐⭐⭐</td>
+</tr>
+<tr>
+<td><strong>IO控制</strong></td>
+<td>生产线集成、自动化</td>
+<td>自动触发、设备联动</td>
+<td>⭐⭐⭐</td>
+</tr>
+<tr>
+<td><strong>具身智能</strong></td>
+<td>AI交互、自然控制</td>
+<td>语言控制、智能理解</td>
+<td>⭐</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="_75">结语<a class="headerlink" href="#_75" title="Permanent link">&para;</a></h2>
+<h3 id="_76">使用建议<a class="headerlink" href="#_76" title="Permanent link">&para;</a></h3>
+<p><strong>安全第一</strong>
+- 先小角度、慢速度进行测试
+- 多用空格键进行紧急停止
+- 确保操作安全</p>
+<p><strong>循序渐进</strong>
+- 从单电机控制开始熟悉
+- 逐步掌握多电机同步
+- 最后进行复杂任务操作</p>
+<p><strong>定期维护</strong>
+- 定期检查连接状态
+- 保持软件更新
+- 备份重要配置</p>
+<hr />
+<p><strong>祝你使用顺利！</strong> 🚀</p>
+<hr />
+<div align="center" style="margin: 30px 0; padding: 20px; background-color: #f8f9fa; border-radius: 10px;">
+<p style="font-size: 14px; color: #6c757d; margin: 0;">
+<strong>Horizon Arm 用户指南</strong> | 让机械臂使用更简单<br>
+© 2025 Horizon Arm • 智能、灵活、易用
+</p>
+</div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../first_time_setup/" class="btn btn-neutral float-left" title="首次使用"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../calibration_guide/" class="btn btn-neutral float-right" title="视觉标定详解">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../first_time_setup/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../calibration_guide/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

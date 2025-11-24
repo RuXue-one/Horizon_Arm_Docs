@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Horizon_Arm Team" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>首次使用 - Horizon_Arm 文档</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "\u9996\u6b21\u4f7f\u7528";
+        var mkdocs_page_input_path = "first_time_setup.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Horizon_Arm 文档
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">首页</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">首次使用</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#_2">开箱检查</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_3">硬件安装</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#1">1. 固定机械臂底座</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#2">2. 连接电源</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_4">机械臂断电操作规范</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#3">3. 软件环境配置</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#conda">配置 Conda 环境</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_5">启动程序</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_6">快速参考命令</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_7">第一步：连接机械臂</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_8">连接步骤</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_9">连接失败处理</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_10">第二步：设置零位</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_11">为什么要设置零位？</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_12">设置步骤</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_13">重要说明</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_14">第三步：检查运动方向</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_15">检查方法</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_16">完成设置</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_17">安全注意事项</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_18">快速导航</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../user_guide/">用户指南</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../calibration_guide/">视觉标定详解</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../joycon_control_guide/">Joy-Con手柄控制</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../IO_Control_System/">IO控制系统</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../api_guide/">AI API配置指南</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../ros2_guide/">ROS2控制平台</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../activation/">序列号与激活</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../troubleshooting/">故障排除</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Horizon_Arm 文档</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">首次使用</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="_1">首次使用<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p>本文档将引导您完成 Horizon Arm 机械臂的首次设置和使用。</p>
+</blockquote>
+<hr />
+<h2 id="_2">开箱检查<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>收到机械臂后，请先检查包装内物品是否齐全：</p>
+<p><strong>标准配件清单</strong></p>
+<ol>
+<li>电源适配器 × 1</li>
+<li>Type-C 数据线 × 1</li>
+<li>机械臂本体 × 1</li>
+</ol>
+<div align="center">
+  <img src="../images/开箱.png" alt="开箱检查" width="800">
+  <p><em>开箱检查</em></p>
+</div>
+
+<blockquote>
+<p><strong>⚠️ 重要提示</strong>：
+- 因为是定制包装，机械臂会卡得比较紧，需要小心取出，不要暴力开箱
+- 不要用手触摸相机镜头，避免影响视觉功能</p>
+</blockquote>
+<hr />
+<h2 id="_3">硬件安装<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<h3 id="1">1. 固定机械臂底座<a class="headerlink" href="#1" title="Permanent link">&para;</a></h3>
+<p>取出机械臂后需要将底座固定，否则机械臂回零时可能不稳。</p>
+<h3 id="2">2. 连接电源<a class="headerlink" href="#2" title="Permanent link">&para;</a></h3>
+<p><strong>连接步骤</strong>：</p>
+<ol>
+<li>
+<p>打开装有电源的盒子，取出电源适配器</p>
+</li>
+<li>
+<p>将电源适配器连接到插座通电</p>
+</li>
+<li>
+<p>另一端接机械臂底座后面的 DC 供电口</p>
+</li>
+<li>
+<p>摆动机械臂调整至"标准姿势"，确保平稳立在桌面上</p>
+</li>
+<li>
+<p>打开底座后方的电源开关，机械臂通电</p>
+</li>
+</ol>
+<div align="center">
+  <img src="../images/底座开关.png" alt="底座开关" width="800">
+  <p><em>底座开关位置</em></p>
+</div>
+
+<p><strong>⚠️ 安全提示</strong>：</p>
+<h3 id="_4">机械臂断电操作规范<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<p><strong>禁止操作</strong>：</p>
+<p>机械臂在通电运行状态下，<span style="color: red; font-weight: bold;"><strong>严禁直接拔掉基座后面的电源线</strong></span>。工作环境应保持整洁，避免因拉扯、拖拽导致电源线意外脱落。</p>
+<p><strong>非正常断电的严重后果</strong>：</p>
+<ol>
+<li>
+<p><strong>机械臂末端砸落</strong><br />
+   瞬间断电会导致机械臂失去动力支撑，末端会因重力快速下坠，极易砸坏相机、夹爪等精密模块。</p>
+</li>
+<li>
+<p><strong>回零参数异常</strong><br />
+   瞬时断电可能导致机械臂回零参数丢失或错乱，重新通电后回零位置可能偏离标准位置，影响后续操作精度。</p>
+</li>
+<li>
+<p><strong>电源系统故障</strong><br />
+   非正常断电可能导致各轴电机的供电逻辑异常，电机会错误地将内部电池识别为主要电源，即使重新通电，机械臂仍处于失能状态。此时需要<strong>手动拆开各轴外壳，逐个重新插拔电池</strong>才能恢复正常。</p>
+</li>
+</ol>
+<p><span style="color: red; font-weight: bold;"><strong>正确断电流程</strong>：</span></p>
+<ol>
+<li><strong>扶住机身</strong>：断电前用手扶住机械臂，防止失能后砸落</li>
+<li><strong>手动关闭开关</strong>：在基座后面手动关闭电源开关</li>
+<li><strong>确认断电</strong>：等待指示灯熄灭，确认完全断电</li>
+</ol>
+<blockquote>
+<p><strong>💡 温馨提示</strong>：<br />
+养成良好的断电习惯，可以有效延长机械臂使用寿命，避免不必要的维修成本。</p>
+</blockquote>
+<p><strong>售后说明</strong>：</p>
+<p>因人为操作不当（如非正常断电、暴力操作等）导致的机械臂末端夹爪、相机或机械臂整体部件损坏，<strong>不受理退货</strong>，仅支持<strong>自费维修</strong>。</p>
+<p>如果出现通电机械臂无法直立，查看第四周电机后盖指示灯-绿-常亮，此时就要重新插拔电池，那几轴有问题就重新插拔那几轴的电池，具体电机电池位置参考图。</p>
+<div align="center">
+  <img src="../images/电机位置特写图.png" alt="电机位置特写图" width="800">
+  <p><em>电机位置特写图</em></p>
+</div>
+
+<h3 id="3">3. 软件环境配置<a class="headerlink" href="#3" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p><strong>📚 Anaconda 安装教程</strong>：如果还未安装 Anaconda，请参考：<br />
+<a href="https://blog.csdn.net/2301_78094861/article/details/139964362">Anaconda安装与配置完整教程</a></p>
+</blockquote>
+<h4 id="conda">配置 Conda 环境<a class="headerlink" href="#conda" title="Permanent link">&para;</a></h4>
+<p><strong>1. 打开 Anaconda Prompt</strong> </p>
+<p>从开始菜单搜索并打开 <strong>Anaconda Prompt</strong></p>
+<p><strong>2. 配置镜像源（推荐，加速下载）</strong></p>
+<pre><code class="language-bash">conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main
+conda config --set show_channel_urls yes
+pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
+</code></pre>
+<p><strong>3. 切换到软件目录</strong></p>
+<pre><code class="language-bash">cd /d E:\Embodied_AI_Arm
+</code></pre>
+<p style="color: red; font-weight: bold;">将路径替换为你的实际软件目录</p>
+
+<p><strong>4. 创建虚拟环境</strong></p>
+<pre><code class="language-bash">conda create -n Embodied_AI_Arm python=3.12
+</code></pre>
+<p>提示时输入 <code>y</code> 确认</p>
+<p><strong>5. 激活环境</strong></p>
+<pre><code class="language-bash">conda activate Embodied_AI_Arm
+</code></pre>
+<p>成功后命令行前显示 <code>(Embodied_AI_Arm)</code></p>
+<p><strong>6. 安装依赖包</strong></p>
+<pre><code class="language-bash">pip install -r requirements.txt
+</code></pre>
+<h4 id="_5">启动程序<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h4>
+<p><strong>每次启动前，确保已激活环境</strong>：</p>
+<pre><code class="language-bash">conda activate Embodied_AI_Arm
+</code></pre>
+<p><strong>启动方式</strong>：</p>
+<pre><code class="language-bash">python run_gui.py
+</code></pre>
+<p>或直接双击 <code>run_gui.py</code> 文件</p>
+<h4 id="_6">快速参考命令<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h4>
+<pre><code class="language-bash"># 激活环境
+conda activate Embodied_AI_Arm
+
+# 切换到软件目录
+cd /d E:\Embodied_AI_Arm
+
+# 启动程序
+python run_gui.py
+</code></pre>
+<hr />
+<h2 id="_7">第一步：连接机械臂<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<h3 id="_8">连接步骤<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<p><strong>1. 打开连接菜单</strong></p>
+<p>菜单栏选择：连接 → 连接电机</p>
+<p><strong>2. 配置连接参数</strong></p>
+<p>在弹出的对话框中设置：</p>
+<ul>
+<li><strong>串口</strong>：选择实际端口（如 <code>COM8</code>）</li>
+<li><strong>波特率</strong>：保持 <code>500000</code>（与驱动板配置一致）</li>
+<li><strong>电机 ID</strong>：点击"机械臂(1..6)"快速填入</li>
+</ul>
+<p><strong>3. 开始连接</strong></p>
+<p>点击"确定"按钮，系统将：
+- 逐一连接每个电机 ID
+- 验证通信状态
+- 读取电机信息</p>
+<p><strong>4. 连接成功</strong></p>
+<p>连接成功后：
+- 状态栏显示"已连接 6 个电机"
+- 所有控制功能自动激活
+- 可以开始使用机械臂</p>
+<div align="center">
+  <img src="../images/电机连接.gif" alt="连接电机" width="800">
+  <p><em>连接电机操作演示</em></p>
+</div>
+
+<h3 id="_9">连接失败处理<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
+<p><strong>常见失败原因</strong>：</p>
+<ul>
+<li>串口被其他程序占用</li>
+<li>波特率或 CAN 速率不匹配</li>
+<li>电机未上电</li>
+<li>电机 ID 设置错误</li>
+</ul>
+<p>系统会提示失败的电机 ID 和具体错误信息。</p>
+<div align="center">
+  <img src="../images/6.png" alt="常见错误" width="800">
+  <p><em>常见错误示例：串口选择错误</em></p>
+</div>
+
+<p><strong>如需断开连接</strong>：菜单栏选择"连接 → 断开连接"</p>
+<hr />
+<h2 id="_10">第二步：设置零位<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
+<h3 id="_11">为什么要设置零位？<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h3>
+<p>机械臂需要一个准确的零位参考点，才能保证运动精度和重复定位精度。</p>
+<div align="center">
+  <img src="../images/机械臂标准姿势参考.png" alt="机械臂标准姿势参考" width="800">
+  <p><em>机械臂标准姿势参考</em></p>
+</div>
+
+<h3 id="_12">设置步骤<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h3>
+<p><strong>1. 调整机械臂至标准姿势</strong></p>
+<p><span style="color: red; font-weight: bold;">- 手动关闭机械臂电源开关</span></p>
+<p><span style="color: red; font-weight: bold;">- 调整机械臂为大致标准位置</span></p>
+<p><span style="color: red; font-weight: bold;">- 手动对齐机械臂外壳上的刻度线</span></p>
+<div align="center">
+  <img src="../images/刻度线.png" alt="刻度线参考" width="800">
+  <p><em>机械臂刻度线参考</em></p>
+</div>
+
+<p><strong>2. 初步设置零位</strong></p>
+<ul>
+<li>在首页左下角点击"刷新状态"</li>
+<li>点击"设置当前为零位"按钮</li>
+</ul>
+<p><span style="color: red; font-weight: bold;">注意：一开始一定要先直接设置机械臂为零位，如果不设置，直接点击微调机械臂会直接转动到记录的对应位置，可能会让机械臂受损。</span></p>
+<p><strong>3. 精确微调</strong></p>
+<ul>
+<li>在首页左下角使用"微调"功能</li>
+<li>手动调整各轴位置，精确对齐标准刻度线</li>
+<li>再次点击"设置当前为零位"按钮</li>
+</ul>
+<div align="center">
+  <img src="../images/首页.png" alt="首页微调功能" width="800">
+  <p><em>首页左下角微调功能</em></p>
+</div>
+
+<p><strong>4. 验证标准姿势</strong></p>
+<p>参考下图再次确认确认机械臂姿势是否正确：</p>
+<div align="center">
+  <img src="../images/机械臂标准姿势参考.png" alt="机械臂标准姿势参考" width="800">
+  <p><em>机械臂标准姿势参考</em></p>
+</div>
+
+<h3 id="_13">重要说明<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h3>
+<p><span style="color: red; font-weight: bold;">- 设置完成后，机械臂会记录当前位置，断电后不会丢失</span></p>
+<p><span style="color: red; font-weight: bold;">- 如果非正常断电（直接拔线或碰撞），下次回零位置可能不准</span></p>
+<p><span style="color: red; font-weight: bold;">- 务必通过电源开关正常关机</span></p>
+<hr />
+<h2 id="_14">第三步：检查运动方向<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h2>
+<p>设置好零位后，需要检查各轴旋转方向是否正确。</p>
+<h3 id="_15">检查方法<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h3>
+<p>详细的检查方法和标准请参照：<a href="../user_guide/#6_1">用户指南 - 电机参数设置 - 6轴运动方向参考标准</a></p>
+<h3 id="_16">完成设置<a class="headerlink" href="#_16" title="Permanent link">&para;</a></h3>
+<p>检查并调整完运动方向后，机械臂即可正常使用！</p>
+<hr />
+<h2 id="_17">安全注意事项<a class="headerlink" href="#_17" title="Permanent link">&para;</a></h2>
+<p><span style="color: red; font-weight: bold;"><strong>使用前必读</strong>：</span></p>
+<ol>
+<li><strong>工作范围限制</strong></li>
+<li>机械臂各轴已设置好对应工作范围</li>
+<li>
+<p>请勿随意修改，防止机械臂碰撞</p>
+</li>
+<li>
+<p><strong>紧急停止</strong></p>
+</li>
+<li>任何界面按空格键可触发全局急停</li>
+<li>
+<p>遇到异常情况立即使用</p>
+</li>
+<li>
+<p><strong>正常关机</strong></p>
+</li>
+<li>务必通过电源开关正常关机</li>
+<li>
+<p>不要直接拔线断电</p>
+</li>
+<li>
+<p><strong>定期检查</strong></p>
+</li>
+<li>定期检查零位是否准确</li>
+<li>发现偏移及时重新设置</li>
+</ol>
+<hr />
+<h2 id="_18">快速导航<a class="headerlink" href="#_18" title="Permanent link">&para;</a></h2>
+<p>完成首次设置后，建议按以下文档继续学习和使用（所有链接均已校验可正常跳转）：</p>
+<ul>
+<li><strong>用户操作</strong>：查看 <a href="../user_guide/">用户指南</a> 了解完整功能和界面说明</li>
+<li><strong>视觉标定</strong>：参考 <a href="../calibration_guide/">视觉标定详解</a> 完成相机与手眼标定</li>
+<li><strong>ROS2 开发</strong>：进入 <a href="../ros2_guide/">ROS2控制平台</a> 进行进阶开发与二次开发</li>
+<li><strong>手柄控制</strong>：学习 <a href="../joycon_control_guide/">Joy-Con手柄控制</a> 进行手动操作</li>
+<li><strong>IO 控制</strong>：查阅 <a href="../IO_Control_System/">IO控制系统操作说明</a> 实现外部信号联动</li>
+<li><strong>AI 配置</strong>：根据 <a href="../api_guide/">AI API配置指南</a> 完成具身智能相关配置</li>
+<li><strong>故障排查</strong>：访问 <a href="../troubleshooting/">故障排除</a> 解决常见问题</li>
+</ul>
+<hr />
+<div align="center" style="margin: 30px 0; padding: 20px; background-color: #f8f9fa; border-radius: 10px;">
+<p style="font-size: 14px; color: #6c757d; margin: 0;">
+<strong>Horizon Arm 首次使用</strong> | 快速上手，轻松开始<br>
+© 2025 Horizon Arm
+</p>
+</div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href=".." class="btn btn-neutral float-left" title="首页"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../user_guide/" class="btn btn-neutral float-right" title="用户指南">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href=".." style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../user_guide/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

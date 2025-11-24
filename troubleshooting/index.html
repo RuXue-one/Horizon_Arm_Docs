@@ -1,0 +1,1434 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Horizon_Arm Team" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>故障排除 - Horizon_Arm 文档</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "\u6545\u969c\u6392\u9664";
+        var mkdocs_page_input_path = "troubleshooting.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Horizon_Arm 文档
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">首页</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../first_time_setup/">首次使用</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../user_guide/">用户指南</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../calibration_guide/">视觉标定详解</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../joycon_control_guide/">Joy-Con手柄控制</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../IO_Control_System/">IO控制系统</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../api_guide/">AI API配置指南</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../ros2_guide/">ROS2控制平台</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../activation/">序列号与激活</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">故障排除</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#_2">相关资源</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_3">功能相关问题</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_4">机械臂控制：点击“移动到位置”无响应</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_5">关节微调后末端位姿不更新</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_6">单电机循环运动中断</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_7">激活相关问题</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_8">首次激活失败/提示需要网络</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_9">重复激活仍提示失败</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_10">设备数量已达上限</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_11">已激活但重启后又要求激活</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_12">序列号已锁定（已销毁）</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_13">问题快速定位</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#连接故障">连接故障</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#1">❌ 问题1：提示"无法打开串口"</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#2id-x">❌ 问题2：连接后提示"电机ID X 连接失败"</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#3">❌ 问题3：连接成功但无法控制</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#手柄控制故障">手柄控制故障</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#1joy-con">❌ 问题1：Joy-Con 无法配对</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#2">❌ 问题2：手柄已配对但软件连接失败</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#3_1">❌ 问题3：手柄连接后无响应</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#4">❌ 问题4：控制方向与预期相反</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#5">❌ 问题5：手柄频繁断开连接</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#6">❌ 问题6：运动不流畅或有延迟</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#7">❌ 问题7：夹爪控制不工作</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_14">⚠️ 使用建议</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#ai控制故障">AI控制故障</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#4_1">❌ 问题4：输入指令后没有反应</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#5ai">❌ 问题5：AI理解指令错误</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#电机控制故障">电机控制故障</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#6_1">❌ 问题6：机械臂动作方向错误</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#7_1">❌ 问题7：动作幅度不正确</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#相机标定故障">相机标定故障</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#8">❌ 问题8：集成相机无法启动</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#9">❌ 问题9：手眼标定精度差</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_15">全局紧急停止问题</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#10">❌ 问题10：紧急停止无响应</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#11">❌ 问题11：紧急停止误触发</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_16">具身智能问题</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#12">❌ 问题12：流式执行异常</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#13">❌ 问题13：视觉抓取不准确</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_17">示教器问题</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#14">❌ 问题14：示教程序无法录制</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#io控制故障">IO控制故障</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#16esp32">❌ 问题16：ESP32连接失败</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#17di">❌ 问题17：DI信号无响应</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#18do">❌ 问题18：DO输出无效果</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#19">❌ 问题19：作业执行异常</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#20io">❌ 问题20：IO状态显示异常</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#软件故障">软件故障</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#15">❌ 问题15：界面卡死或崩溃</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#11mujoco">❌ 问题11：MuJoCo仿真无法显示</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_18">仍然无法解决？</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_19">📞 获得更多帮助</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_20">预防性维护建议</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_21">定期检查项目</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_22">最佳实践</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Horizon_Arm 文档</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">故障排除</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="_1">故障排除指南<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p><strong>快速解决使用过程中遇到的常见问题</strong></p>
+</blockquote>
+<p>本页面收集了用户在使用 Horizon_Arm 过程中最常遇到的问题和解决方案。建议您先在这里查找，大部分问题都能快速解决。</p>
+<h3 id="_2">相关资源<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<ul>
+<li>📦 <strong>ROS2控制平台</strong>：<a href="https://github.com/RuXue-one/Horizon_ARM_ROS2">https://github.com/RuXue-one/Horizon_ARM_ROS2</a></li>
+<li>📚 <strong>完整文档</strong>：用户指南、操作手册、故障排除</li>
+</ul>
+<p style="color: red; font-weight: bold;">
+🚨 紧急情况：任何时候按空格键可立即停止所有电机运动！
+</p>
+
+<hr />
+<h2 id="_3">功能相关问题<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<h3 id="_4">机械臂控制：点击“移动到位置”无响应<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<ul>
+<li>确认已连接电机且已使能</li>
+<li>检查“绝对/相对位置”是否符合当前零位设置</li>
+<li>若使用仿真联动，先关闭联动后重试硬件动作</li>
+</ul>
+<h3 id="_5">关节微调后末端位姿不更新<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<ul>
+<li>等待 1~2 秒或切换至“机械臂控制”标签后返回</li>
+<li>仍不更新：重启软件再试（可能是系统渲染延迟）</li>
+</ul>
+<h3 id="_6">单电机循环运动中断<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<ul>
+<li>检查“动作间隔时间”是否过短导致未到位即切步</li>
+<li>降低角度/速度/加速度后重试</li>
+<li>异常时可使用“紧急停止”</li>
+</ul>
+<hr />
+<h2 id="_7">激活相关问题<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<h3 id="_8">首次激活失败/提示需要网络<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<ul>
+<li>确保电脑网络可用，稍后重试</li>
+<li>关闭可能拦截网络的代理/杀毒/防火墙后再试</li>
+<li>仍失败：请记录时间点与弹窗提示文字，联系技术支持</li>
+</ul>
+<h3 id="_9">重复激活仍提示失败<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
+<ul>
+<li>确认序列号无误（区分 0/O、1/I）</li>
+<li>确认用户标识（手机号/邮箱）输入正确</li>
+<li>如果更换电脑或频繁更换设备，可能达到使用上限；请联系管理员处理</li>
+</ul>
+<h3 id="_10">设备数量已达上限<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
+<ul>
+<li>当前序列号可绑定的设备数量已用尽</li>
+<li>需要管理员清理或增加设备绑定数量</li>
+<li>联系技术支持提供序列号和用户标识</li>
+</ul>
+<h3 id="_11">已激活但重启后又要求激活<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h3>
+<ul>
+<li>可能是杀毒软件误删了激活信息</li>
+<li>重新激活一次即可恢复</li>
+</ul>
+<blockquote>
+<p><strong>提示</strong>：
+- 激活成功后，软件会记住此电脑的激活状态
+- 序列号具有唯一性，不可在多台设备上同时使用
+- 离线使用需要首次激活成功</p>
+</blockquote>
+<h3 id="_12">序列号已锁定（已销毁）<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h3>
+<p><strong>现象</strong>：</p>
+<pre><code>❌ 序列号已锁定（已销毁），无法继续使用
+</code></pre>
+<p><strong>可能原因</strong>：
+- 在许可证管理中主动执行了“销毁并锁定”
+- 管理员基于合规或安全要求执行锁定
+- 检测到异常使用（如多设备滥用）触发锁定</p>
+<p><strong>处理建议</strong>：
+1. 确认是否为误操作；如是，尽快联系管理员或技术支持复核
+2. 如需继续使用，按流程申请新的序列号或办理授权迁移
+3. 已锁定序列号不可恢复，请避免重复尝试激活</p>
+<hr />
+<h2 id="_13">问题快速定位<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>问题类型</th>
+<th>典型现象</th>
+<th>跳转链接</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>🔌 <strong>连接问题</strong></td>
+<td>无法连接电机、串口错误</td>
+<td><a href="#连接故障">连接故障</a></td>
+</tr>
+<tr>
+<td>🎮 <strong>手柄控制问题</strong></td>
+<td>Joy-Con无法连接、无响应</td>
+<td><a href="#手柄控制故障">手柄控制故障</a></td>
+</tr>
+<tr>
+<td>🤖 <strong>AI控制问题</strong></td>
+<td>指令不执行、理解错误</td>
+<td><a href="#ai控制故障">AI故障</a></td>
+</tr>
+<tr>
+<td>⚙️ <strong>电机控制问题</strong></td>
+<td>动作不准确、方向错误</td>
+<td><a href="#电机控制故障">电机故障</a></td>
+</tr>
+<tr>
+<td>📷 <strong>相机标定问题</strong></td>
+<td>标定失败、图像异常</td>
+<td><a href="#相机标定故障">标定故障</a></td>
+</tr>
+<tr>
+<td>🔌 <strong>IO控制问题</strong></td>
+<td>ESP32连接失败、信号无响应</td>
+<td><a href="#io控制故障">IO控制故障</a></td>
+</tr>
+<tr>
+<td>🖥️ <strong>软件问题</strong></td>
+<td>界面卡死、崩溃退出</td>
+<td><a href="#软件故障">软件故障</a></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="连接故障">连接故障<a class="headerlink" href="#连接故障" title="Permanent link">&para;</a></h2>
+<h3 id="1">❌ 问题1：提示"无法打开串口"<a class="headerlink" href="#1" title="Permanent link">&para;</a></h3>
+<p><strong>现象</strong>：</p>
+<pre><code>❌ 无法打开串口 COM18
+❌ 串口被占用或不存在
+</code></pre>
+<p><strong>原因分析</strong>：
+- 串口号错误或串口被其他程序占用
+- CANable设备未正确安装驱动</p>
+<p><strong>解决步骤</strong>：</p>
+<ol>
+<li><strong>检查设备管理器</strong>：</li>
+<li>打开设备管理器</li>
+<li>查看"端口(COM和LPT)"</li>
+<li>
+<p>确认CANable对应的COM口号</p>
+</li>
+<li>
+<p><strong>关闭占用程序</strong>：</p>
+</li>
+<li>关闭CANgaroo、putty等串口工具</li>
+<li>
+<p>重启电脑释放串口占用</p>
+</li>
+<li>
+<p><strong>重新安装驱动</strong>：</p>
+</li>
+<li>下载CANable官方驱动</li>
+<li>重新安装USB转串口驱动</li>
+</ol>
+<div align="center">
+  <img src="../images/6.png" alt="串口错误示例" width="600">
+  <p><em>典型的串口连接错误</em></p>
+</div>
+
+<hr />
+<h3 id="2id-x">❌ 问题2：连接后提示"电机ID X 连接失败"<a class="headerlink" href="#2id-x" title="Permanent link">&para;</a></h3>
+<p><strong>现象</strong>：</p>
+<pre><code>❌ 电机ID 3 连接失败：通信超时
+✅ 已连接 5 个电机（缺少ID: 3）
+</code></pre>
+<p><strong>原因分析</strong>：
+- 电机ID设置错误或重复
+- 电机未上电或连接线接触不良
+- 电机故障</p>
+<p><strong>解决步骤</strong>：</p>
+<ol>
+<li>
+<p><strong>检查电机ID</strong>：</p>
+</li>
+<li>
+<p>确保ID为1-6且无重复</p>
+</li>
+<li>
+<p>可使用电机调试工具检查ID设置</p>
+</li>
+<li>
+<p><strong>检查电源和连线</strong>：</p>
+</li>
+<li>
+<p>确认故障电机已上电（LED指示灯亮起）</p>
+</li>
+<li>
+<p>检查连接线是否松动</p>
+</li>
+<li>
+<p><strong>单独测试</strong>：</p>
+</li>
+<li>
+<p>只连接故障电机进行测试</p>
+</li>
+<li>确认单个电机工作正常</li>
+</ol>
+<hr />
+<h3 id="3">❌ 问题3：连接成功但无法控制<a class="headerlink" href="#3" title="Permanent link">&para;</a></h3>
+<p><strong>现象</strong>：</p>
+<ul>
+<li>显示"已连接6个电机"</li>
+<li>发送指令后电机不动作</li>
+<li>无错误提示</li>
+</ul>
+<p><strong>解决步骤</strong>：</p>
+<ol>
+<li>
+<p><strong>检查使能状态</strong>：</p>
+</li>
+<li>
+<p>进入"单电机控制"页面</p>
+</li>
+<li>点击"使能"按钮</li>
+<li>
+<p>确认电机状态为"已使能"</p>
+</li>
+<li>
+<p><strong>测试基础功能</strong>：</p>
+</li>
+<li>
+<p>先尝试单个关节的小角度运动</p>
+</li>
+<li>确认电机方向和减速比设置正确</li>
+</ol>
+<hr />
+<h2 id="手柄控制故障">手柄控制故障<a class="headerlink" href="#手柄控制故障" title="Permanent link">&para;</a></h2>
+<h3 id="1joy-con">❌ 问题1：Joy-Con 无法配对<a class="headerlink" href="#1joy-con" title="Permanent link">&para;</a></h3>
+<p><strong>现象</strong>：</p>
+<pre><code>❌ 蓝牙设备列表中找不到 Joy-Con
+</code></pre>
+<p><strong>可能原因</strong>：
+1. Joy-Con 未进入配对模式
+2. 蓝牙适配器未启用
+3. Joy-Con 电量不足</p>
+<p><strong>解决方法</strong>：</p>
+<p><strong>1. 正确进入配对模式</strong></p>
+<ul>
+<li>按住 Joy-Con 侧面小圆按钮（同步按钮）3秒</li>
+<li>指示灯应该快速闪烁</li>
+<li>在Windows蓝牙设置中点击"添加设备"</li>
+</ul>
+<p><strong>2. 检查蓝牙功能</strong></p>
+<ul>
+<li>Windows设置 → 蓝牙和其他设备</li>
+<li>确认蓝牙开关已打开</li>
+<li>尝试搜索其他蓝牙设备测试功能</li>
+</ul>
+<p><strong>3. 充电后重试</strong></p>
+<ul>
+<li>使用充电握把或Switch主机为Joy-Con充电</li>
+<li>充电至少30分钟后重试配对</li>
+</ul>
+<hr />
+<h3 id="2">❌ 问题2：手柄已配对但软件连接失败<a class="headerlink" href="#2" title="Permanent link">&para;</a></h3>
+<p><strong>现象</strong>：</p>
+<pre><code>❌ 无法连接左Joy-Con
+❌ 无法连接右Joy-Con
+</code></pre>
+<p><strong>可能原因</strong>：
+1. Joy-Con 蓝牙连接不稳定
+2. 缺少必要的Python库
+3. 其他程序占用Joy-Con</p>
+<p><strong>解决方法</strong>：</p>
+<p><strong>1. 重新连接手柄</strong></p>
+<ul>
+<li>在Windows蓝牙设置中移除Joy-Con</li>
+<li>重启电脑</li>
+<li>重新配对Joy-Con</li>
+<li>启动软件再次尝试连接</li>
+</ul>
+<p><strong>2. 检查依赖库</strong></p>
+<ul>
+<li>确保已安装 pyjoycon 库</li>
+<li>命令：<code>pip install pyjoycon</code></li>
+</ul>
+<p><strong>3. 关闭其他程序</strong></p>
+<ul>
+<li>关闭可能使用Joy-Con的其他软件</li>
+<li>特别是Switch相关的模拟器或测试工具</li>
+</ul>
+<hr />
+<h3 id="3_1">❌ 问题3：手柄连接后无响应<a class="headerlink" href="#3_1" title="Permanent link">&para;</a></h3>
+<p><strong>现象</strong>：
+- 手柄已连接但机械臂不动
+- 按键无任何反应</p>
+<p><strong>可能原因</strong>：
+1. 机械臂未连接或未使能
+2. 手柄控制功能未启动
+3. 进入了紧急停止状态</p>
+<p><strong>解决方法</strong>：</p>
+<p><strong>1. 检查机械臂状态</strong></p>
+<ul>
+<li>确认机械臂已通过串口连接</li>
+<li>确认所有电机已使能</li>
+<li>查看状态监控中的电机状态</li>
+</ul>
+<p><strong>2. 重新启动手柄控制</strong></p>
+<ul>
+<li>在软件中点击"断开Joy-Con"</li>
+<li>等待3秒</li>
+<li>重新点击"连接Joy-Con"</li>
+</ul>
+<p><strong>3. 解除紧急停止</strong></p>
+<ul>
+<li>如果之前按过HOME键紧急停止</li>
+<li>需要重新使能所有电机</li>
+<li>然后重新启动手柄控制</li>
+</ul>
+<hr />
+<h3 id="4">❌ 问题4：控制方向与预期相反<a class="headerlink" href="#4" title="Permanent link">&para;</a></h3>
+<p><strong>现象</strong>：
+- 推动摇杆向前，机械臂向后移动
+- 按键方向与实际运动方向不符</p>
+<p><strong>可能原因</strong>：
+1. 电机方向参数设置错误
+2. 坐标系理解有误</p>
+<p><strong>解决方法</strong>：</p>
+<p><strong>1. 调整电机方向参数</strong></p>
+<ul>
+<li>工具 → 电机参数设置</li>
+<li>找到对应关节的方向设置</li>
+<li>切换"正向"/"反向"</li>
+<li>保存并重新加载配置</li>
+</ul>
+<p><strong>2. 参考标准方向</strong></p>
+<ul>
+<li>查看用户指南中的"6轴运动方向参考标准"</li>
+<li>对比GIF动画确认正确方向</li>
+<li>逐个关节测试和调整</li>
+</ul>
+<hr />
+<h3 id="5">❌ 问题5：手柄频繁断开连接<a class="headerlink" href="#5" title="Permanent link">&para;</a></h3>
+<p><strong>现象</strong>：</p>
+<pre><code>⚠️ 左Joy-Con连接丢失
+⚠️ 正在重新连接...
+</code></pre>
+<p><strong>可能原因</strong>：
+1. 蓝牙信号弱或有干扰
+2. Joy-Con电量不足
+3. 蓝牙适配器兼容性问题</p>
+<p><strong>解决方法</strong>：</p>
+<p><strong>1. 改善蓝牙连接</strong></p>
+<ul>
+<li>手柄靠近电脑（距离&lt;2米）</li>
+<li>移除蓝牙信号干扰源（WiFi路由器、微波炉等）</li>
+<li>减少金属物体遮挡</li>
+</ul>
+<p><strong>2. 充足电量</strong></p>
+<ul>
+<li>充满电后使用</li>
+<li>避免低电量状态下长时间使用</li>
+</ul>
+<p><strong>3. 更换蓝牙适配器</strong></p>
+<ul>
+<li>使用外置蓝牙4.0或更高版本适配器</li>
+<li>推荐品牌：CSR、Broadcom芯片的适配器</li>
+</ul>
+<hr />
+<h3 id="6">❌ 问题6：运动不流畅或有延迟<a class="headerlink" href="#6" title="Permanent link">&para;</a></h3>
+<p><strong>现象</strong>：
+- 推动摇杆后机械臂延迟响应
+- 运动卡顿不连贯</p>
+<p><strong>可能原因</strong>：
+1. 蓝牙通信延迟
+2. 电脑性能不足
+3. 速度设置过低</p>
+<p><strong>解决方法</strong>：</p>
+<p><strong>1. 优化蓝牙连接</strong></p>
+<ul>
+<li>参考上述"频繁断开"的优化方法</li>
+<li>确保蓝牙信号强度良好</li>
+</ul>
+<p><strong>2. 释放系统资源</strong></p>
+<ul>
+<li>关闭不必要的后台程序</li>
+<li>特别是占用CPU较高的软件</li>
+<li>确保内存充足</li>
+</ul>
+<p><strong>3. 调整控制参数</strong></p>
+<ul>
+<li>适当提高速度倍率（方向键↑）</li>
+<li>关闭微调模式（如果已启用）</li>
+<li>在配置文件中调整步长参数</li>
+</ul>
+<hr />
+<h3 id="7">❌ 问题7：夹爪控制不工作<a class="headerlink" href="#7" title="Permanent link">&para;</a></h3>
+<p><strong>现象</strong>：
+- 按A/B键无反应
+- 提示"夹爪未连接"</p>
+<p><strong>可能原因</strong>：
+1. 夹爪控制器未连接
+2. 串口配置错误
+3. 夹爪角度参数不合理</p>
+<p><strong>解决方法</strong>：</p>
+<p><strong>1. 连接夹爪</strong></p>
+<ul>
+<li>工具 → 夹爪连接</li>
+<li>选择正确的串口</li>
+<li>点击连接按钮</li>
+<li>等待连接成功提示</li>
+</ul>
+<p><strong>2. 检查参数</strong></p>
+<ul>
+<li>确认张开角度（通常为0°）</li>
+<li>确认闭合角度（通常为90°）</li>
+<li>角度范围应在0-90°之间</li>
+</ul>
+<p><strong>3. 测试夹爪</strong></p>
+<ul>
+<li>在夹爪连接界面先单独测试</li>
+<li>确认夹爪能正常开合</li>
+<li>再尝试通过手柄控制</li>
+</ul>
+<hr />
+<h3 id="_14">⚠️ 使用建议<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h3>
+<p><strong>首次使用手柄控制</strong></p>
+<ol>
+<li>从低速度开始（50%速度倍率）</li>
+<li>先在开阔空间测试基本移动</li>
+<li>熟练后再进行复杂操作</li>
+<li>随时准备按HOME键紧急停止</li>
+</ol>
+<p><strong>提高控制精度</strong></p>
+<ol>
+<li>使用微调模式（按下摇杆）</li>
+<li>降低速度倍率</li>
+<li>关节模式比笛卡尔模式更精确</li>
+<li>结合仿真联动预演动作</li>
+</ol>
+<p><strong>详细使用说明</strong>：
+- 完整的手柄控制指南请参考 <strong><a href="../joycon_control_guide/">Joy-Con手柄控制指南</a></strong>
+- 包含详细的按键映射、操作技巧和参数配置</p>
+<hr />
+<h2 id="ai控制故障">AI控制故障<a class="headerlink" href="#ai控制故障" title="Permanent link">&para;</a></h2>
+<h3 id="4_1">❌ 问题4：输入指令后没有反应<a class="headerlink" href="#4_1" title="Permanent link">&para;</a></h3>
+<p><strong>现象</strong>：</p>
+<ul>
+<li>在具身智能页面输入指令</li>
+<li>点击执行后没有任何动作</li>
+<li>对话框显示空白或错误</li>
+</ul>
+<p><strong>原因分析</strong>：</p>
+<ul>
+<li>AI服务配置错误</li>
+<li>网络连接问题</li>
+<li>API密钥无效</li>
+</ul>
+<p><strong>解决步骤</strong>：</p>
+<ol>
+<li>
+<p><strong>检查AI配置</strong>：</p>
+</li>
+<li>
+<p>进入具身智能页面的设置选项</p>
+</li>
+<li>确认API密钥正确且有效</li>
+<li>
+<p>检查网络连接</p>
+</li>
+<li>
+<p><strong>测试AI服务</strong>：</p>
+</li>
+<li>
+<p>尝试简单的语音或文字指令</p>
+</li>
+<li>
+<p>观察系统响应和错误提示</p>
+</li>
+<li>
+<p><strong>查看错误日志</strong>：</p>
+</li>
+<li>
+<p>检查控制台输出的错误信息</p>
+</li>
+<li>根据错误码查找具体原因</li>
+</ol>
+<hr />
+<h3 id="5ai">❌ 问题5：AI理解指令错误<a class="headerlink" href="#5ai" title="Permanent link">&para;</a></h3>
+<p><strong>现象</strong>：</p>
+<ul>
+<li>输入"向上抬起"，但机械臂向下运动</li>
+<li>指令执行与预期完全不符</li>
+</ul>
+<p><strong>解决步骤</strong>：</p>
+<ol>
+<li>
+<p><strong>使用更清晰的指令</strong>：</p>
+</li>
+<li>
+<p>避免模糊表达："抬起" → "第2关节向上转动30度"</p>
+</li>
+<li>
+<p>使用具体的动作描述</p>
+</li>
+<li>
+<p><strong>检查电机配置</strong>：</p>
+</li>
+<li>
+<p>进入"电机参数设置"</p>
+</li>
+<li>确认减速比和方向设置正确</li>
+</ol>
+<hr />
+<h2 id="电机控制故障">电机控制故障<a class="headerlink" href="#电机控制故障" title="Permanent link">&para;</a></h2>
+<h3 id="6_1">❌ 问题6：机械臂动作方向错误<a class="headerlink" href="#6_1" title="Permanent link">&para;</a></h3>
+<p><strong>现象</strong>：</p>
+<ul>
+<li>指令"向右"但机械臂向左</li>
+<li>关节转动方向与预期相反</li>
+<li>某个轴的运动方向与仿真不一致</li>
+</ul>
+<p><strong>解决步骤</strong>：</p>
+<ol>
+<li>
+<p><strong>对比标准方向</strong>：</p>
+</li>
+<li>
+<p>查看用户指南中的"6轴运动方向参考标准"</p>
+</li>
+<li>使用单电机控制测试各轴的正方向运动</li>
+<li>
+<p>对比实际运动与参考GIF是否一致</p>
+</li>
+<li>
+<p><strong>修改电机方向</strong>：</p>
+</li>
+<li>
+<p>菜单："工具 → 电机参数设置"</p>
+</li>
+<li>找到运动方向错误的电机</li>
+<li>将方向设置从"正向"改为"反向"，或从"反向"改为"正向"</li>
+<li>
+<p>点击"保存设置"后重新加载配置</p>
+</li>
+<li>
+<p><strong>验证调整结果</strong>：</p>
+</li>
+<li>
+<p>返回单电机控制页面</p>
+</li>
+<li>重新测试该轴的正方向运动</li>
+<li>
+<p>确认运动方向与参考标准一致</p>
+</li>
+<li>
+<p><strong>重新标定</strong>：</p>
+</li>
+<li>
+<p>如果是末端位置控制问题</p>
+</li>
+<li>重新进行手眼标定</li>
+</ol>
+<p><strong>各轴标准正方向</strong>（以机械臂自身坐标系为准）：</p>
+<ul>
+<li><strong>1轴</strong>：基座逆时针旋转</li>
+<li><strong>2轴</strong>：大臂向下摆动</li>
+<li><strong>3轴</strong>：小臂向下摆动</li>
+<li><strong>4轴</strong>：腕部右转（机械臂自身方向）</li>
+<li><strong>5轴</strong>：腕部向下俯仰</li>
+<li><strong>6轴</strong>：末端右转（机械臂自身方向）</li>
+</ul>
+<div align="center">
+  <img src="../images/电机参数设置.png" alt="电机参数设置" width="600">
+  <p><em>电机参数设置界面</em></p>
+</div>
+
+<hr />
+<h3 id="7_1">❌ 问题7：动作幅度不正确<a class="headerlink" href="#7_1" title="Permanent link">&para;</a></h3>
+<p><strong>现象</strong>：</p>
+<ul>
+<li>指令"小幅度移动"但动作很大</li>
+<li>角度控制不精确</li>
+</ul>
+<p><strong>解决步骤</strong>：</p>
+<ol>
+<li>
+<p><strong>检查减速比设置</strong>：</p>
+</li>
+<li>
+<p>确认每个电机的减速比参数正确</p>
+</li>
+<li>
+<p>常见减速比：1:50, 1:100等</p>
+</li>
+<li>
+<p><strong>校准零点</strong>：</p>
+</li>
+<li>
+<p>使用"清零当前位置"功能</p>
+</li>
+<li>重新设定机械臂初始姿态</li>
+</ol>
+<hr />
+<h2 id="相机标定故障">相机标定故障<a class="headerlink" href="#相机标定故障" title="Permanent link">&para;</a></h2>
+<h3 id="8">❌ 问题8：集成相机无法启动<a class="headerlink" href="#8" title="Permanent link">&para;</a></h3>
+<p><strong>现象</strong>：</p>
+<pre><code>❌ 无法启动双目相机系统
+❌ 相机初始化失败
+</code></pre>
+<p><strong>解决步骤</strong>：</p>
+<ol>
+<li>
+<p><strong>检查系统连接</strong>：</p>
+</li>
+<li>
+<p>确认机械臂电源正常</p>
+</li>
+<li>
+<p>检查相机模块的连接状态</p>
+</li>
+<li>
+<p><strong>重启相机系统</strong>：</p>
+</li>
+<li>
+<p>在视觉抓取页面点击"重启相机"</p>
+</li>
+<li>
+<p>或重启整个机械臂系统</p>
+</li>
+<li>
+<p><strong>检查相机设置</strong>：</p>
+</li>
+<li>
+<p>确认相机设备ID设置正确（通常为0）</p>
+</li>
+<li>检查分辨率和帧率设置是否合理</li>
+</ol>
+<hr />
+<h3 id="9">❌ 问题9：手眼标定精度差<a class="headerlink" href="#9" title="Permanent link">&para;</a></h3>
+<p><strong>现象</strong>：</p>
+<ul>
+<li>标定完成但机械臂定位不准确</li>
+<li>视觉坐标与实际位置偏差大</li>
+</ul>
+<p><strong>解决步骤</strong>：</p>
+<ol>
+<li>
+<p><strong>增加标定点数量</strong>：</p>
+</li>
+<li>
+<p>至少采集15个不同姿态的标定点</p>
+</li>
+<li>
+<p>确保覆盖整个工作空间</p>
+</li>
+<li>
+<p><strong>改善标定条件</strong>：</p>
+</li>
+<li>
+<p>确保光照充足均匀</p>
+</li>
+<li>棋盘格图案清晰无变形</li>
+<li>避免相机或机械臂抖动</li>
+</ol>
+<div align="center">
+  <img src="../images/相机标定工具.png" alt="手眼标定界面" width="600">
+  <p><em>手眼标定操作界面</em></p>
+</div>
+
+<hr />
+<h2 id="_15">全局紧急停止问题<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h2>
+<h3 id="10">❌ 问题10：紧急停止无响应<a class="headerlink" href="#10" title="Permanent link">&para;</a></h3>
+<p><strong>现象</strong>：</p>
+<ul>
+<li>按空格键后没有反应</li>
+<li>电机继续运动未停止</li>
+</ul>
+<p><strong>解决步骤</strong>：</p>
+<ol>
+<li>
+<p><strong>检查焦点状态</strong>：</p>
+</li>
+<li>
+<p>确认不在输入框中按空格</p>
+</li>
+<li>
+<p>点击空白区域再按空格键</p>
+</li>
+<li>
+<p><strong>检查电机连接</strong>：</p>
+</li>
+<li>
+<p>确认电机已正确连接</p>
+</li>
+<li>
+<p>查看连接状态显示</p>
+</li>
+<li>
+<p><strong>使用物理急停</strong>：</p>
+</li>
+<li>
+<p>立即使用物理急停按钮</p>
+</li>
+<li>断开电源确保安全</li>
+</ol>
+<h3 id="11">❌ 问题11：紧急停止误触发<a class="headerlink" href="#11" title="Permanent link">&para;</a></h3>
+<p><strong>现象</strong>：</p>
+<ul>
+<li>在输入框中按空格也触发停止</li>
+<li>频繁意外触发紧急停止</li>
+</ul>
+<p><strong>解决步骤</strong>：</p>
+<ol>
+<li>
+<p><strong>更新到最新版本</strong>：</p>
+</li>
+<li>
+<p>新版本已修复输入框误触发问题</p>
+</li>
+<li>
+<p><strong>检查键盘</strong>：</p>
+</li>
+<li>
+<p>确认空格键没有卡住</p>
+</li>
+<li>检查是否有键盘快捷键冲突</li>
+</ol>
+<hr />
+<h2 id="_16">具身智能问题<a class="headerlink" href="#_16" title="Permanent link">&para;</a></h2>
+<h3 id="12">❌ 问题12：流式执行异常<a class="headerlink" href="#12" title="Permanent link">&para;</a></h3>
+<p><strong>现象</strong>：</p>
+<ul>
+<li>流式执行中断或错误</li>
+<li>任务队列堵塞</li>
+</ul>
+<p><strong>解决步骤</strong>：</p>
+<ol>
+<li>
+<p><strong>切换执行模式</strong>：</p>
+</li>
+<li>
+<p>使用传统执行模式</p>
+</li>
+<li>
+<p>避免复杂任务的流式执行</p>
+</li>
+<li>
+<p><strong>清理任务队列</strong>：</p>
+</li>
+<li>
+<p>重启具身智能系统</p>
+</li>
+<li>
+<p>清除待执行任务</p>
+</li>
+<li>
+<p><strong>检查AI配置</strong>：</p>
+</li>
+<li>
+<p>确认API密钥有效</p>
+</li>
+<li>检查网络连接稳定性</li>
+</ol>
+<h3 id="13">❌ 问题13：视觉抓取不准确<a class="headerlink" href="#13" title="Permanent link">&para;</a></h3>
+<p><strong>现象</strong>：</p>
+<ul>
+<li>抓取位置偏差大</li>
+<li>深度估计错误</li>
+</ul>
+<p><strong>解决步骤</strong>：</p>
+<ol>
+<li>
+<p><strong>重新标定</strong>：</p>
+</li>
+<li>
+<p>完成相机标定</p>
+</li>
+<li>
+<p>重新进行手眼标定</p>
+</li>
+<li>
+<p><strong>调整参数</strong>：</p>
+</li>
+<li>
+<p>检查TCP偏移设置</p>
+</li>
+<li>
+<p>调整深度估计参数</p>
+</li>
+<li>
+<p><strong>环境优化</strong>：</p>
+</li>
+<li>
+<p>确保光照充足均匀</p>
+</li>
+<li>避免反光和阴影</li>
+</ol>
+<hr />
+<h2 id="_17">示教器问题<a class="headerlink" href="#_17" title="Permanent link">&para;</a></h2>
+<h3 id="14">❌ 问题14：示教程序无法录制<a class="headerlink" href="#14" title="Permanent link">&para;</a></h3>
+<p><strong>现象</strong>：</p>
+<ul>
+<li>点击录制按钮无响应</li>
+<li>录制的动作点丢失</li>
+</ul>
+<p><strong>解决步骤</strong>：</p>
+<ol>
+<li>
+<p><strong>检查电机状态</strong>：</p>
+</li>
+<li>
+<p>确认所有电机已连接且使能</p>
+</li>
+<li>
+<p>检查关节位置读取正常</p>
+</li>
+<li>
+<p><strong>清理录制数据</strong>：</p>
+</li>
+<li>
+<p>清除已录制的错误数据</p>
+</li>
+<li>
+<p>重新开始录制过程</p>
+</li>
+<li>
+<p><strong>参数检查</strong>：</p>
+</li>
+<li>
+<p>确认插补类型设置正确</p>
+</li>
+<li>检查速度和加速度参数</li>
+</ol>
+<hr />
+<h2 id="io控制故障">IO控制故障<a class="headerlink" href="#io控制故障" title="Permanent link">&para;</a></h2>
+<h3 id="16esp32">❌ 问题16：ESP32连接失败<a class="headerlink" href="#16esp32" title="Permanent link">&para;</a></h3>
+<p><strong>现象</strong>：</p>
+<pre><code>❌ ESP32连接失败：未收到正确的PONG响应
+❌ 无法打开串口 COM3
+</code></pre>
+<p><strong>原因分析</strong>：</p>
+<ul>
+<li>ESP32串口号错误或被占用</li>
+<li>波特率设置不正确</li>
+<li>ESP32固件异常或未正确烧录</li>
+</ul>
+<p><strong>解决步骤</strong>：</p>
+<ol>
+<li>
+<p><strong>检查串口设置</strong>：</p>
+</li>
+<li>
+<p>打开设备管理器确认ESP32对应的COM口号</p>
+</li>
+<li>确保波特率设置为115200</li>
+<li>
+<p>关闭其他可能占用串口的程序</p>
+</li>
+<li>
+<p><strong>检查硬件连接</strong>：</p>
+</li>
+<li>
+<p>确认ESP32供电正常</p>
+</li>
+<li>检查USB数据线是否正常（非充电线）</li>
+<li>
+<p>重新插拔USB连接</p>
+</li>
+<li>
+<p><strong>重启设备</strong>：</p>
+</li>
+<li>
+<p>断开ESP32电源后重新连接</p>
+</li>
+<li>重启上位机软件</li>
+</ol>
+<hr />
+<h3 id="17di">❌ 问题17：DI信号无响应<a class="headerlink" href="#17di" title="Permanent link">&para;</a></h3>
+<p><strong>现象</strong>：</p>
+<ul>
+<li>外部信号触发但机械臂不执行动作</li>
+<li>DI状态显示正常但作业未启动</li>
+</ul>
+<p><strong>解决步骤</strong>：</p>
+<ol>
+<li>
+<p><strong>检查IO映射配置</strong>：</p>
+</li>
+<li>
+<p>确认DI映射中的触发方式设置正确</p>
+</li>
+<li>检查关联的作业名称是否存在</li>
+<li>
+<p>验证GPIO引脚配置与实际接线一致</p>
+</li>
+<li>
+<p><strong>检查外部控制模式</strong>：</p>
+</li>
+<li>
+<p>确认已进入"外部控制模式"</p>
+</li>
+<li>
+<p>检查ESP32连接状态正常</p>
+</li>
+<li>
+<p><strong>检查作业配置</strong>：</p>
+</li>
+<li>
+<p>确认关联的作业步骤配置完整</p>
+</li>
+<li>检查机械臂连接状态</li>
+<li>验证作业中的参数设置正确</li>
+</ol>
+<hr />
+<h3 id="18do">❌ 问题18：DO输出无效果<a class="headerlink" href="#18do" title="Permanent link">&para;</a></h3>
+<p><strong>现象</strong>：</p>
+<ul>
+<li>手动控制DO输出无反应</li>
+<li>作业中的IO控制步骤不执行</li>
+</ul>
+<p><strong>解决步骤</strong>：</p>
+<ol>
+<li>
+<p><strong>检查硬件连接</strong>：</p>
+</li>
+<li>
+<p>确认DO引脚接线正确</p>
+</li>
+<li>检查外部设备的供电和接地</li>
+<li>
+<p>验证负载电流在ESP32承受范围内（&lt;40mA）</p>
+</li>
+<li>
+<p><strong>检查DO配置</strong>：</p>
+</li>
+<li>
+<p>确认DO映射配置正确</p>
+</li>
+<li>检查GPIO引脚设置与实际接线一致</li>
+<li>
+<p>验证输出电平设置（高电平/低电平）</p>
+</li>
+<li>
+<p><strong>测试DO功能</strong>：</p>
+</li>
+<li>
+<p>使用万用表测量DO引脚电压</p>
+</li>
+<li>在IO控制界面手动测试DO开关</li>
+<li>检查ESP32状态和响应</li>
+</ol>
+<hr />
+<h3 id="19">❌ 问题19：作业执行异常<a class="headerlink" href="#19" title="Permanent link">&para;</a></h3>
+<p><strong>现象</strong>：</p>
+<ul>
+<li>作业开始执行但中途停止</li>
+<li>部分步骤执行，部分步骤跳过</li>
+</ul>
+<p><strong>解决步骤</strong>：</p>
+<ol>
+<li>
+<p><strong>检查作业步骤</strong>：</p>
+</li>
+<li>
+<p>确认所有步骤参数配置完整</p>
+</li>
+<li>检查关节角度是否在安全范围内</li>
+<li>
+<p>验证夹爪控制步骤的连接状态</p>
+</li>
+<li>
+<p><strong>检查设备状态</strong>：</p>
+</li>
+<li>
+<p>确认机械臂所有电机连接正常</p>
+</li>
+<li>检查夹爪连接状态（如使用夹爪控制步骤）</li>
+<li>
+<p>验证ESP32通信正常</p>
+</li>
+<li>
+<p><strong>查看执行日志</strong>：</p>
+</li>
+<li>
+<p>在IO控制界面查看详细错误信息</p>
+</li>
+<li>根据错误提示调整作业配置</li>
+<li>必要时重新创建作业</li>
+</ol>
+<hr />
+<h3 id="20io">❌ 问题20：IO状态显示异常<a class="headerlink" href="#20io" title="Permanent link">&para;</a></h3>
+<p><strong>现象</strong>：</p>
+<ul>
+<li>DI/DO状态显示为红色或灰色</li>
+<li>状态更新不及时或不准确</li>
+</ul>
+<p><strong>解决步骤</strong>：</p>
+<ol>
+<li>
+<p><strong>检查配置一致性</strong>：</p>
+</li>
+<li>
+<p>确认IO映射中的GPIO配置与ESP32固件一致</p>
+</li>
+<li>检查引脚编号是否正确</li>
+<li>
+<p>验证上拉电阻配置</p>
+</li>
+<li>
+<p><strong>检查通信状态</strong>：</p>
+</li>
+<li>
+<p>确认ESP32连接正常</p>
+</li>
+<li>检查串口通信是否稳定</li>
+<li>
+<p>重新连接ESP32</p>
+</li>
+<li>
+<p><strong>重新配置</strong>：</p>
+</li>
+<li>
+<p>删除错误的IO映射配置</p>
+</li>
+<li>重新添加正确的IO映射</li>
+<li>保存配置并重启系统</li>
+</ol>
+<blockquote>
+<p><strong>提示</strong>：IO控制系统的详细操作说明请参考 <strong><a href="../IO_Control_System/">IO控制系统操作说明</a></strong></p>
+</blockquote>
+<hr />
+<h2 id="软件故障">软件故障<a class="headerlink" href="#软件故障" title="Permanent link">&para;</a></h2>
+<h3 id="15">❌ 问题15：界面卡死或崩溃<a class="headerlink" href="#15" title="Permanent link">&para;</a></h3>
+<p><strong>现象</strong>：</p>
+<ul>
+<li>点击按钮后界面无响应</li>
+<li>程序突然关闭退出</li>
+</ul>
+<p><strong>解决步骤</strong>：</p>
+<ol>
+<li>
+<p><strong>重启程序</strong>：</p>
+</li>
+<li>
+<p>关闭所有相关进程</p>
+</li>
+<li>
+<p>重新运行程序</p>
+</li>
+<li>
+<p><strong>检查系统资源</strong>：</p>
+</li>
+<li>
+<p>确保内存充足（建议8GB+）</p>
+</li>
+<li>
+<p>关闭其他占用资源的程序</p>
+</li>
+<li>
+<p><strong>查看错误日志</strong>：</p>
+</li>
+<li>
+<p>检查控制台输出</p>
+</li>
+<li>查看系统事件日志</li>
+</ol>
+<hr />
+<h3 id="11mujoco">❌ 问题11：MuJoCo仿真无法显示<a class="headerlink" href="#11mujoco" title="Permanent link">&para;</a></h3>
+<p><strong>现象</strong>：</p>
+<ul>
+<li>3D仿真窗口不出现</li>
+<li>提示MuJoCo相关错误</li>
+</ul>
+<p><strong>解决步骤</strong>：</p>
+<ol>
+<li><strong>检查MuJoCo安装</strong>：</li>
+</ol>
+<p><code>bash
+   python -c "import mujoco; print('MuJoCo安装正常')"</code></p>
+<ol>
+<li>
+<p><strong>更新显卡驱动</strong>：</p>
+</li>
+<li>
+<p>下载最新的显卡驱动</p>
+</li>
+<li>
+<p>重启电脑</p>
+</li>
+<li>
+<p><strong>使用兼容模式</strong>：</p>
+</li>
+<li>
+<p>修改MuJoCo渲染设置</p>
+</li>
+<li>降低渲染质量</li>
+</ol>
+<hr />
+<h2 id="_18">仍然无法解决？<a class="headerlink" href="#_18" title="Permanent link">&para;</a></h2>
+<h3 id="_19">📞 获得更多帮助<a class="headerlink" href="#_19" title="Permanent link">&para;</a></h3>
+<ol>
+<li>
+<p><strong>收集错误信息</strong>：</p>
+</li>
+<li>
+<p>截图错误界面</p>
+</li>
+<li>复制控制台错误信息</li>
+<li>
+<p>记录操作步骤</p>
+</li>
+<li>
+<p><strong>提交问题报告</strong>：</p>
+</li>
+<li>
+<p>详细描述问题现象</p>
+</li>
+<li>提供系统环境信息</li>
+<li>附上错误截图和日志</li>
+</ol>
+<hr />
+<h2 id="_20">预防性维护建议<a class="headerlink" href="#_20" title="Permanent link">&para;</a></h2>
+<h3 id="_21">定期检查项目<a class="headerlink" href="#_21" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>每周</strong>：检查CAN线连接，清洁设备</li>
+<li><strong>每月</strong>：更新软件版本，备份配置文件</li>
+<li><strong>每季度</strong>：重新标定相机，检查电机磨损</li>
+</ul>
+<h3 id="_22">最佳实践<a class="headerlink" href="#_22" title="Permanent link">&para;</a></h3>
+<ul>
+<li>使用前先进行仿真测试</li>
+<li>定期保存重要的配置参数</li>
+<li>建立操作日志记录</li>
+</ul>
+<hr />
+<div align="center">
+  <p style="color: #2196F3; font-weight: bold;">
+    💪 大部分问题都有解决方案，不要放弃！
+  </p>
+  <p style="color: #666;">
+    如果本页面没有找到答案，请联系我们的技术支持团队
+  </p>
+</div>
+
+<hr />
+<div align="center" style="margin: 30px 0; padding: 20px; background-color: #f8f9fa; border-radius: 10px;">
+<p style="font-size: 14px; color: #6c757d; margin: 0;">
+<strong>故障排除指南</strong> | 让问题解决更高效<br>
+© 2025 Horizon Arm • 智能、灵活、易用
+</p>
+</div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../activation/" class="btn btn-neutral float-left" title="序列号与激活"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../activation/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
